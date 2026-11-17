@@ -1,0 +1,54 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}{{jp.short}} – Karriere{% endblock %}
+{% block main %}
+<section class="hero p-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span><a href="karriere.html">Karriere</a><span>/</span>{{jp.short}}</nav>
+      <p class="plate">{{ jp.badge or 'Deine Chance beim Marktführer' }}</p>
+      <h1 class="h1 h1-job">{{jp.title}}</h1>
+      <ul class="meta" role="list">
+        <li>{{ icon('pin') }} Marktoberdorf</li>
+        <li>{{ icon('clock') }} {{jp.type}}</li>
+        <li>{{ icon('job-' ~ slug) }} {{jp.area}}</li>
+      </ul>
+      <p class="lead">{{jp.intro}}</p>
+      <div class="btns">
+        <a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener"><span>One-Click-Bewerbung</span></a>
+        <a class="btn btn-ghost" href="mailto:{{C.career_email}}?subject={{ jp.short|urlencode }}"><span>Per E-Mail bewerben</span></a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="slant"><img src="{{jp.img}}" alt="{{jp.short}} bei Atterer" fetchpriority="high"></div>
+      <img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026" style="position:absolute;right:6%;bottom:-28px;margin:0;box-shadow:0 10px 30px rgba(0,0,0,.12)">
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:clamp(48px,6vw,88px)">
+  <div class="wrap">
+    <div class="jcols{% if jp.bieten %} jcols-3{% endif %}">
+      <article class="jcol"><h2 class="h3">Deine Aufgaben</h2><ul role="list">{% for x in jp.aufgaben %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+      {% if jp.bieten %}<article class="jcol jcol-blue"><h2 class="h3">Wir bieten Dir</h2><ul role="list">{% for x in jp.bieten %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>{% endif %}
+      <article class="jcol"><h2 class="h3">Dein Profil</h2><ul role="list">{% for x in jp.profil %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+    </div>
+    {% if jp.img2 %}<figure class="job-fig"><img src="{{jp.img2}}" alt="Arbeitsplatz {{jp.short}}" loading="lazy" data-lightbox></figure>{% endif %}
+  </div>
+</section>
+
+{{ ui.apply_block() }}
+
+<section class="sec career">
+  <div class="wrap career-grid">
+    <div class="career-copy"><h2 class="h2">Weitere offene Stellen</h2><p>Nicht ganz das Richtige? Vielleicht passt eine andere Stelle – oder Du bewirbst Dich initiativ.</p></div>
+    <ul class="jobs" role="list">
+      {% for j in JOBS if j.slug != slug %}
+      <li><a href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic job-i') }}<span class="job-t">{{j.title}}</span><span class="job-a">{{j.area}}</span>{{ icon('arrow') }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}

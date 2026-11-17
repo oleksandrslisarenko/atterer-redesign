@@ -159,3 +159,21 @@
     }
   }
 })();
+/* Two-click map: load Google Maps only after consent */
+document.querySelectorAll('[data-map-load]').forEach((btn) => btn.addEventListener('click', () => {
+  const box = btn.closest('[data-map]');
+  const f = document.createElement('iframe');
+  f.src = btn.dataset.mapLoad; f.title = 'Google Maps – Atterer Stahlcenter'; f.loading = 'lazy'; f.allowFullscreen = true;
+  f.referrerPolicy = 'no-referrer-when-downgrade';
+  box.innerHTML = ''; box.append(f); box.classList.add('is-loaded');
+}));
+/* Smooth <details> */
+document.querySelectorAll('details[data-acc-d]').forEach((d) => {
+  const s = d.querySelector('summary'), body = d.querySelector('.acc-b');
+  s.addEventListener('click', (e) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    if (d.open) { body.style.height = body.scrollHeight + 'px'; requestAnimationFrame(() => { body.style.height = '0px'; }); setTimeout(() => { d.open = false; body.style.height = ''; }, 300); }
+    else { d.open = true; const h = body.scrollHeight; body.style.height = '0px'; requestAnimationFrame(() => { body.style.height = h + 'px'; }); setTimeout(() => { body.style.height = ''; }, 320); }
+  });
+});

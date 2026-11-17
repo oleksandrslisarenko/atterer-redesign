@@ -1,0 +1,38 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Produkte' %}
+{% block title %}Unsere Produkte{% endblock %}
+{% block main %}
+{{ ui.hero([('Produkte',None)], 'Unsere Produkte', 'Partner für alle, die Formstahl verarbeiten und Betonstahl verbauen – alles unter einem Dach in Marktoberdorf.', IMG ~ '2024/03/Atterer-Stahlcenter_31-07-2019-46.jpg', 'Halle des Atterer Stahlcenters', [('Anfrage senden','kontakt.html'),('Stahlkatalog 2026', CATALOG_PDF)]) }}
+
+<section class="sec" style="padding-top:clamp(32px,4vw,56px)">
+  <div class="wrap">
+    <div class="feat" style="margin-bottom:clamp(40px,5vw,72px)">
+      <h2 class="h2">30.000 m² Gelände, 12.000 m² Halle, ein Ansprechpartner.</h2>
+      <div style="color:var(--slate)">{% for t in PRODUCTS_INTRO %}<p>{{t}}</p>{% endfor %}</div>
+    </div>
+    <div class="pgrid">
+      {% for p in PRODUCTS %}
+      <a class="pcard" href="{{p.slug}}.html">
+        <span class="pcard-img"><img src="{{p.img}}" alt="" loading="lazy"></span>
+        <span class="pcard-b"><span class="pcard-t">{{p.title}}</span><span class="pcard-d">{{p.short}}</span><span class="jc-go">Mehr erfahren {{ icon('arrow') }}</span></span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap catalog">
+    <img src="{{ CATALOG_IMG }}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+    <div>
+      <p class="plate">Stahlkatalog 2026</p>
+      <h2 class="h2">Das komplette Sortiment mit Preisen, Maßen und Ansprechpartnern.</h2>
+      <p style="color:var(--slate);margin-top:1rem;max-width:48ch">Lagermatten, Betonstahl, Bewehrungsmodule, BAMTEC, ÖNORM-Stahl, Bohrpfahlkörbe, Formstahl und Schalungszubehör auf 23 Seiten.</p>
+      <div class="btns"><a class="btn" href="{{CATALOG_PDF}}" target="_blank" rel="noopener"><span>Katalog herunterladen</span></a><a class="btn btn-ghost" href="downloads.html"><span>Alle Downloads</span></a></div>
+    </div>
+  </div>
+</section>
+{{ ui.cta('Sie haben eine Stahlliste oder einen Bewehrungsplan?', 'Schicken Sie uns Ihre Unterlagen – wir melden uns schnell mit einem Angebot.') }}
+{% endblock %}

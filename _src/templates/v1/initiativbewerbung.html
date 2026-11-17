@@ -1,0 +1,26 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Initiativbewerbung{% endblock %}
+{% block main %}
+{{ ui.hero([('Karriere','karriere.html'),('Initiativbewerbung',None)], 'Initiativ&shy;bewerbung', INITIATIV.text[0], INITIATIV.img, 'Team des Atterer Stahlcenters', [('One-Click-Bewerbung', C.oneclick),('Per E-Mail bewerben','mailto:' ~ C.career_email ~ '?subject=Initiativbewerbung')], 'Deine Chance beim Marktführer') }}
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap feat">
+    <h2 class="h2">So bewirbst Du Dich initiativ</h2>
+    <div>
+      {% for t in INITIATIV.text[1:] %}<p style="color:var(--slate)">{{t}}</p>{% endfor %}
+      <div class="note">{{ icon('check') }}<span>{{INITIATIV.note}}</span></div>
+      <ul class="tags" role="list" style="margin-top:1.6rem"><li>Motivationsschreiben</li><li>Lebenslauf</li><li>Zeugnisse</li></ul>
+    </div>
+  </div>
+</section>
+{{ ui.apply_block() }}
+<section class="sec career">
+  <div class="wrap career-grid">
+    <div class="career-copy"><h2 class="h2">Oder doch eine offene Stelle?</h2><p>Diese Positionen besetzen wir gerade in Marktoberdorf.</p></div>
+    <ul class="jobs" role="list">{% for j in JOBS if j.slug != 'initiativbewerbung' %}<li><a href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic job-i') }}<span class="job-t">{{j.title}}</span><span class="job-a">{{j.area}}</span>{{ icon('arrow') }}</a></li>{% endfor %}</ul>
+  </div>
+</section>
+{% endblock %}

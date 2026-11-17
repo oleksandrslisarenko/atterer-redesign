@@ -1,0 +1,30 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Firma' %}
+{% block title %}Qualitätsmanagement – DIN EN ISO 9001{% endblock %}
+{% block main %}
+{{ ui.hero([('Firma','firma.html'),('Qualitätsmanagement',None)], 'Unser Qualitäts&shy;management', QM.lead ~ ' – seit 2014, jedes Jahr re-zertifiziert.', QM.hero, 'Firmengebäude des Atterer Stahlcenters', [('Zertifikate herunterladen','downloads.html#zertifikate')]) }}
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap feat">
+    <div>
+      <h2 class="h2">Qualität und Verlässlichkeit</h2>
+      <div style="color:var(--slate);margin-top:1.2rem">{% for t in QM.text %}<p>{{t}}</p>{% endfor %}</div>
+      <img src="{{ ISO_LOGO }}" alt="DIN EN ISO 9001" width="110" style="margin-top:2rem" loading="lazy">
+    </div>
+    <figure class="cert"><img src="{{ ISO_CERT }}" alt="Zertifikat DIN EN ISO 9001, gültig bis 11.12.2026" loading="lazy" data-lightbox><figcaption>Zertifikat DIN EN ISO 9001, gültig bis 11.12.2026. Zum Vergrößern klicken.</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap feat">
+    <div>
+      <h2 class="h2">Alle Zertifikate</h2>
+      <p style="color:var(--slate);margin-top:1.2rem;max-width:40ch">Schweißen, Stahlbau und Bewehrung – geprüft und dokumentiert.</p>
+    </div>
+    {{ ui.pdf_list(DOWNLOADS[2][1]) }}
+  </div>
+</section>
+{{ ui.cta('Fragen zu Zertifikaten oder Zulassungen?', 'Wir senden Ihnen die passenden Nachweise für Ihr Projekt.') }}
+{% endblock %}

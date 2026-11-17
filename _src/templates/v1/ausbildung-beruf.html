@@ -1,0 +1,39 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Ausbildung {{ap.title}}{% endblock %}
+{% block main %}
+{{ ui.hero([('Karriere','karriere.html'),('Ausbildung','ausbildung.html'),(ap.title,None)], ap.title, ap.intro, ap.img, ap.title, [('One-Click-Bewerbung', C.oneclick),('Per E-Mail bewerben','mailto:' ~ C.career_email)], ap.start) }}
+
+<section class="sec" style="padding-top:clamp(48px,6vw,88px)">
+  <div class="wrap">
+    <div class="jcols">
+      <article class="jcol"><h2 class="h3">Deine Ausbildung</h2><ul role="list">{% for x in ap.ausbildung %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+      <article class="jcol jcol-blue"><h2 class="h3">Das bist Du</h2><p class="jcol-p">{{ap.du_intro}}</p><ul role="list">{% for x in AUSBILDUNG_DU %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+    </div>
+    <figure class="job-fig"><img src="{{ap.img2}}" alt="{{ap.title}} bei Atterer" loading="lazy" data-lightbox></figure>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap">
+    <h2 class="h2">Hard Facts zur Ausbildung</h2>
+    <div class="facts3">{% for im in AUSBILDUNG.hardfacts %}<img src="{{im}}" alt="Hard Facts {{loop.index}}" loading="lazy" data-lightbox>{% endfor %}</div>
+  </div>
+</section>
+
+{{ ui.apply_block() }}
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap">
+    <h2 class="h2">Unsere Ausbildungen</h2>
+    <div class="job-cards" style="margin-top:2rem">
+      {% for b in AUSBILDUNG.berufe if b.slug and b.slug != slug %}
+      <a class="jc" href="{{b.slug}}.html"><div class="jc-img"><img src="{{b.img}}" alt="" loading="lazy"><span class="jc-tag">Ausbildung</span></div><div class="jc-b"><span class="jc-t">{{b.title}}</span><span class="jc-a">{{b.text}}</span><span class="jc-go">Zur Ausbildung {{ icon('arrow') }}</span></div></a>
+      {% endfor %}
+      <a class="jc" href="ausbildung.html"><div class="jc-img"><img src="{{AUSBILDUNG.hero}}" alt="" loading="lazy"><span class="jc-tag">Übersicht</span></div><div class="jc-b"><span class="jc-t">Alle Ausbildungsberufe</span><span class="jc-a">Kaufleute, Berufskraftfahrer, Kfz-Mechatroniker und Fachinformatiker.</span><span class="jc-go">Zur Übersicht {{ icon('arrow') }}</span></div></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Downloads' %}
+{% block title %}Downloads – Kataloge, Formulare, Zertifikate{% endblock %}
+{% block main %}
+{{ ui.hero([('Downloads',None)], 'Downloads', 'Kataloge, Formulare, Zertifikate und Dokumente – um sich zu informieren oder eine Bestellung aufzugeben.', UC ~ '2024/03/Atterer-Stahlcenter_31-07-2019-101.jpg', 'Verladung im Atterer Stahlcenter', [('Stahlkatalog 2026', CATALOG_PDF)]) }}
+
+<section class="sec" style="background:var(--paper);padding-top:clamp(40px,5vw,72px)">
+  <div class="wrap">
+    <nav class="dl-nav" aria-label="Kategorien">{% for g in DOWNLOADS %}<a href="#{{ g[0]|lower }}">{{g[0]}} <small>{{g[1]|length}}</small></a>{% endfor %}</nav>
+    <div class="catalog" id="stahlkatalog">
+      <img src="{{ CATALOG_IMG }}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+      <div>
+        <p class="plate">Unser Stahlkatalog</p>
+        <h2 class="h2">Stahlkatalog 2026</h2>
+        <p style="color:var(--slate);margin-top:1rem;max-width:46ch">Innovative Bewehrungslösungen, Formstahl und Zubehör mit allen Ansprechpartnern. PDF, 23 Seiten, 6 MB.</p>
+        <div class="btns"><a class="btn" href="{{CATALOG_PDF}}" target="_blank" rel="noopener"><span>Herunterladen</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% for g in DOWNLOADS[1:] %}
+<section class="sec dl-sec" id="{{ g[0]|lower }}">
+  <div class="wrap feat">
+    <div><h2 class="h2">{{g[0]}}</h2><p style="color:var(--slate);margin-top:1rem">{{ {'Formulare':'Für Kontoeröffnung, Projektstart und Bestellung.','Zertifikate':'Nachweise zu Qualitätsmanagement, Schweißen und Zulassungen.','Dokumente':'Produktionslisten, Kennzeichnungen, Zulassungen und Handbücher.'}[g[0]] }}</p></div>
+    {{ ui.pdf_list(g[1]) }}
+  </div>
+</section>
+{% endfor %}
+{{ ui.cta('Sie finden ein Dokument nicht?', 'Rufen Sie uns an oder schreiben Sie uns – wir senden es Ihnen zu.') }}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Kontakt' %}
+{% block title %}Kontakt{% endblock %}
+{% block main %}
+{{ ui.hero([('Kontakt',None)], 'Womit können wir Ihnen helfen?', 'Rufen Sie uns an, schreiben Sie uns oder besuchen Sie uns in Marktoberdorf. ' ~ C.hours ~ '.', IMG ~ '2022/09/Kontakt_1900_600.jpg', 'Atterer LKW-Flotte', [('Jetzt anrufen', C.phone_href),('E-Mail schreiben','mailto:' ~ C.email)]) }}
+
+<section class="sec" style="background:var(--paper);padding-top:clamp(48px,6vw,88px)">
+  <div class="wrap contact-grid">
+    <div>
+      <h2 class="h2">Direkter Draht</h2>
+      <ul class="c-list" role="list">
+        <li>{{ icon('phone') }}<span><small>Telefon</small><a href="{{C.phone_href}}">{{C.phone}}</a></span></li>
+        <li>{{ icon('mail') }}<span><small>E-Mail</small><a href="mailto:{{C.email}}">{{C.email}}</a></span></li>
+        <li>{{ icon('phone') }}<span><small>Telefax</small>{{C.fax}}</span></li>
+        <li>{{ icon('pin') }}<span><small>Adresse</small>{{C.name}}<br>{{C.street}}, {{C.city}}</span></li>
+        <li>{{ icon('clock') }}<span><small>Öffnungszeiten</small>Montag – Freitag, 07:30 – 17:00 Uhr<br>Samstag – Sonntag geschlossen</span></li>
+      </ul>
+    </div>
+    <form class="form" data-proto novalidate>
+      <h2 class="h2">Nachricht senden</h2>
+      <div class="f-row">
+        <label class="f"><span>Name *</span><input name="name" required autocomplete="name"></label>
+        <label class="f"><span>Firma</span><input name="firma" autocomplete="organization"></label>
+      </div>
+      <div class="f-row">
+        <label class="f"><span>E-Mail-Adresse *</span><input name="email" type="email" required autocomplete="email"></label>
+        <label class="f"><span>Telefon</span><input name="tel" type="tel" autocomplete="tel"></label>
+      </div>
+      <label class="f"><span>Nachricht *</span><textarea name="msg" rows="6" required></textarea></label>
+      <label class="chk"><input type="checkbox" required><span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden. *</span></label>
+      <button class="btn" type="submit"><span>Nachricht senden</span></button>
+      <p class="sent" data-sent hidden tabindex="-1">{{ icon('check') }} Danke! Ihre Nachricht ist bei uns angekommen. Wir melden uns schnellstmöglich bei Ihnen.</p>
+    </form>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0;background:var(--paper)">
+  <div class="wrap">
+    <div class="map map-wide" data-map>
+      <img src="{{ IMG }}2024/03/Auftragserfassung.jpg" alt="" loading="lazy">
+      <div class="map-ov map-consent">
+        <p><b>Anfahrt: {{C.street}}, {{C.city}}</b><br>Mit dem Laden der Karte werden Daten an Google übertragen.</p>
+        <div class="btns" style="margin-top:0"><button class="btn btn-s" data-map-load="{{C.maps_embed}}"><span>Karte laden</span></button><a class="btn btn-s btn-ghost-w" href="{{C.maps}}" target="_blank" rel="noopener"><span>In Google Maps öffnen</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

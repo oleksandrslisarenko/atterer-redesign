@@ -1,0 +1,40 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Produkte' %}
+{% block title %}{{pp.title}} – {{pp.sub}}{% endblock %}
+{% block main %}
+{{ ui.hero([('Produkte','produkte.html'),(pp.title,None)], pp.title, pp.lead, pp.hero, pp.title ~ ' bei Atterer', [('Angebot anfragen','kontakt.html'),(C.phone, C.phone_href)], pp.sub) }}
+
+{% if pp.specs %}
+<section aria-label="Eckdaten"><div class="wrap"><dl class="spec">{% for s in pp.specs %}<div><dt>{{s[0]}}</dt><dd>{{s[1]}}</dd></div>{% endfor %}</dl></div></section>
+{% endif %}
+
+<div class="psec-wrap">
+{% for s in pp.sections %}
+<section class="psec{% if loop.index is even %} psec-alt{% endif %}">
+  <div class="wrap psec-grid{% if not (s.img or s.imgs) %} psec-wide{% endif %}">
+    <div class="psec-head">
+      <h2 class="h2">{{s.h}}</h2>
+    </div>
+    <div class="psec-body">
+      {% for t in s.p or [] %}<p>{{t}}</p>{% endfor %}
+      {% if s.list %}<ul class="checks{% if s.list|length < 5 or (s.list|map('length')|max) > 140 %} checks-1{% endif %}" role="list">{% for f in s.list %}<li>{{ icon('check') }}<span>{{f}}</span></li>{% endfor %}</ul>{% endif %}
+      {% if s.tags %}<ul class="tags" role="list">{% for t in s.tags %}<li>{{t}}</li>{% endfor %}</ul>{% endif %}
+      {% if s.faq %}<dl class="faq">{% for q in s.faq %}<div><dt>{{q[0]}}</dt><dd>{{q[1]}}</dd></div>{% endfor %}</dl>{% endif %}
+      {% if s.table %}<table class="tbl"><tbody>{% for r in s.table %}<tr><th scope="row">{{r[0]}}</th><td>{{r[1]}}</td></tr>{% endfor %}</tbody></table>{% endif %}
+      {% if s.services %}<div class="svc-grid">{% for sv in s.services %}<article class="svc"><h3>{{sv[0]}}</h3><p>{{sv[1]}}</p><ul role="list">{% for x in sv[2] %}<li>{{x}}</li>{% endfor %}</ul></article>{% endfor %}</div>{% endif %}
+      {% if s.tours %}<div class="tours">{% for t in s.tours %}<details data-acc-d><summary>Tour {{t[0]}}{{ icon('plus') }}</summary><div class="acc-b"><p>{{t[1]}}</p></div></details>{% endfor %}</div>{% endif %}
+      {% if s.gallery %}<div class="plans">{% for g in s.gallery %}<figure><img src="{{g[0]}}" alt="{{g[1]}}" loading="lazy" data-lightbox><figcaption>{{g[1]}}</figcaption></figure>{% endfor %}</div>{% endif %}
+      {% if s.pdfs %}{{ ui.pdf_list(s.pdfs) }}{% endif %}
+    </div>
+    {% if s.img %}<figure class="psec-fig"><img src="{{s.img}}" alt="{{s.h}}" loading="lazy" data-lightbox></figure>{% endif %}
+    {% if s.imgs %}<div class="psec-fig psec-duo">{% for im in s.imgs %}<img src="{{im}}" alt="{{s.h}}, Bild {{loop.index}}" loading="lazy" data-lightbox>{% endfor %}</div>{% endif %}
+  </div>
+</section>
+{% endfor %}
+</div>
+
+{{ ui.cta('Fragen zu ' ~ pp.title ~ '?', 'Unser Vertrieb meldet sich schnell mit einem Angebot. ' ~ C.hours ~ (', ' ~ pp.contact_email if pp.contact_email else '') ~ '.') }}
+{{ ui.more_products(slug) }}
+{% endblock %}

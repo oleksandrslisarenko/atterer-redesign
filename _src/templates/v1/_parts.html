@@ -1,0 +1,82 @@
+{% from '_icons.html' import icon %}
+
+{% macro hero(crumbs, title, lead, image, alt='', btns=None, plate=None, badge=None) -%}
+<section class="hero p-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a>{% for c in crumbs %}<span>/</span>{% if c[1] %}<a href="{{c[1]}}">{{c[0]}}</a>{% else %}{{c[0]}}{% endif %}{% endfor %}</nav>
+      {% if plate %}<p class="plate">{{plate}}</p>{% endif %}
+      <h1 class="h1">{{title}}</h1>
+      {% if lead %}<p class="lead">{{lead}}</p>{% endif %}
+      {% if btns %}<div class="btns">{% for b in btns %}<a class="btn{% if loop.index > 1 %} btn-ghost{% endif %}" href="{{b[1]}}"{% if b[1].startswith('http') %} target="_blank" rel="noopener"{% endif %}><span>{{b[0]}}</span></a>{% endfor %}</div>{% endif %}
+    </div>
+    <div class="hero-media">
+      <div class="slant"><img src="{{image}}" alt="{{alt}}" fetchpriority="high"></div>
+      {% if badge %}{{badge}}{% endif %}
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro cta(title, text, email=None) -%}
+<section class="cta-band">
+  <div class="wrap">
+    <div>
+      <h2 class="h2">{{title}}</h2>
+      <p>{{text}}</p>
+    </div>
+    <div class="btns" style="margin-top:0">
+      <a class="btn" href="kontakt.html"><span>Anfrage senden</span></a>
+      <a class="btn btn-ghost-w" href="{{C.phone_href}}"><span>{{C.phone}}</span></a>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro more_products(exclude) -%}
+<section class="sec">
+  <div class="wrap gal-head">
+    <h2 class="h2">Weitere Produkte</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="gal-rail more" data-rail>
+    {% for p in PRODUCTS if p.slug != exclude %}
+    <a href="{{p.slug}}.html" draggable="false"><div class="m-img"><img src="{{p.img}}" alt="" loading="lazy" draggable="false"></div><span>{{p.title}}<small>{{p.short}}</small></span></a>
+    {% endfor %}
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro pdf_list(items) -%}
+<ul class="pdfs" role="list">
+  {% for d in items %}<li><a href="{{d[1]}}" target="_blank" rel="noopener">{{ icon('download') }}<span>{{d[0]}}</span><small>{{ d[2] if d|length > 2 else 'PDF' }}</small></a></li>{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro gallery(title='Eindrücke aus der Produktion', bg='') -%}
+<section class="sec gallery"{% if bg %} style="background:{{bg}}"{% endif %}>
+  <div class="wrap gal-head">
+    <h2 class="h2">{{title}}</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="gal-rail" data-rail>
+    {% for g in GALLERY %}<img src="{{g}}" alt="Produktion bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro apply_block() -%}
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h2">So einfach geht Deine Bewerbung</h2>
+    <ol class="steps">
+      {% for s in APPLY_STEPS %}<li><h3>{{s[0]}}</h3><p>{{s[1]}}</p></li>{% endfor %}
+    </ol>
+    <div class="apply-row">
+      <a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener"><span>One-Click-Bewerbung starten</span></a>
+      <a class="link" href="mailto:{{C.career_email}}">{{ icon('mail') }} {{C.career_email}}</a>
+      <a class="small" href="{{C.bewerber_ds}}" target="_blank" rel="noopener">Datenschutzhinweise im Bewerbungsverfahren</a>
+    </div>
+  </div>
+</section>
+{%- endmacro %}

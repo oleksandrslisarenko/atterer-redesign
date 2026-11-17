@@ -1,0 +1,71 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v1/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Ausbildung 2027/28{% endblock %}
+{% block main %}
+{{ ui.hero([('Karriere','karriere.html'),('Ausbildung',None)], 'Raus aus der Schule, rein in die Ausbildung!', AUSBILDUNG.intro[0], AUSBILDUNG.hero, 'Auszubildende bei Atterer', [('Jetzt bewerben', C.oneclick),('Azubi-Magazin', AUSBILDUNG.magazin)], AUSBILDUNG.title) }}
+
+<section aria-label="Eckdaten"><div class="wrap"><dl class="spec spec-3">{% for f in AUSBILDUNG.facts %}<div><dt>{{f[0]}}</dt><dd>{{f[1]}}</dd></div>{% endfor %}</dl></div></section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="feat" style="margin-bottom:clamp(40px,5vw,64px)">
+      <h2 class="h2">Deine Ausbildung bei Atterer</h2>
+      <p style="color:var(--slate)">{{AUSBILDUNG.intro[1]}}</p>
+    </div>
+    <div class="job-cards">
+      {% for b in AUSBILDUNG.berufe %}
+      {% set tag = 'div' if b.full else 'a' %}
+      <{{tag}} class="jc{% if b.full %} jc-static{% endif %}"{% if b.slug %} href="{{b.slug}}.html"{% elif not b.full %} href="{{C.oneclick}}" target="_blank" rel="noopener"{% endif %}>
+        <div class="jc-img"><img src="{{b.img}}" alt="" loading="lazy">{% if b.full %}<span class="jc-tag jc-tag-full">Alle Plätze besetzt</span>{% else %}<span class="jc-tag">Ausbildung</span>{% endif %}</div>
+        <div class="jc-b"><span class="jc-t">{{b.title}}</span><span class="jc-a">{{b.text}}</span>{% if b.slug %}<span class="jc-go">Zur Ausbildung {{ icon('arrow') }}</span>{% elif not b.full %}<span class="jc-go">One-Click-Bewerbung {{ icon('arrow') }}</span>{% endif %}</div>
+      </{{tag}}>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap feat">
+    <figure class="story"><img src="{{AUSBILDUNG.story.img}}" alt="{{AUSBILDUNG.story.name}}" loading="lazy"></figure>
+    <div>
+      <p class="plate">Karriere bei Atterer</p>
+      <h2 class="h2">{{AUSBILDUNG.story.name}}: {{AUSBILDUNG.story.title}}</h2>
+      <p style="color:var(--slate);margin-top:1.2rem">{{AUSBILDUNG.story.text}}</p>
+      <a class="link" href="{{AUSBILDUNG.magazin}}" target="_blank" rel="noopener">Die ganze Geschichte im Azubi-Magazin {{ icon('arrow') }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap feat">
+    <div>
+      <h2 class="h2">{{AUSBILDUNG.gf_title}}</h2>
+      <figure class="gf"><img src="{{AUSBILDUNG.gf_img}}" alt="{{AUSBILDUNG.gf_caption}}" loading="lazy"><figcaption>{{AUSBILDUNG.gf_caption}}</figcaption></figure>
+    </div>
+    <div class="letter">{% for t in AUSBILDUNG.gf_text %}<p>{{t}}</p>{% endfor %}</div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap">
+    <h2 class="h2">Hard Facts zur Ausbildung</h2>
+    <div class="facts3">{% for im in AUSBILDUNG.hardfacts %}<img src="{{im}}" alt="Hard Facts zur Ausbildung {{loop.index}}" loading="lazy" data-lightbox>{% endfor %}</div>
+    <h2 class="h2" style="margin-top:clamp(56px,7vw,96px)">Mitarbeiter-Benefits</h2>
+    <img class="benefits-img" src="{{AUSBILDUNG.benefits_img}}" alt="Mitarbeiter-Benefits bei Atterer" loading="lazy" data-lightbox>
+  </div>
+</section>
+
+<section class="sec" style="padding-bottom:0">
+  <div class="wrap catalog">
+    <img src="{{AUSBILDUNG.magazin_img}}" alt="Azubi-Magazin" loading="lazy">
+    <div>
+      <p class="plate">Azubi-Magazin</p>
+      <h2 class="h2">Alles über Deine Ausbildung bei Atterer – zum Durchblättern.</h2>
+      <div class="btns"><a class="btn" href="{{AUSBILDUNG.magazin}}" target="_blank" rel="noopener"><span>Magazin herunterladen</span></a></div>
+    </div>
+  </div>
+</section>
+{{ ui.apply_block() }}
+{% endblock %}
