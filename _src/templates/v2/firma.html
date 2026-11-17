@@ -1,0 +1,74 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Firma' %}
+{% block title %}Firma – Seit 1886 für Sie da{% endblock %}
+{% block main %}
+{{ ui.phero([('Firma',None)], 'Seit 1886 für Sie da', 'Familiengeführt in der 4. Generation – gemeinsam gewachsen', IMG ~ '2024/03/Atterer-Stahlcenter-GmbH.jpeg', 'LKW-Flotte vor dem Atterer Stahlcenter') }}
+
+<section class="sec">
+  <div class="wrap sec-head sec-head-top">
+    <h2 class="d2">Willkommen bei der Atterer Stahlcenter GmbH</h2>
+    <div>{% for t in INTRO %}<p>{{t}}</p>{% endfor %}</div>
+  </div>
+</section>
+
+<section class="facts" aria-label="Atterer in Zahlen">
+  <div class="wrap"><p class="facts-line">{% for n in NUMBERS[1:] %}<span><b>{{n[0]}}{{n[1]}}</b> {{n[2]}}</span>{% endfor %}</p></div>
+</section>
+
+<section class="timeline" id="geschichte" aria-labelledby="tl-h">
+  <div class="wrap tl-head">
+    <h2 id="tl-h" class="d2">Unsere Geschichte</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="tl-wrap">
+    <ol class="tl" data-rail>
+      {% for t in TIMELINE %}
+      <li class="tl-i{% if t[3] %} has-img{% endif %}"><span class="tl-y">{{t[0]}}</span>{% if t[3] %}<img src="{{t[3]}}" alt="" loading="lazy" draggable="false">{% endif %}<h3>{{t[1]}}</h3><p>{{t[2]}}</p></li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="wrap"><p class="tl-end">Wir freuen uns, wenn auch Sie ein Stück zu unserer Geschichte beitragen.</p></div>
+</section>
+
+<section class="quote">
+  <div class="wrap quote-in">
+    <blockquote><p>„Was will mein Kunde?“</p><footer>Das Ideal von Gründer Anton Atterer – und bis heute unser Maßstab.</footer></blockquote>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="d2">Dafür stehen wir</h2>
+    <ul class="ben" role="list">{% for v in VALUES %}<li><h3>{{v[0]}}</h3><p>{{v[1]}}</p></li>{% endfor %}</ul>
+  </div>
+</section>
+
+<section class="sec help" id="hilft">
+  <div class="wrap help-grid">
+    <div>
+      <h2 class="d2">Atterer hilft</h2>
+      <p class="help-lead">Wir engagieren uns, wie wir können.</p>
+    </div>
+    <div>
+      <p>Mehr als 25.000 Euro jährlich spenden wir an verschiedene Hilfsorganisationen: für die Bekämpfung von Hunger und Armut in der Welt, für die Förderung von Jugendlichen in der Dritten Welt und auch für Hilfseinrichtungen im Allgäu und für in Not geratene Familien und deren kranke Kinder.</p>
+      <p>So verstehen wir unsere soziale Verantwortung.</p>
+      <div class="help-logos"><img src="{{ IMG }}2024/03/Humedica_neu.png" alt="humedica" loading="lazy"><img src="{{ IMG }}2024/03/Kinderherzen_neu.png" alt="Kinderherzen" loading="lazy"></div>
+      <div class="plans2 plans2-2" style="margin-top:32px"><figure><img src="{{ IMG }}2026/10/Attererhilft2025.jpg" alt="Atterer hilft" loading="lazy" data-lightbox></figure><figure><img src="{{ IMG }}2024/06/doc-5.jpg" alt="Atterer hilft" loading="lazy" data-lightbox></figure></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec career">
+  <div class="wrap career-grid">
+    <figure class="career-fig"><img src="{{ IMG }}2025/02/produktion.jpg" alt="Team des Atterer Stahlcenters" loading="lazy"></figure>
+    <div class="career-copy">
+      <h2 class="d2">Werde Teil der Geschichte</h2>
+      <p>Mehr als 150 Kolleginnen und Kollegen arbeiten heute in Marktoberdorf – in Produktion, Logistik, Werkstatt und Büro.</p>
+      {{ ui.joblist() }}
+      <div class="row"><a class="btn" href="karriere.html">Alle Stellen ansehen</a></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

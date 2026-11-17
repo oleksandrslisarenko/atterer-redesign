@@ -1,0 +1,37 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Produkte' %}
+{% block title %}Unsere Produkte{% endblock %}
+{% block main %}
+{{ ui.phero([('Produkte',None)], 'Unsere Produkte', 'Partner für alle, die Formstahl verarbeiten und Betonstahl verbauen', IMG ~ '2024/03/Atterer-Stahlcenter_31-07-2019-46.jpg', 'Halle des Atterer Stahlcenters') }}
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="d2">Alles unter einem Dach in Marktoberdorf</h2>
+      <div>{% for t in PRODUCTS_INTRO %}<p>{{t}}</p>{% endfor %}</div>
+    </div>
+    <div class="mag">
+      {% for p in PRODUCTS %}
+      <a class="mag-i mag-{{loop.index}}" href="{{p.slug}}.html">
+        <span class="mag-img"><img src="{{p.img}}" alt="" loading="lazy"></span>
+        <span class="mag-t">{{p.title}}</span>
+        <span class="mag-d">{{p.short}}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap cat2">
+    <img src="{{ CATALOG_IMG }}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+    <div>
+      <h2 class="d2">Stahlkatalog 2026</h2>
+      <p>Lagermatten, Betonstahl, Bewehrungsmodule, BAMTEC, ÖNORM-Stahl, Bohrpfahlkörbe, Formstahl und Schalungszubehör – mit allen Ansprechpartnern, auf 23 Seiten.</p>
+      <div class="row"><a class="btn" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Katalog herunterladen</a><a class="btn btn-line" href="downloads.html">Alle Downloads</a></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

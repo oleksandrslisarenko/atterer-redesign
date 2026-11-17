@@ -1,0 +1,33 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Ausbildung {{ap.title}}{% endblock %}
+{% block main %}
+{{ ui.phero([('Karriere','karriere.html'),('Ausbildung','ausbildung.html'),(ap.title,None)], ap.title, ap.start, ap.img, ap.title, True) }}
+<div class="wrap doc">
+  {{ ui.toc([('Deine Ausbildung','ausbildung'),('Das bist Du','du'),('Hard Facts','facts'),('Bewerbung','bewerbung')], False) }}
+  <article class="doc-body">
+    <p class="intro">{{ap.intro}}</p>
+    <h2 id="ausbildung" class="d3">Deine Ausbildung</h2>
+    <ul class="rules" role="list">{% for x in ap.ausbildung %}<li>{{x}}</li>{% endfor %}</ul>
+    <figure class="doc-fig"><img src="{{ap.img2}}" alt="{{ap.title}} bei Atterer" loading="lazy" data-lightbox></figure>
+    <h2 id="du" class="d3">Das bist Du</h2>
+    <p>{{ap.du_intro}}</p>
+    <ul class="rules" role="list">{% for x in AUSBILDUNG_DU %}<li>{{x}}</li>{% endfor %}</ul>
+    <h2 id="facts" class="d3">Hard Facts zur Ausbildung</h2>
+    <div class="plans2 plans2-3">{% for im in AUSBILDUNG.hardfacts %}<figure><img src="{{im}}" alt="Hard Facts {{loop.index}}" loading="lazy" data-lightbox style="aspect-ratio:auto"></figure>{% endfor %}</div>
+    <h2 id="bewerbung" class="d3">Deine Bewerbung</h2>
+    {{ ui.apply_steps() }}
+  </article>
+</div>
+<section class="sec more-sec">
+  <div class="wrap">
+    <h2 class="d2">Unsere Ausbildungen</h2>
+    <ul class="more" role="list">
+      {% for b in AUSBILDUNG.berufe if b.slug and b.slug != slug %}<li><a href="{{b.slug}}.html"><span>{{b.title}}</span><img src="{{b.img}}" alt="" loading="lazy">{{ icon('arrow') }}</a></li>{% endfor %}
+      <li><a href="ausbildung.html"><span>Alle Ausbildungsberufe</span><img src="{{AUSBILDUNG.hero}}" alt="" loading="lazy">{{ icon('arrow') }}</a></li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

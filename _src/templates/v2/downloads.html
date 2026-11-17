@@ -1,0 +1,27 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Downloads' %}
+{% block title %}Downloads – Kataloge, Formulare, Zertifikate{% endblock %}
+{% block main %}
+{{ ui.phero([('Downloads',None)], 'Downloads', 'Kataloge, Formulare, Zertifikate und Dokumente', UC ~ '2024/03/Atterer-Stahlcenter_31-07-2019-101.jpg', 'Verladung im Atterer Stahlcenter') }}
+<div class="wrap doc">
+  {% set items = [] %}{% for g in DOWNLOADS %}{% set _ = items.append((g[0] ~ ' (' ~ g[1]|length ~ ')', g[0]|lower)) %}{% endfor %}
+  {{ ui.toc(items) }}
+  <article class="doc-body">
+    <div class="cat2 cat2-in" id="stahlkatalog">
+      <img src="{{ CATALOG_IMG }}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+      <div>
+        <h2 class="d3" style="margin-top:0">Stahlkatalog 2026</h2>
+        <p>Innovative Bewehrungslösungen, Formstahl und Zubehör mit allen Ansprechpartnern. PDF, 23 Seiten, 6 MB.</p>
+        <div class="row"><a class="btn" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Herunterladen</a></div>
+      </div>
+    </div>
+    {% for g in DOWNLOADS[1:] %}
+    <h2 id="{{ g[0]|lower }}" class="d3">{{g[0]}}</h2>
+    {{ ui.pdfs(g[1]) }}
+    {% endfor %}
+    {{ ui.ask('Sie finden ein Dokument nicht?', 'Rufen Sie uns an oder schreiben Sie uns – wir senden es Ihnen zu.') }}
+  </article>
+</div>
+{% endblock %}

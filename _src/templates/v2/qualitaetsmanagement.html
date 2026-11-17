@@ -1,0 +1,20 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Firma' %}
+{% block title %}Qualitätsmanagement – DIN EN ISO 9001{% endblock %}
+{% block main %}
+{{ ui.phero([('Firma','firma.html'),('Qualitätsmanagement',None)], 'Qualitäts&shy;management', QM.lead, QM.hero, 'Firmengebäude des Atterer Stahlcenters', True) }}
+<div class="wrap doc">
+  {{ ui.toc([('Zertifizierung','zertifizierung'),('Zertifikat ISO 9001','zertifikat'),('Alle Zertifikate','zertifikate')]) }}
+  <article class="doc-body">
+    <p class="intro" id="zertifizierung">{{QM.text[0]}}</p>
+    {% for t in QM.text[1:] %}<p>{{t}}</p>{% endfor %}
+    <h2 id="zertifikat" class="d3">Zertifikat DIN EN ISO 9001</h2>
+    <div class="cert2"><img src="{{ ISO_LOGO }}" alt="DIN EN ISO 9001" width="96" loading="lazy"><figure class="doc-fig" style="margin:0"><img src="{{ ISO_CERT }}" alt="Zertifikat DIN EN ISO 9001, gültig bis 11.12.2026" loading="lazy" data-lightbox style="aspect-ratio:auto"><figcaption>Gültig bis 11.12.2026. Zum Vergrößern klicken.</figcaption></figure></div>
+    <h2 id="zertifikate" class="d3">Alle Zertifikate</h2>
+    {{ ui.pdfs(DOWNLOADS[2][1]) }}
+    {{ ui.ask('Fragen zu Zertifikaten oder Zulassungen?', 'Wir senden Ihnen die passenden Nachweise für Ihr Projekt.') }}
+  </article>
+</div>
+{% endblock %}

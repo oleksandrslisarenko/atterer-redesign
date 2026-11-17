@@ -1,0 +1,55 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Kontakt' %}
+{% block title %}Kontakt{% endblock %}
+{% block main %}
+<section class="k-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span>Kontakt</nav>
+    <h1 class="d1">Womit können wir Ihnen helfen?</h1>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap contact2">
+    <div class="c2-info">
+      <dl class="c2-list">
+        <div><dt>Telefon</dt><dd><a href="{{C.phone_href}}">{{C.phone}}</a></dd></div>
+        <div><dt>E-Mail</dt><dd><a href="mailto:{{C.email}}">{{C.email}}</a></dd></div>
+        <div><dt>Telefax</dt><dd>{{C.fax}}</dd></div>
+        <div><dt>Adresse</dt><dd>{{C.name}}<br>{{C.street}}<br>{{C.city}}</dd></div>
+        <div><dt>Öffnungszeiten</dt><dd>Montag – Freitag, 07:30 – 17:00 Uhr<br>Samstag – Sonntag geschlossen</dd></div>
+      </dl>
+    </div>
+    <form class="form2" data-proto novalidate>
+      <h2 class="d3" style="margin-top:0">Nachricht senden</h2>
+      <div class="f2-row">
+        <label class="f2"><span>Name *</span><input name="name" required autocomplete="name"></label>
+        <label class="f2"><span>Firma</span><input name="firma" autocomplete="organization"></label>
+      </div>
+      <div class="f2-row">
+        <label class="f2"><span>E-Mail-Adresse *</span><input name="email" type="email" required autocomplete="email"></label>
+        <label class="f2"><span>Telefon</span><input name="tel" type="tel" autocomplete="tel"></label>
+      </div>
+      <label class="f2"><span>Nachricht *</span><textarea name="msg" rows="6" required></textarea></label>
+      <label class="chk2"><input type="checkbox" required><span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden. *</span></label>
+      <button class="btn" type="submit">Nachricht senden</button>
+      <p class="sent" data-sent hidden tabindex="-1">{{ icon('check') }} Danke! Ihre Nachricht ist bei uns angekommen. Wir melden uns schnellstmöglich bei Ihnen.</p>
+    </form>
+  </div>
+</section>
+
+<section class="sec tint" style="padding-top:clamp(56px,7vw,96px)">
+  <div class="wrap">
+    <h2 class="d2" style="margin-bottom:32px">Anfahrt</h2>
+    <div class="map2" data-map>
+      <img src="{{ IMG }}2024/03/Auftragserfassung.jpg" alt="" loading="lazy">
+      <div class="map2-ov">
+        <p><b>{{C.street}}, {{C.city}}</b><br>Mit dem Laden der Karte werden Daten an Google übertragen.</p>
+        <div class="row" style="margin-top:0"><button class="btn" data-map-load="{{C.maps_embed}}">Karte laden</button><a class="btn btn-line btn-line-w" href="{{C.maps}}" target="_blank" rel="noopener">In Google Maps öffnen</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

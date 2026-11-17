@@ -78,7 +78,7 @@
       <h2 class="d2">Bewirb dich beim Marktführer</h2>
       <p>Wir bieten einen langfristigen und krisensicheren Arbeitsplatz in einem innovativen Umfeld – in der Produktion, in der Logistik, im Büro oder in der Ausbildung.</p>
       <ul class="jlist" role="list">
-        {% for j in JOBS %}<li><a href="{{j.slug}}.html"><span>{{j.title}}</span>{{ icon('arrow') }}</a></li>{% endfor %}
+        {% for j in JOBS %}<li><a href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic jl-i') }}<span>{{j.title}}</span>{{ icon('arrow') }}</a></li>{% endfor %}
       </ul>
       <div class="row">
         <a class="btn" href="karriere.html">Alle Stellen ansehen</a>

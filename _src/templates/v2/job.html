@@ -1,0 +1,42 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}{{jp.short}} – Karriere{% endblock %}
+{% block main %}
+<section class="k-hero">
+  <div class="wrap k-grid">
+    <div class="k-copy">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span><a href="karriere.html">Karriere</a><span>/</span>{{jp.short}}</nav>
+      <p class="kicker">{{ jp.badge or 'Deine Chance beim Marktführer' }}</p>
+      <h1 class="d1 d1-job">{{jp.title}}</h1>
+      <p class="k-lead">{{jp.intro}}</p>
+      <div class="row"><a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung</a><a class="btn btn-line" href="mailto:{{C.career_email}}?subject={{ jp.short|urlencode }}">Per E-Mail bewerben</a></div>
+    </div>
+    <figure class="k-fig"><img src="{{jp.img}}" alt="{{jp.short}} bei Atterer" fetchpriority="high"><img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026"></figure>
+  </div>
+</section>
+
+<div class="wrap doc doc-top">
+  {% set items = [('Deine Aufgaben','aufgaben')] %}{% if jp.bieten %}{% set _ = items.append(('Wir bieten Dir','bieten')) %}{% endif %}{% set _ = items.append(('Dein Profil','profil')) %}{% set _ = items.append(('Bewerbung','bewerbung')) %}
+  {{ ui.toc(items, False) }}
+  <article class="doc-body">
+    <dl class="kv kv-3"><div><dt>Standort</dt><dd>Marktoberdorf</dd></div><div><dt>Anstellung</dt><dd>{{jp.type}}</dd></div><div><dt>Bereich</dt><dd>{{jp.area}}</dd></div></dl>
+    <h2 id="aufgaben" class="d3">Deine Aufgaben</h2>
+    <ul class="rules" role="list">{% for x in jp.aufgaben %}<li>{{x}}</li>{% endfor %}</ul>
+    {% if jp.bieten %}<h2 id="bieten" class="d3">Wir bieten Dir</h2><ul class="rules" role="list">{% for x in jp.bieten %}<li>{{x}}</li>{% endfor %}</ul>{% endif %}
+    <h2 id="profil" class="d3">Dein Profil</h2>
+    <ul class="rules" role="list">{% for x in jp.profil %}<li>{{x}}</li>{% endfor %}</ul>
+    {% if jp.img2 %}<figure class="doc-fig"><img src="{{jp.img2}}" alt="Arbeitsplatz {{jp.short}}" loading="lazy" data-lightbox><figcaption>Dein künftiger Arbeitsplatz in Marktoberdorf.</figcaption></figure>{% endif %}
+    <h2 id="bewerbung" class="d3">So einfach geht Deine Bewerbung</h2>
+    {{ ui.apply_steps() }}
+  </article>
+</div>
+
+<section class="sec tint">
+  <div class="wrap steps-grid">
+    <h2 class="d2">Weitere offene Stellen</h2>
+    {{ ui.joblist(slug) }}
+  </div>
+</section>
+{% endblock %}

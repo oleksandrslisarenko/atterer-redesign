@@ -1,0 +1,19 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = '' %}
+{% block title %}{{legal_title}}{% endblock %}
+{% block main %}
+{{ ui.phero([(legal_title,None)], legal_title, None, None, '', True) }}
+<div class="wrap doc doc-legal">
+  {% if legal_kind == 'impressum' %}
+  <aside class="toc"></aside>
+  <article class="doc-body legal2">
+    {% for s in IMPRESSUM %}<h2>{{s[0]}}</h2>{% for p in s[1] %}<p>{{p}}</p>{% endfor %}{% endfor %}
+  </article>
+  {% else %}
+  {{ ui.toc(legal.toc, False) }}
+  <article class="doc-body legal2">{{ legal.html }}</article>
+  {% endif %}
+</div>
+{% endblock %}

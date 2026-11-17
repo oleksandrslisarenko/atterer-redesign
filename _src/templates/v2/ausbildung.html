@@ -1,0 +1,90 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Ausbildung 2027/28{% endblock %}
+{% block main %}
+<section class="k-hero">
+  <div class="wrap k-grid">
+    <div class="k-copy">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span><a href="karriere.html">Karriere</a><span>/</span>Ausbildung</nav>
+      <p class="kicker">{{AUSBILDUNG.title}}</p>
+      <h1 class="d1">Raus aus der Schule, rein in die Ausbildung!</h1>
+      <p class="k-lead">{{AUSBILDUNG.intro[0]}}</p>
+      <div class="row"><a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener">Jetzt bewerben</a><a class="btn btn-line" href="{{AUSBILDUNG.magazin}}" target="_blank" rel="noopener">Azubi-Magazin</a></div>
+    </div>
+    <figure class="k-fig"><img src="{{AUSBILDUNG.hero}}" alt="Auszubildende bei Atterer" fetchpriority="high"></figure>
+  </div>
+</section>
+
+<section class="facts" aria-label="Eckdaten">
+  <div class="wrap"><dl class="kv kv-3 kv-big">{% for f in AUSBILDUNG.facts %}<div><dt>{{f[0]}}</dt><dd>{{f[1]}}</dd></div>{% endfor %}</dl></div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="d2">Deine Ausbildung bei Atterer</h2><p>{{AUSBILDUNG.intro[1]}}</p></div>
+    <ul class="beruf" role="list">
+      {% for b in AUSBILDUNG.berufe %}
+      <li class="{% if b.full %}is-full{% endif %}">
+        {% if b.slug %}<a href="{{b.slug}}.html">{% elif not b.full %}<a href="{{C.oneclick}}" target="_blank" rel="noopener">{% else %}<div>{% endif %}
+          <span class="b-img"><img src="{{b.img}}" alt="" loading="lazy"></span>
+          <span class="b-t">{{b.title}}{% if b.full %} <em>Alle Plätze besetzt</em>{% endif %}</span>
+          <span class="b-d">{{b.text}}</span>
+          {% if not b.full %}{{ icon('arrow') }}{% endif %}
+        {% if b.slug or not b.full %}</a>{% else %}</div>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap story2">
+    <figure><img src="{{AUSBILDUNG.story.img}}" alt="{{AUSBILDUNG.story.name}}" loading="lazy"></figure>
+    <div>
+      <p class="kicker">Karriere bei Atterer: {{AUSBILDUNG.story.name}}</p>
+      <h2 class="d2">{{AUSBILDUNG.story.title}}</h2>
+      <p class="story-q">{{AUSBILDUNG.story.text}}</p>
+      <a class="tlink" href="{{AUSBILDUNG.magazin}}" target="_blank" rel="noopener">Weiterlesen im Azubi-Magazin</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap doc doc-flat">
+    <div>
+      <h2 class="d2">{{AUSBILDUNG.gf_title}}</h2>
+      <figure class="doc-fig"><img src="{{AUSBILDUNG.gf_img}}" alt="{{AUSBILDUNG.gf_caption}}" loading="lazy" style="aspect-ratio:auto"><figcaption>{{AUSBILDUNG.gf_caption}}</figcaption></figure>
+    </div>
+    <div class="doc-body letter2">{% for t in AUSBILDUNG.gf_text %}<p{% if loop.first %} class="intro"{% endif %}>{{t}}</p>{% endfor %}</div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap">
+    <h2 class="d2">Hard Facts zur Ausbildung</h2>
+    <div class="plans2 plans2-3" style="margin-top:32px">{% for im in AUSBILDUNG.hardfacts %}<figure><img src="{{im}}" alt="Hard Facts zur Ausbildung {{loop.index}}" loading="lazy" data-lightbox style="aspect-ratio:auto"></figure>{% endfor %}</div>
+    <h2 class="d2" style="margin-top:clamp(56px,7vw,96px)">Mitarbeiter-Benefits</h2>
+    <img class="full-img" src="{{AUSBILDUNG.benefits_img}}" alt="Mitarbeiter-Benefits bei Atterer" loading="lazy" data-lightbox>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap cat2">
+    <img src="{{AUSBILDUNG.magazin_img}}" alt="Azubi-Magazin" loading="lazy">
+    <div>
+      <h2 class="d2">Das Azubi-Magazin</h2>
+      <p>Alles über Deine Ausbildung bei Atterer – zum Durchblättern.</p>
+      <div class="row"><a class="btn" href="{{AUSBILDUNG.magazin}}" target="_blank" rel="noopener">Magazin herunterladen</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap steps-grid">
+    <h2 class="d2">Deine Bewerbung in drei Schritten</h2>
+    <div>{{ ui.apply_steps() }}</div>
+  </div>
+</section>
+{% endblock %}

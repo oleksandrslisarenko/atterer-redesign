@@ -1,0 +1,77 @@
+{% from '_icons.html' import icon %}
+
+{% macro phero(crumbs, title, sub, image, alt='', small=False) -%}
+<section class="p-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a>{% for c in crumbs %}<span>/</span>{% if c[1] %}<a href="{{c[1]}}">{{c[0]}}</a>{% else %}{{c[0]}}{% endif %}{% endfor %}</nav>
+    <h1 class="d1 p-title{% if small %} p-title-s{% endif %}">{{title}}</h1>
+    {% if sub %}<p class="p-sub">{{sub}}</p>{% endif %}
+  </div>
+  {% if image %}<figure class="p-fig"><img src="{{image}}" alt="{{alt}}" fetchpriority="high" data-parallax></figure>{% endif %}
+</section>
+{%- endmacro %}
+
+{% macro toc(items, card=True) -%}
+<aside class="toc">
+  <p class="toc-h">Auf dieser Seite</p>
+  <ol role="list">{% for t in items %}<li><a href="#{{t[1]}}">{{t[0]}}</a></li>{% endfor %}</ol>
+  {% if card %}
+  <div class="toc-card">
+    <p>Fragen?</p>
+    <a href="{{C.phone_href}}">{{ icon('phone') }} {{C.phone}}</a>
+    <a href="mailto:{{C.email}}">{{ icon('mail') }} {{C.email}}</a>
+  </div>
+  {% endif %}
+</aside>
+{%- endmacro %}
+
+{% macro pdfs(items) -%}
+<ul class="pdfl" role="list">
+  {% for d in items %}<li><a href="{{d[1]}}" target="_blank" rel="noopener"><span>{{d[0]}}</span><small>{{ d[2] if d|length > 2 else 'PDF' }}</small>{{ icon('download') }}</a></li>{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro ask(title, text) -%}
+<div id="anfrage" class="ask">
+  <h2 class="d3">{{title}}</h2>
+  <p>{{text}}</p>
+  <div class="row"><a class="btn" href="kontakt.html">Anfrage senden</a><a class="btn btn-line" href="{{C.phone_href}}">Anrufen</a></div>
+</div>
+{%- endmacro %}
+
+{% macro more_products(exclude) -%}
+<section class="sec more-sec">
+  <div class="wrap">
+    <h2 class="d2">Weitere Produkte</h2>
+    <ul class="more" role="list">
+      {% for p in PRODUCTS if p.slug != exclude %}
+      <li><a href="{{p.slug}}.html"><span>{{p.title}}</span><img src="{{p.img}}" alt="" loading="lazy">{{ icon('arrow') }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro joblist(exclude='') -%}
+<ul class="jlist" role="list">
+  {% for j in JOBS if j.slug != exclude %}<li><a href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic jl-i') }}<span>{{j.title}}</span>{{ icon('arrow') }}</a></li>{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro apply_steps() -%}
+<ol class="steps" role="list">
+  {% for s in APPLY_STEPS %}<li><span class="st-n">{{loop.index}}</span><div><h3>{{s[0]}}</h3><p>{{s[1]}}</p></div></li>{% endfor %}
+</ol>
+<div class="apply apply-in">
+  <a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung starten</a>
+  <a class="tlink" href="mailto:{{C.career_email}}">{{C.career_email}}</a>
+  <a class="fine" href="{{C.bewerber_ds}}" target="_blank" rel="noopener">Datenschutzhinweise im Bewerbungsverfahren</a>
+</div>
+{%- endmacro %}
+
+{% macro gallery(title='Eindrücke aus der Produktion') -%}
+<section class="sec gal">
+  <div class="wrap tl-head"><h2 class="d2">{{title}}</h2><div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div></div>
+  <div class="gal-rail" data-rail>{% for g in GALLERY %}<img src="{{g}}" alt="Produktion bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}</div>
+</section>
+{%- endmacro %}

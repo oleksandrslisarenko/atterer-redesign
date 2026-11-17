@@ -1,0 +1,22 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v2/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Initiativbewerbung{% endblock %}
+{% block main %}
+{{ ui.phero([('Karriere','karriere.html'),('Initiativbewerbung',None)], 'Initiativ&shy;bewerbung', 'Keine passende Stelle dabei? Bewirb Dich trotzdem.', INITIATIV.img, 'Team des Atterer Stahlcenters', True) }}
+<div class="wrap doc">
+  {{ ui.toc([('So bewirbst Du Dich','so'),('Deine Unterlagen','unterlagen'),('Bewerbung','bewerbung'),('Offene Stellen','stellen')], False) }}
+  <article class="doc-body">
+    <p class="intro" id="so">{{INITIATIV.text[0]}}</p>
+    {% for t in INITIATIV.text[1:] %}<p>{{t}}</p>{% endfor %}
+    <h2 id="unterlagen" class="d3">Deine Unterlagen</h2>
+    <ul class="pills" role="list"><li>Motivationsschreiben</li><li>Lebenslauf</li><li>Zeugnisse</li></ul>
+    <p class="note2">{{INITIATIV.note}}</p>
+    <h2 id="bewerbung" class="d3">So einfach geht Deine Bewerbung</h2>
+    {{ ui.apply_steps() }}
+    <h2 id="stellen" class="d3">Oder doch eine offene Stelle?</h2>
+    {{ ui.joblist('initiativbewerbung') }}
+  </article>
+</div>
+{% endblock %}
