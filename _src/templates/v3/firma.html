@@ -1,0 +1,76 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Firma' %}
+{% block title %}Firma – Seit 1886 für Sie da{% endblock %}
+{% block main %}
+{{ ui.hero([('Firma',None)], ['Seit 1886', 'für Sie da.'], IMG ~ '2024/03/Atterer-Stahlcenter-GmbH.jpeg', '140 Jahre Atterer – gemeinsam gewachsen', 'Vom Eisenhandel in Marktoberdorf zum Marktführer unter den Betonstahlbiegereien im Allgäu – familiengeführt in der 4. Generation.', [('Unsere Geschichte','#geschichte'),('Atterer hilft','#hilft')]) }}
+
+<section class="sec">
+  <div class="wrap split-grid">
+    <div>
+      <h2 class="h2">Willkommen bei der Atterer Stahlcenter GmbH</h2>
+      {% for t in INTRO %}<p class="body">{{t}}</p>{% endfor %}
+    </div>
+    <figure class="split-fig"><img src="{{ IMG }}2025/02/produktion.jpg" alt="Team des Atterer Stahlcenters" loading="lazy" data-lightbox></figure>
+  </div>
+</section>
+
+<section class="zahlen">
+  <div class="wrap zahlen-in">
+    <h2 class="chip chip-b">Atterer in Zahlen</h2>
+    <ul class="z-list" role="list">
+      {% for n in NUMBERS %}
+      <li class="z z{{loop.index}}"><b><span data-count="{{n[0]}}">{{n[0]}}</span>{% if n[1]=='+' %}+{% elif n[1] %}<span class="u">{{n[1]|trim}}</span>{% endif %}</b> {{n[2]}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="geschichte">
+  <div class="wrap">
+    <h2 class="h2">Unsere Geschichte</h2>
+    <ol class="tl3" role="list">
+      {% for t in TIMELINE %}
+      <li data-reveal>
+        <span class="tl3-y">{{t[0]}}</span>
+        <div class="tl3-b"><h3>{{t[1]}}</h3><p>{{t[2]}}</p></div>
+        {% if t[3] %}<img src="{{t[3]}}" alt="" loading="lazy">{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+    <p class="claim3" style="margin-top:2.4rem">Wir freuen uns, wenn auch Sie ein Stück zu unserer Geschichte beitragen.</p>
+  </div>
+</section>
+
+<section class="sec dark2" id="hilft">
+  <div class="wrap split-grid">
+    <div>
+      <p class="chip chip-b">Atterer hilft</p>
+      <h2 class="h2" style="margin-top:1.2rem">Wir engagieren uns, wie wir können.</h2>
+      <p class="body">Mehr als 25.000 Euro jährlich spenden wir an verschiedene Hilfsorganisationen: für die Bekämpfung von Hunger und Armut in der Welt, für die Förderung von Jugendlichen in der Dritten Welt und auch für Hilfseinrichtungen im Allgäu und für in Not geratene Familien und deren kranke Kinder.</p>
+      <p class="body">So verstehen wir unsere soziale Verantwortung.</p>
+      <div class="logos3"><img src="{{ IMG }}2024/03/Humedica_neu.png" alt="humedica" loading="lazy"><img src="{{ IMG }}2024/03/Kinderherzen_neu.png" alt="Kinderherzen" loading="lazy"></div>
+    </div>
+    <div class="duo3">
+      <img src="{{ IMG }}2026/10/Attererhilft2025.jpg" alt="Spendenübergabe Atterer hilft" loading="lazy" data-lightbox>
+      <img src="{{ IMG }}2024/06/doc-5.jpg" alt="Atterer hilft" loading="lazy" data-lightbox>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h2">Dafür stehen wir</h2>
+    <ul class="fgrid fgrid-4" role="list">{% for v in VALUES %}<li><b>{{v[0]}}</b><span>{{v[1]}}</span></li>{% endfor %}</ul>
+  </div>
+</section>
+
+<section class="career">
+  <div class="career-bg"><img src="{{ IMG }}2025/05/Azubis-2025.jpg" alt="" loading="lazy" data-parallax></div>
+  <div class="wrap career-in">
+    <h2 class="mega mega-s"><span>Werde Teil</span><span>der Geschichte!</span></h2>
+    <div class="row"><a class="chip chip-w chip-l" href="karriere.html">Offene Stellen</a><a class="chip chip-b chip-l" href="ausbildung.html">Ausbildung</a></div>
+  </div>
+</section>
+{% endblock %}

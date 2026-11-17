@@ -1,0 +1,38 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}{{jp.short}} – Karriere{% endblock %}
+{% block main %}
+<section class="hero hero-p">
+  <div class="hero-bg"><img src="{{jp.img}}" alt="" fetchpriority="high" data-parallax></div>
+  <div class="wrap hero-in">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span><a href="karriere.html">Karriere</a><span>/</span>{{jp.short}}</nav>
+    <p class="chip chip-b hero-tag">{{ jp.badge or 'Deine Chance beim Marktführer!' }}</p>
+    <h1 class="mega mega-job">{{jp.title}}</h1>
+    <ul class="chips" role="list"><li><span class="chip">{{ icon('pin') }} Marktoberdorf</span></li><li><span class="chip">{{ icon('clock') }} {{jp.type}}</span></li><li><span class="chip">{{ icon('job-' ~ slug) }} {{jp.area}}</span></li></ul>
+    <p class="hero-lead">{{jp.intro}}</p>
+    <div class="row"><a class="chip chip-b chip-l" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung</a><a class="chip chip-w chip-l" href="mailto:{{C.career_email}}?subject={{ jp.short|urlencode }}">Per E-Mail bewerben</a><img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026"></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="jc3{% if jp.bieten %} jc3-3{% endif %}">
+      <article><h2 class="h3">Deine Aufgaben</h2><ul role="list">{% for x in jp.aufgaben %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+      {% if jp.bieten %}<article class="jc3-blue"><h2 class="h3">Wir bieten Dir</h2><ul role="list">{% for x in jp.bieten %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>{% endif %}
+      <article><h2 class="h3">Dein Profil</h2><ul role="list">{% for x in jp.profil %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+    </div>
+    {% if jp.img2 %}<figure class="wide3"><img src="{{jp.img2}}" alt="Arbeitsplatz {{jp.short}}" loading="lazy" data-lightbox></figure>{% endif %}
+  </div>
+</section>
+
+{{ ui.apply_block() }}
+
+<section class="sec dark2">
+  <div class="wrap">
+    <div class="head head-row"><h2 class="h2">Weitere offene Stellen</h2><a class="more" href="karriere.html" style="margin:0">Alle Stellen {{ icon('arrow') }}</a></div>
+    {{ ui.joblist(slug) }}
+  </div>
+</section>
+{% endblock %}

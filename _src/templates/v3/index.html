@@ -66,7 +66,7 @@
   <div class="wrap career-in">
     <h2 class="mega mega-s"><span>Bewirb dich</span><span>beim Marktführer!</span></h2>
     <ul class="jobchips" role="list">
-      {% for j in JOBS %}<li><a class="chip chip-w" href="{{j.slug}}.html">{{j.title}}</a></li>{% endfor %}
+      {% for j in JOBS %}<li><a class="chip chip-w" href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic jc-ic') }}{{j.title}}</a></li>{% endfor %}
     </ul>
     <div class="row">
       <a class="chip chip-b chip-l" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung</a>

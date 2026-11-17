@@ -1,0 +1,26 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Initiativbewerbung{% endblock %}
+{% block main %}
+{{ ui.hero([('Karriere','karriere.html'),('Initiativbewerbung',None)], ['Initiativ-', 'bewerbung'], INITIATIV.img, 'Deine Chance!', INITIATIV.text[0], [('One-Click-Bewerbung', C.oneclick),('Per E-Mail bewerben','mailto:' ~ C.career_email ~ '?subject=Initiativbewerbung')], None, True) }}
+
+<section class="sec">
+  <div class="wrap split-grid split-top">
+    <h2 class="h2">So bewirbst Du Dich initiativ</h2>
+    <div>
+      {% for t in INITIATIV.text[1:] %}<p class="body">{{t}}</p>{% endfor %}
+      <p class="note3">{{ icon('check') }}<span>{{INITIATIV.note}}</span></p>
+      <ul class="chips" role="list"><li><span class="chip">Motivationsschreiben</span></li><li><span class="chip">Lebenslauf</span></li><li><span class="chip">Zeugnisse</span></li></ul>
+    </div>
+  </div>
+</section>
+{{ ui.apply_block() }}
+<section class="sec dark2">
+  <div class="wrap">
+    <div class="head head-row"><h2 class="h2">Oder doch eine offene Stelle?</h2></div>
+    {{ ui.joblist('initiativbewerbung') }}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Karriere' %}
+{% block title %}Ausbildung {{ap.title}}{% endblock %}
+{% block main %}
+{{ ui.hero([('Karriere','karriere.html'),('Ausbildung','ausbildung.html'),(ap.title,None)], [ap.title], ap.img, ap.start, ap.intro, [('One-Click-Bewerbung', C.oneclick),('Per E-Mail bewerben','mailto:' ~ C.career_email)]) }}
+
+<section class="sec">
+  <div class="wrap">
+    <div class="jc3">
+      <article><h2 class="h3">Deine Ausbildung</h2><ul role="list">{% for x in ap.ausbildung %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+      <article class="jc3-blue"><h2 class="h3">Das bist Du</h2><p class="jc3-p">{{ap.du_intro}}</p><ul role="list">{% for x in AUSBILDUNG_DU %}<li>{{ icon('check') }}<span>{{x}}</span></li>{% endfor %}</ul></article>
+    </div>
+    <figure class="wide3"><img src="{{ap.img2}}" alt="{{ap.title}} bei Atterer" loading="lazy" data-lightbox></figure>
+  </div>
+</section>
+
+<section class="sec dark2">
+  <div class="wrap">
+    <h2 class="h2">Hard Facts zur Ausbildung</h2>
+    <div class="facts3v">{% for im in AUSBILDUNG.hardfacts %}<img src="{{im}}" alt="Hard Facts {{loop.index}}" loading="lazy" data-lightbox>{% endfor %}</div>
+  </div>
+</section>
+
+{{ ui.apply_block() }}
+
+<section class="sec dark2">
+  <div class="wrap">
+    <h2 class="h2">Unsere Ausbildungen</h2>
+    <div class="tiles jobtiles" style="margin-top:2rem">
+      {% for b in AUSBILDUNG.berufe if b.slug and b.slug != slug %}
+      <a class="tile" href="{{b.slug}}.html"><img src="{{b.img}}" alt="" loading="lazy"><span class="tile-b"><span class="chip chip-b">{{b.title}}</span><span class="tile-d">{{b.text}}</span></span>{{ icon('arrow-ur', 'ic tile-a') }}</a>
+      {% endfor %}
+      <a class="tile" href="ausbildung.html"><img src="{{AUSBILDUNG.hero}}" alt="" loading="lazy"><span class="tile-b"><span class="chip chip-b">Alle Ausbildungsberufe</span><span class="tile-d">Kaufleute, Berufskraftfahrer, Kfz-Mechatroniker und Fachinformatiker.</span></span>{{ icon('arrow-ur', 'ic tile-a') }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

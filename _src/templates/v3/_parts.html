@@ -1,0 +1,74 @@
+{% from '_icons.html' import icon %}
+
+{% macro hero(crumbs, title_lines, image, tag=None, lead=None, btns=None, chips=None, badge=False) -%}
+<section class="hero hero-p">
+  <div class="hero-bg"><img src="{{image}}" alt="" fetchpriority="high" data-parallax></div>
+  <div class="wrap hero-in">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a>{% for c in crumbs %}<span>/</span>{% if c[1] %}<a href="{{c[1]}}">{{c[0]}}</a>{% else %}{{c[0]}}{% endif %}{% endfor %}</nav>
+    {% if tag %}<p class="chip chip-b hero-tag">{{tag}}</p>{% endif %}
+    <h1 class="mega mega-p">{% for l in title_lines %}<span>{{l}}</span>{% endfor %}</h1>
+    {% if lead %}<p class="hero-lead">{{lead}}</p>{% endif %}
+    {% if chips %}<ul class="chips" role="list">{% for c in chips %}<li><span class="chip">{{c}}</span></li>{% endfor %}</ul>{% endif %}
+    {% if btns or badge %}<div class="row">{% for b in btns or [] %}<a class="chip {{ 'chip-b' if loop.first else 'chip-w' }} chip-l" href="{{b[1]}}"{% if b[1].startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{b[0]}}</a>{% endfor %}{% if badge %}<img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026">{% endif %}</div>{% endif %}
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro cta(l1, l2, text) -%}
+<section class="cta">
+  <div class="wrap cta-in">
+    <h2 class="mega mega-s"><span>{{l1}}</span><span>{{l2}}</span></h2>
+    <div>
+      <p class="body">{{text}}</p>
+      <div class="row"><a class="chip chip-w chip-l" href="kontakt.html">Anfrage senden</a><a class="more more-w" href="{{C.phone_href}}">{{ icon('phone') }} {{C.phone}}</a></div>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro more_products(exclude) -%}
+<section class="sec">
+  <div class="wrap head head-row"><h2 class="h2">Weitere Produkte</h2><div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div></div>
+  <div class="gal-rail tiles-rail" data-rail>
+    {% for p in PRODUCTS if p.slug != exclude %}
+    <a class="tile" href="{{p.slug}}.html" draggable="false"><img src="{{p.img}}" alt="" loading="lazy" draggable="false"><span class="tile-b"><span class="chip chip-b">{{p.title}}</span></span>{{ icon('arrow-ur', 'ic tile-a') }}</a>
+    {% endfor %}
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro pdf_list(items) -%}
+<ul class="pdfs" role="list">
+  {% for d in items %}<li><a href="{{d[1]}}" target="_blank" rel="noopener">{{ icon('download') }}<span>{{d[0]}}</span><small>{{ d[2] if d|length > 2 else 'PDF' }}</small></a></li>{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro gallery() -%}
+<section class="sec" style="padding-top:0">
+  <div class="gal-rail" data-rail>{% for g in GALLERY %}<img src="{{g}}" alt="Produktion bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}</div>
+</section>
+{%- endmacro %}
+
+{% macro apply_block() -%}
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h2">Deine Bewerbung</h2>
+    <ol class="steps" role="list">
+      {% for s in APPLY_STEPS %}<li><span class="st-n">{{loop.index}}</span><h3>{{s[0]}}</h3><p>{{s[1]}}</p></li>{% endfor %}
+    </ol>
+    <div class="row">
+      <a class="chip chip-b chip-l" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung starten</a>
+      <a class="more" href="mailto:{{C.career_email}}">{{ icon('mail') }} {{C.career_email}}</a>
+      <a class="fine" href="{{C.bewerber_ds}}" target="_blank" rel="noopener">Datenschutzhinweise im Bewerbungsverfahren</a>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro joblist(exclude='') -%}
+<ul class="jlist3" role="list">
+  {% for j in JOBS if j.slug != exclude %}
+  <li><a href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic jl-i') }}<span class="jl-t">{{j.title}}</span><span class="jl-a">{{j.area}}</span>{{ icon('arrow') }}</a></li>
+  {% endfor %}
+</ul>
+{%- endmacro %}

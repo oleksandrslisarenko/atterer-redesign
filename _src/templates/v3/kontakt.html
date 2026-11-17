@@ -1,0 +1,51 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Kontakt' %}
+{% block title %}Kontakt{% endblock %}
+{% block main %}
+{{ ui.hero([('Kontakt',None)], ['Womit können', 'wir helfen?'], IMG ~ '2022/09/Kontakt_1900_600.jpg', 'Kontakt', 'Rufen Sie uns an, schreiben Sie uns oder besuchen Sie uns in Marktoberdorf. ' ~ C.hours ~ '.', [('Jetzt anrufen', C.phone_href),('E-Mail schreiben','mailto:' ~ C.email)]) }}
+
+<section class="sec">
+  <div class="wrap kt3">
+    <div class="info-c kt3-info">
+      <h2 class="h3">Direkter Draht</h2>
+      <a href="{{C.phone_href}}" class="big">{{C.phone}}</a>
+      <a href="mailto:{{C.email}}" class="big">{{C.email}}</a>
+      <dl class="kt3-dl">
+        <div><dt>Telefax</dt><dd>{{C.fax}}</dd></div>
+        <div><dt>Adresse</dt><dd>{{C.name}}<br>{{C.street}}, {{C.city}}</dd></div>
+        <div><dt>Öffnungszeiten</dt><dd>Montag – Freitag, 07:30 – 17:00 Uhr<br>Samstag – Sonntag geschlossen</dd></div>
+      </dl>
+    </div>
+    <form class="form3" data-proto novalidate>
+      <h2 class="h2">Nachricht senden</h2>
+      <div class="f3-row">
+        <label class="f3"><span>Name *</span><input name="name" required autocomplete="name"></label>
+        <label class="f3"><span>Firma</span><input name="firma" autocomplete="organization"></label>
+      </div>
+      <div class="f3-row">
+        <label class="f3"><span>E-Mail-Adresse *</span><input name="email" type="email" required autocomplete="email"></label>
+        <label class="f3"><span>Telefon</span><input name="tel" type="tel" autocomplete="tel"></label>
+      </div>
+      <label class="f3"><span>Nachricht *</span><textarea name="msg" rows="6" required></textarea></label>
+      <label class="chk3"><input type="checkbox" required><span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden. *</span></label>
+      <button class="chip chip-b chip-l" type="submit">Nachricht senden</button>
+      <p class="sent3" data-sent hidden tabindex="-1">{{ icon('check') }} Danke! Ihre Nachricht ist bei uns angekommen. Wir melden uns schnellstmöglich bei Ihnen.</p>
+    </form>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="map3" data-map>
+      <div class="map3-ov">
+        <p class="chip chip-b">Anfahrt</p>
+        <p class="map3-a">{{C.street}}<br>{{C.city}}</p>
+        <p class="fine">Mit dem Laden der Karte werden Daten an Google übertragen.</p>
+        <div class="row"><button class="chip chip-w chip-l" data-map-load="{{C.maps_embed}}">Karte laden</button><a class="more" href="{{C.maps}}" target="_blank" rel="noopener">In Google Maps öffnen {{ icon('arrow') }}</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

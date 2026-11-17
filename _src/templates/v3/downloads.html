@@ -1,0 +1,33 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Downloads' %}
+{% block title %}Downloads – Kataloge, Formulare, Zertifikate{% endblock %}
+{% block main %}
+{{ ui.hero([('Downloads',None)], ['Downloads'], UC ~ '2024/03/Atterer-Stahlcenter_31-07-2019-101.jpg', 'Kataloge, Formulare, Zertifikate, Dokumente', 'Alles, um sich zu informieren oder eine Bestellung aufzugeben.') }}
+
+<section class="sec">
+  <div class="wrap">
+    <nav class="dlnav3" aria-label="Kategorien">{% for g in DOWNLOADS %}<a class="chip chip-w" href="#{{ g[0]|lower }}">{{g[0]}} ({{g[1]|length}})</a>{% endfor %}</nav>
+    <div class="cat3" id="stahlkatalog">
+      <img src="{{ CATALOG_IMG }}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+      <div>
+        <p class="chip chip-b">Unser Stahlkatalog</p>
+        <h2 class="h2" style="margin-top:1.2rem">Stahlkatalog 2026</h2>
+        <p class="body">Innovative Bewehrungslösungen, Formstahl und Zubehör mit allen Ansprechpartnern. PDF, 23 Seiten, 6 MB.</p>
+        <div class="row"><a class="chip chip-b chip-l" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Herunterladen</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% for g in DOWNLOADS[1:] %}
+<section class="sec{% if loop.index is odd %} dark2{% endif %}" id="{{ g[0]|lower }}">
+  <div class="wrap split-grid split-top">
+    <div><h2 class="h2">{{g[0]}}</h2><p class="body">{{ {'Formulare':'Für Kontoeröffnung, Projektstart und Bestellung.','Zertifikate':'Nachweise zu Qualitätsmanagement, Schweißen und Zulassungen.','Dokumente':'Produktionslisten, Kennzeichnungen, Zulassungen und Handbücher.'}[g[0]] }}</p></div>
+    {{ ui.pdf_list(g[1]) }}
+  </div>
+</section>
+{% endfor %}
+{{ ui.cta('Dokument', 'nicht gefunden?', 'Rufen Sie uns an oder schreiben Sie uns – wir senden es Ihnen zu.') }}
+{% endblock %}

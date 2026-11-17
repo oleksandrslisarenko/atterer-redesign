@@ -1,0 +1,27 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Firma' %}
+{% block title %}Qualitätsmanagement – DIN EN ISO 9001{% endblock %}
+{% block main %}
+{{ ui.hero([('Firma','firma.html'),('Qualitätsmanagement',None)], ['Qualitäts-', 'management'], QM.hero, QM.lead, 'Seit 2014 zertifiziert, jedes Jahr erfolgreich re-zertifiziert.', [('Zertifikate herunterladen','downloads.html#zertifikate')]) }}
+
+<section class="sec">
+  <div class="wrap split-grid">
+    <div>
+      <h2 class="h2">Qualität und Verlässlichkeit</h2>
+      {% for t in QM.text %}<p class="body">{{t}}</p>{% endfor %}
+      <img class="iso3" src="{{ ISO_LOGO }}" alt="DIN EN ISO 9001" width="96" loading="lazy">
+    </div>
+    <figure class="cert3"><img src="{{ ISO_CERT }}" alt="Zertifikat DIN EN ISO 9001, gültig bis 11.12.2026" loading="lazy" data-lightbox><figcaption>Zertifikat DIN EN ISO 9001, gültig bis 11.12.2026. Zum Vergrößern klicken.</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec dark2">
+  <div class="wrap split-grid split-top">
+    <div><h2 class="h2">Alle Zertifikate</h2><p class="body">Schweißen, Stahlbau und Bewehrung – geprüft und dokumentiert.</p></div>
+    {{ ui.pdf_list(DOWNLOADS[2][1]) }}
+  </div>
+</section>
+{{ ui.cta('Zertifikate', 'für Ihr Projekt?', 'Wir senden Ihnen die passenden Nachweise für Ihre Ausschreibung oder Baustelle.') }}
+{% endblock %}

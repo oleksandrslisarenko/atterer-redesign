@@ -1,0 +1,36 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% import 'v3/_parts.html' as ui with context %}
+{% set current = 'Produkte' %}
+{% block title %}Unsere Produkte{% endblock %}
+{% block main %}
+{{ ui.hero([('Produkte',None)], ['Unsere', 'Produkte'], IMG ~ '2024/03/Atterer-Stahlcenter_31-07-2019-46.jpg', 'Partner für alle, die Formstahl verarbeiten und Betonstahl verbauen', PRODUCTS_INTRO[0], [('Anfrage senden','kontakt.html'),('Stahlkatalog 2026', CATALOG_PDF)]) }}
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head"><h2 class="h2">Alles unter einem Dach</h2><p>{{ PRODUCTS_INTRO[1] }}</p></div>
+    <div class="tiles">
+      {% for p in PRODUCTS %}
+      <a class="tile{% if loop.index == 1 %} tile-xl{% endif %}" href="{{p.slug}}.html">
+        <img src="{{p.img}}" alt="" loading="lazy">
+        <span class="tile-b"><span class="chip chip-b">{{p.title}}</span><span class="tile-d">{{p.short}}</span></span>
+        {{ icon('arrow-ur', 'ic tile-a') }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec dark2">
+  <div class="wrap cat3">
+    <img src="{{ CATALOG_IMG }}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+    <div>
+      <p class="chip chip-b">Stahlkatalog 2026</p>
+      <h2 class="h2" style="margin-top:1.2rem">Innovative Bewehrungslösungen</h2>
+      <p class="body">Lagermatten, Betonstahl, Bewehrungsmodule, BAMTEC, ÖNORM-Stahl, Bohrpfahlkörbe, Formstahl und Schalungszubehör auf 23 Seiten.</p>
+      <div class="row"><a class="chip chip-b chip-l" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Katalog herunterladen</a><a class="more" href="downloads.html">Alle Downloads {{ icon('arrow') }}</a></div>
+    </div>
+  </div>
+</section>
+{{ ui.cta('Stahlliste oder', 'Bewehrungsplan?', 'Schicken Sie uns Ihre Unterlagen – wir melden uns schnell mit einem Angebot.') }}
+{% endblock %}

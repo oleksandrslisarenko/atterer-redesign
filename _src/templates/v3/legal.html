@@ -1,0 +1,24 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = '' %}
+{% block title %}{{legal_title}}{% endblock %}
+{% block main %}
+<section class="legal3-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span>{{legal_title}}</nav>
+    <h1 class="mega mega-s">{{legal_title}}</h1>
+  </div>
+</section>
+<section class="sec" style="padding-top:0">
+  <div class="wrap legal3{% if legal_kind == 'impressum' %} legal3-single{% endif %}">
+    {% if legal_kind == 'impressum' %}
+    <div class="legal3-body">
+      {% for s in IMPRESSUM %}<h2>{{s[0]}}</h2>{% for p in s[1] %}<p>{{p}}</p>{% endfor %}{% endfor %}
+    </div>
+    {% else %}
+    <aside class="legal3-toc"><p>Inhalt</p><ol role="list">{% for t in legal.toc %}<li><a href="#{{t[1]}}">{{t[0]}}</a></li>{% endfor %}</ol></aside>
+    <div class="legal3-body">{{ legal.html }}</div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
