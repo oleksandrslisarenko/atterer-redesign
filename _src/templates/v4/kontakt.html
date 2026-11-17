@@ -1,0 +1,36 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% from '_icons.html' import icon %}
+{% set current = 'Kontakt' %}
+{% block title %}Kontakt{% endblock %}
+{% block main %}
+{{ ui.fh([('Kontakt',None)], 'Womit können wir helfen?', 'Rufen Sie uns an, schreiben Sie uns oder besuchen Sie uns in Marktoberdorf. ' ~ C.hours ~ '.', [('Jetzt anrufen', C.phone_href),('E-Mail schreiben','mailto:' ~ C.email)]) }}
+<div class="w fm">
+<div class="fcol">
+<section class="jsec" style="border-top:0;padding-top:0">
+<h2>Nachricht senden</h2>
+<form class="form" data-proto novalidate>
+<div class="frow"><div class="at-field"><label for="f-name">Name *</label><input class="at-input" id="f-name" name="name" required autocomplete="name"></div><div class="at-field"><label for="f-firma">Firma</label><input class="at-input" id="f-firma" name="firma" autocomplete="organization"></div></div>
+<div class="frow"><div class="at-field"><label for="f-mail">E-Mail-Adresse *</label><input class="at-input" id="f-mail" name="email" type="email" required autocomplete="email"></div><div class="at-field"><label for="f-tel">Telefon</label><input class="at-input" id="f-tel" name="tel" type="tel" autocomplete="tel"></div></div>
+<div class="at-field"><label for="f-msg">Nachricht *</label><textarea class="at-textarea" id="f-msg" name="msg" required></textarea></div>
+<label class="chk"><input type="checkbox" required><span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden. *</span></label>
+<button class="at-btn at-btn--primary" type="submit">Nachricht senden {{ ui.arrow() }}</button>
+<div class="at-note at-note--ok sent" data-sent hidden tabindex="-1">{{ icon('check') }}<span><b>Danke!</b> Ihre Nachricht ist bei uns angekommen. Wir melden uns schnellstmöglich bei Ihnen.</span></div>
+</form>
+</section>
+<section class="jsec"><h2>Anfahrt</h2>
+<div class="map" data-map><img src="{{ IMG }}2024/03/Auftragserfassung.jpg" alt="" loading="lazy">
+<div class="mo"><p><b>{{C.street}}, {{C.city}}</b><br>Mit dem Laden der Karte werden Daten an Google übertragen.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px"><button class="at-btn at-btn--on-dark" data-map-load="{{C.maps_embed}}">Karte laden</button><a class="at-btn at-btn--ghost-dark" href="{{C.maps}}" target="_blank" rel="noopener">In Google Maps öffnen</a></div></div></div>
+</section>
+</div>
+<aside class="side">
+<div class="paybox"><span class="lb">Zentrale</span><span class="big">{{C.phone}}</span>
+<dl class="kvs"><dt>E-Mail</dt><dd><a href="mailto:{{C.email}}">{{C.email}}</a></dd><dt>Fax</dt><dd>{{C.fax}}</dd><dt>Mo – Fr</dt><dd>07:30 – 17:00</dd><dt>Sa – So</dt><dd>geschlossen</dd></dl>
+<a class="at-btn at-btn--primary" href="{{C.phone_href}}">Anrufen {{ ui.arrow() }}</a></div>
+<div class="box"><h3>Bewehrung</h3>{{ ui.person('bew') }}</div>
+<div class="box"><h3>Formstahl und Baustoffe</h3>{{ ui.person('form') }}</div>
+<div class="box"><h3>Karriere</h3><a href="mailto:{{C.career_email}}">{{C.career_email}}</a><a class="at-link" href="karriere.html">Stellenangebote</a></div>
+</aside>
+</div>
+{% endblock %}

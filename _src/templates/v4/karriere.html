@@ -1,0 +1,38 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% from '_icons.html' import icon %}
+{% set current = 'Karriere' %}
+{% block title %}Karriere – Stellenangebote{% endblock %}
+{% block main %}
+{{ ui.fh([('Karriere',None)], 'Bewirb dich beim Marktführer', 'Langfristiger, krisensicherer Arbeitsplatz beim Marktführer unter den Betonstahlbiegereien im Allgäu – familiengeführt in der 4. Generation, mehr als 150 Kolleginnen und Kollegen.', [('One-Click-Bewerbung', C.oneclick),('Ausbildung','ausbildung.html')], sk='Deine Chance!') }}
+<section class="sec" style="padding-top:72px"><div class="w">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:8px">
+<div class="jtabs" data-filter-group="#jgrid" role="group" aria-label="Stellen filtern">
+<button class="jt" data-filter="all" aria-pressed="true">Alle <span class="cnt">{{JOBS|length}}</span></button>
+<button class="jt" data-filter="job" aria-pressed="false">Jobs <span class="cnt">{{ JOBS|selectattr('kind','equalto','job')|list|length }}</span></button>
+<button class="jt" data-filter="ausbildung" aria-pressed="false">Ausbildung <span class="cnt">1</span></button>
+<button class="jt" data-filter="initiativ" aria-pressed="false">Initiativ <span class="cnt">1</span></button>
+</div>
+<img class="badge-k" src="{{TOPCOMPANY}}" alt="kununu Top Company 2026" style="border:1px solid var(--line)">
+</div>
+<div class="cards" id="jgrid" style="margin-top:32px">
+{% for j in JOBS %}
+<a class="jk" data-kind="{{j.kind}}" href="{{j.slug}}.html"><span class="ph"><img src="{{j.img}}" alt="" loading="lazy"><span class="tnl" aria-hidden="true"></span>{% if j.slug == 'lkw-fahrer' %}<span class="hot">Führerschein bezahlen wir</span>{% endif %}</span>
+<span class="bd"><span class="tags"><span class="at-tag at-tag--blue">{{ {'job':'Vollzeit','ausbildung':'Ausbildung','initiativ':'Initiativ'}[j.kind] }}</span><span class="at-tag">{{ JOB_PAGES[j.slug].area if j.slug in JOB_PAGES else 'Marktoberdorf' }}</span></span>
+<h3>{{j.title}}</h3><p>{{ JOB_PAGES[j.slug].intro if j.slug in JOB_PAGES else j.area }}</p><span class="go">Zur Stelle {{ ui.arrow() }}</span></span></a>
+{% endfor %}
+</div>
+</div></section>
+<section class="sec grey" style="padding:96px 0"><div class="w nf2">
+<div class="why"><h2>Baue deine Karriere auf Stahl</h2>
+<ul>
+<li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><div><b>Attraktive Entlohnung</b><span>mit Leistungszulage</span></div></li>
+<li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 6-7 10-7 10z"/></svg><div><b>Soziale & monetäre Benefits</b><span>umfassende Zusatzleistungen</span></div></li>
+<li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M10 21v-6h4v6"/></svg><div><b>Werkwohnung</b><span>bei Bedarf</span></div></li>
+<li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2"/><path d="M9 13h6"/></svg><div><b>Probearbeit</b><span>Arbeit und Team unverbindlich kennenlernen</span></div></li>
+</ul></div>
+<div class="nf"><h2>Keine passende Stelle dabei?</h2><p>Bewirb dich initiativ – wir sind stets an engagierten und leistungsfähigen Mitarbeitenden interessiert.</p><a class="at-btn at-btn--secondary" href="initiativbewerbung.html">Initiativbewerbung</a></div>
+</div></section>
+{{ ui.apply_band() }}
+{{ ui.gallery('Dein künftiger Arbeitsplatz') }}
+{% endblock %}

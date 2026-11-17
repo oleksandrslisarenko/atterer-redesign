@@ -1,0 +1,16 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% set current = '' %}
+{% block title %}{{legal_title}}{% endblock %}
+{% block main %}
+{{ ui.fh([(legal_title,None)], legal_title) }}
+<div class="w legal">
+{% if legal_kind == 'impressum' %}
+<aside class="legal-toc"><b>Inhalt</b><ol>{% for s in IMPRESSUM %}<li><a href="#s{{loop.index}}">{{s[0]}}</a></li>{% endfor %}</ol></aside>
+<div class="legal-body">{% for s in IMPRESSUM %}<h2 id="s{{loop.index}}">{{s[0]}}</h2>{% for p in s[1] %}<p>{{p}}</p>{% endfor %}{% endfor %}</div>
+{% else %}
+<aside class="legal-toc"><b>Inhalt</b><ol>{% for t in legal.toc %}<li><a href="#{{t[1]}}">{{t[0]}}</a></li>{% endfor %}</ol></aside>
+<div class="legal-body">{{ legal.html }}</div>
+{% endif %}
+</div>
+{% endblock %}

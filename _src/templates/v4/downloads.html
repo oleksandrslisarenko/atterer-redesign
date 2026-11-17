@@ -1,0 +1,20 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% set current = 'Dokumente' %}
+{% block title %}Dokumente – Kataloge, Formulare, Zertifikate{% endblock %}
+{% block main %}
+{{ ui.fh([('Dokumente',None)], 'Dokumente', 'Kataloge, Formulare, Zertifikate und Dokumente – um sich zu informieren oder eine Bestellung aufzugeben.', [('Stahlkatalog 2026', CATALOG_PDF),('So bestellen Sie','bestellen.html')]) }}
+<section class="sec" style="padding-top:64px"><div class="w">
+<nav class="dlnav4" aria-label="Kategorien">{% for g in DOWNLOADS %}<a href="#{{g[0]|lower}}">{{g[0]}} <span class="cnt">{{g[1]|length}}</span></a>{% endfor %}</nav>
+<div class="catalog4" id="stahlkatalog" style="margin-bottom:96px">
+<img src="{{CATALOG_IMG}}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+<div><span class="sk">Unser Stahlkatalog</span><h2 class="h2">Stahlkatalog 2026</h2><p class="lead" style="margin:16px 0 28px">Innovative Bewehrungslösungen, Formstahl und Zubehör mit allen Ansprechpartnern. PDF, 23 Seiten, 6 MB.</p><a class="at-btn at-btn--primary" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Herunterladen {{ ui.arrow() }}</a></div>
+</div>
+{% for g in DOWNLOADS[1:] %}
+<section class="dlsec4" id="{{g[0]|lower}}">
+<div class="split" style="margin-bottom:24px"><h2 class="h2" data-reveal>{{g[0]}}</h2><p class="lead" style="align-self:end">{{ {'Formulare':'Für Kontoeröffnung, Projektstart und Bestellung.','Zertifikate':'Nachweise zu Qualitätsmanagement, Schweißen und Zulassungen.','Dokumente':'Produktionslisten, Kennzeichnungen, Zulassungen und Handbücher.'}[g[0]] }}</p></div>
+{{ ui.doctable(g[1], g[0]) }}
+</section>
+{% endfor %}
+</div></section>
+{% endblock %}

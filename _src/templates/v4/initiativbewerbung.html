@@ -1,0 +1,27 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% from '_icons.html' import icon %}
+{% set current = 'Karriere' %}
+{% block title %}Initiativbewerbung{% endblock %}
+{% block main %}
+{{ ui.fh([('Karriere','karriere.html'),('Initiativbewerbung',None)], 'Initiativbewerbung', INITIATIV.text[0], [('One-Click-Bewerbung', C.oneclick),('Per E-Mail bewerben','mailto:' ~ C.career_email ~ '?subject=Initiativbewerbung')], sk='Deine Chance!') }}
+<div class="w fm">
+<div class="fcol">
+<div class="jhero4"><img src="{{INITIATIV.img}}" alt="Team des Atterer Stahlcenters" fetchpriority="high"><div class="tnl" aria-hidden="true"></div></div>
+<section class="jsec" style="border-top:0;padding-top:0"><h2>So bewirbst Du Dich initiativ</h2>{% for t in INITIATIV.text[1:] %}<p>{{t}}</p>{% endfor %}
+<div class="chips4"><span class="at-tag at-tag--blue">Motivationsschreiben</span><span class="at-tag at-tag--blue">Lebenslauf</span><span class="at-tag at-tag--blue">Zeugnisse</span></div>
+<div class="at-note">{{ icon('check') }}<span>{{INITIATIV.note}}</span></div></section>
+<section class="jsec"><h2>So läuft die Bewerbung</h2>{{ ui.apply_proc() }}</section>
+</div>
+<aside class="side">
+<div class="paybox"><span class="lb">Bewerbung</span><span class="big">Initiativ</span>
+<a class="at-btn at-btn--primary" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung {{ ui.arrow() }}</a>
+<a class="at-btn at-btn--secondary" href="mailto:{{C.career_email}}?subject=Initiativbewerbung">Per E-Mail</a>
+<p class="note">{{C.career_email}}</p></div>
+</aside>
+</div>
+<section class="sec grey" style="padding:96px 0"><div class="w">
+<h2 class="h2" style="margin-bottom:40px" data-reveal>Oder doch eine offene Stelle?</h2>
+<div class="cards">{% for j in JOBS if j.kind == 'job' %}{% if loop.index <= 6 %}<a class="jk" href="{{j.slug}}.html"><span class="ph"><img src="{{j.img}}" alt="" loading="lazy"></span><span class="bd"><span class="tags"><span class="at-tag">{{j.area}}</span></span><h3>{{j.title}}</h3><span class="go">Zur Stelle {{ ui.arrow() }}</span></span></a>{% endif %}{% endfor %}</div>
+</div></section>
+{% endblock %}

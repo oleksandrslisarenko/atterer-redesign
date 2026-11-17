@@ -1,0 +1,61 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% from '_icons.html' import icon %}
+{% set current = 'So bestellen Sie' %}
+{% block title %}So bestellen Sie – Katalog, Bestellformulare, Lieferung{% endblock %}
+{% block main %}
+{{ ui.fh([('So bestellen Sie',None)], 'So bestellen Sie', 'Stahlkatalog ansehen, Bestellformular ausfüllen oder Stahlliste schicken – wir biegen, schweißen und liefern mit eigenem Fuhrpark auf Ihre Baustelle.', [('Bestellformulare','#formulare'),('Lieferung und Abholung','#lieferung')]) }}
+
+<section class="sec" style="padding:96px 0"><div class="w">
+<ol class="steps" data-reveal>
+<li><h3>Stahlliste senden</h3><p>Per E-Mail, Fax oder mit unserem <a href="#formulare">Bestellformular</a> – auch als Bewehrungsplan.</p></li>
+<li><h3>Angebot erhalten</h3><p>Der Vertriebsinnendienst meldet sich mit Preis und Liefertermin.</p></li>
+<li><h3>Produktion</h3><p>Biegen, Schweißen und Kommissionieren nach Positionen in Marktoberdorf.</p></li>
+<li><h3>Lieferung auf die Baustelle</h3><p>Mit eigenem Fuhrpark oder als Abholung – in Bayern und Österreich.</p></li>
+</ol>
+</div></section>
+
+<section class="sec grey slant" id="katalog"><div class="w catalog4">
+<img src="{{CATALOG_IMG}}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+<div><span class="sk">Stahlkatalog 2026</span><h2 class="h2">Alle Produkte, Maße und Ansprechpartner</h2>
+<p class="lead" style="margin:20px 0 28px">Innovative Bewehrungslösungen, Lagermatten, Betonstahl, BAMTEC, ÖNORM-Stahl, Bohrpfahlkörbe, Formstahl und Anarbeitung – auf 23 Seiten.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px"><a class="at-btn at-btn--primary" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Katalog herunterladen {{ ui.arrow() }}</a><a class="at-btn at-btn--secondary" href="produkte.html">Produkte online ansehen</a></div>
+<p style="margin-top:16px;font-size:14px;color:var(--ink-muted)">PDF, 6 MB</p></div>
+</div></section>
+
+<section class="sec" id="formulare"><div class="w">
+<div class="split" style="margin-bottom:48px"><h2 class="h2" data-reveal>Bestellformulare</h2><p class="lead" style="align-self:end">Formular herunterladen, ausfüllen und an uns senden. Für neue Kunden: zuerst den Kontoeröffnungsantrag, für neue Baustellen den Projekteröffnungsbogen.</p></div>
+{{ ui.doctable(DOWNLOADS[1][1], 'Formulare') }}
+<div class="send4">
+<a href="mailto:{{C.email}}">{{ icon('mail') }}<span><small>Per E-Mail</small><b>{{C.email}}</b></span></a>
+<div>{{ icon('phone') }}<span><small>Per Fax</small><b>{{C.fax}}</b></span></div>
+<a href="{{C.phone_href}}">{{ icon('phone') }}<span><small>Per Telefon</small><b>{{C.phone}}</b></span></a>
+</div>
+</div></section>
+
+<section class="sec grey" id="lieferung"><div class="w">
+<div class="split" style="margin-bottom:48px"><h2 class="h2" data-reveal>Lieferung und Abholung</h2><p class="lead" style="align-self:end">Wir beliefern Sie zuverlässig innerhalb unserer Touren. Ab 5 t Liefermenge beliefern wir Sie auch separat nach Ihren Terminwünschen.</p></div>
+<div class="at-facts" style="margin-bottom:64px">
+<div class="at-fact"><strong>25</strong><span>eigene LKWs</span></div>
+<div class="at-fact"><strong>7</strong><span>Sattelzüge</span></div>
+<div class="at-fact"><strong>7</strong><span>Pritschen-LKWs, davon 5 mit Ladekran und Plane</span></div>
+<div class="at-fact"><strong>ab 5 t</strong><span>separate Lieferung nach Terminwunsch</span></div>
+</div>
+<div class="split">
+<div><h3 class="h3" style="margin-bottom:16px">Tourenplan Formstahl</h3><p class="lead" style="font-size:17px">Feste Touren durch Schwaben, Oberland, Allgäu und München-West.</p>
+<img class="simg" src="{{ IMG }}2024/03/LKW_Atterer-Stahlcenter-GmbH.jpg" alt="Atterer LKW" loading="lazy" style="margin-top:28px"></div>
+<div>{{ ui.tours(PRODUCT_PAGES['formstahl'].sections[4].tours) }}
+<div class="box" style="margin-top:40px;background:#fff"><h3>Abholung</h3><p style="margin:0;color:var(--ink-muted)">{{C.name}}<br>{{C.street}}, {{C.city}}<br>Montag – Freitag, 07:30 – 17:00 Uhr</p><a class="at-link" href="{{C.maps}}" target="_blank" rel="noopener">Route planen</a></div>
+</div>
+</div>
+</div></section>
+
+<section class="sec"><div class="w">
+<h2 class="h2" style="margin-bottom:48px" data-reveal>Ihre Ansprechpartner</h2>
+<div class="ppl">
+<div class="pp"><span class="mono-av" aria-hidden="true">MW</span><div><h3>Verkauf Bewehrung</h3><p>Maximilian Weber</p><a href="tel:+4983429641658">08342 9641-658</a><br><a href="mailto:angebot@atterer.com">angebot@atterer.com</a></div></div>
+<div class="pp"><span class="mono-av" aria-hidden="true">FE</span><div><h3>Formstahl und Baustoffe</h3><p>Florian Eltrich</p><a href="tel:+4983429641656">08342 9641-656</a><br><a href="mailto:bauartikel@atterer.com">bauartikel@atterer.com</a></div></div>
+<div><h3>Zentrale</h3><p>{{C.phone}}</p><a href="mailto:{{C.email}}">{{C.email}}</a><br><span style="color:var(--ink-muted)">Mo–Fr 7:30–17:00</span></div>
+</div>
+</div></section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% set current = 'Unternehmen' %}
+{% block title %}Unternehmen – Seit 1886 für Sie da{% endblock %}
+{% block main %}
+{{ ui.fh([('Unternehmen',None)], 'Seit 1886 für Sie da', 'Vom Eisenhandel in Marktoberdorf zum Marktführer unter den Betonstahlbiegereien im Allgäu – familiengeführt in der 4. Generation.', [('Unsere Geschichte','#geschichte'),('Atterer hilft','#hilft')], sk='140 Jahre Atterer') }}
+{{ ui.phero(IMG ~ '2024/03/Atterer-Stahlcenter-GmbH.jpeg', 'LKW-Flotte vor dem Atterer Stahlcenter') }}
+<section class="sec"><div class="w">
+<div class="split" style="margin-bottom:64px"><h2 class="h2" data-reveal>Zuverlässiger Partner der Bauindustrie</h2><div>{% for t in INTRO %}<p class="lead" style="margin-bottom:14px">{{t}}</p>{% endfor %}</div></div>
+<div class="at-facts">{% for n in NUMBERS[:4] %}<div class="at-fact"><strong>{{n[0]}}{{n[1]}}</strong><span>{{n[2]}}</span></div>{% endfor %}</div>
+</div></section>
+<section class="sec grey slant" id="geschichte"><div class="w">
+<h2 class="h2" style="margin-bottom:48px" data-reveal>Unsere Geschichte</h2>
+<ol class="tl4">
+{% for t in TIMELINE %}
+<li><span class="y">{{t[0]}}</span><div><b>{{t[1]}}</b><p>{{t[2]}}</p></div>{% if t[3] %}<img src="{{t[3]}}" alt="" loading="lazy">{% endif %}</li>
+{% endfor %}
+</ol>
+<p class="tl4-end">Wir freuen uns, wenn auch Sie ein Stück zu unserer Geschichte beitragen.</p>
+</div></section>
+<section class="sec" id="hilft"><div class="w split">
+<div><span class="sk">Atterer hilft</span><h2 class="h2">Wir engagieren uns, wie wir können</h2>
+<p class="lead" style="margin:20px 0">Mehr als 25.000 Euro jährlich spenden wir an Hilfsorganisationen: gegen Hunger und Armut in der Welt, für die Förderung von Jugendlichen in der Dritten Welt, für Hilfseinrichtungen im Allgäu und für in Not geratene Familien und deren kranke Kinder.</p>
+<p class="lead">So verstehen wir unsere soziale Verantwortung.</p>
+<div class="logos4"><img src="{{ IMG }}2024/03/Humedica_neu.png" alt="humedica" loading="lazy"><img src="{{ IMG }}2024/03/Kinderherzen_neu.png" alt="Kinderherzen" loading="lazy"></div></div>
+<div class="gal gal2"><img src="{{ IMG }}2026/10/Attererhilft2025.jpg" alt="Spendenübergabe Atterer hilft" loading="lazy" data-lightbox><img src="{{ IMG }}2024/06/doc-5.jpg" alt="Atterer hilft" loading="lazy" data-lightbox></div>
+</div></section>
+<section class="sec grey" style="padding:96px 0"><div class="w">
+<h2 class="h2" style="margin-bottom:40px" data-reveal>Dafür stehen wir</h2>
+<ul class="offer offer4">{% for v in VALUES %}<li><i><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6"/></svg></i><div><b>{{v[0]}}</b><span>{{v[1]}}</span></div></li>{% endfor %}</ul>
+</div></section>
+<section class="car">
+<div class="ph"><img src="{{ IMG }}2025/02/produktion.jpg" alt="Team des Atterer Stahlcenters" loading="lazy"><div class="tnl" aria-hidden="true"></div></div>
+<div><h2 class="h2">Werde Teil der Geschichte</h2><p>Wir suchen Verstärkung in Produktion, Logistik, Werkstatt und Büro – und Auszubildende für 2027/28.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px"><a class="at-btn at-btn--on-dark" href="karriere.html">Stellenangebote</a><a class="at-btn at-btn--ghost-dark" href="ausbildung.html">Ausbildung</a></div></div>
+</section>
+{% endblock %}

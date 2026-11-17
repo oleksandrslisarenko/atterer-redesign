@@ -1,0 +1,17 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% set current = 'Unternehmen' %}
+{% block title %}Qualitätsmanagement – DIN EN ISO 9001{% endblock %}
+{% block main %}
+{{ ui.fh([('Unternehmen','firma.html'),('Qualitätsmanagement',None)], 'Qualitätsmanagement', QM.lead ~ ' – seit 2014, jedes Jahr erfolgreich re-zertifiziert.', [('Zertifikate','downloads.html#zertifikate')]) }}
+<div class="w fm">
+<div class="fcol">
+<section class="jsec" style="border-top:0;padding-top:0"><h2>Qualität und Verlässlichkeit</h2>{% for t in QM.text %}<p>{{t}}</p>{% endfor %}</section>
+<section class="jsec"><h2>Zertifikate</h2>{{ ui.doctable(DOWNLOADS[2][1], 'Zertifikate') }}</section>
+</div>
+<aside class="side">
+<figure class="cert4"><img src="{{ISO_CERT}}" alt="Zertifikat DIN EN ISO 9001, gültig bis 11.12.2026" loading="lazy" data-lightbox><figcaption>DIN EN ISO 9001, gültig bis 11.12.2026</figcaption></figure>
+<img src="{{ISO_LOGO}}" alt="DIN EN ISO 9001" width="96" loading="lazy">
+</aside>
+</div>
+{% endblock %}

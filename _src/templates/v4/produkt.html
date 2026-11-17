@@ -1,0 +1,35 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% from '_icons.html' import icon %}
+{% set current = 'Produkte' %}
+{% block title %}{{pp.title}} – {{pp.sub}}{% endblock %}
+{% block main %}
+{{ ui.fh([('Produkte','produkte.html'),(pp.title,None)], pp.title, pp.lead, [('Bestellformulare','bestellen.html#formulare'),('Stahlkatalog 2026', CATALOG_PDF)], sk=pp.sub) }}
+{{ ui.phero(pp.hero, pp.title ~ ' bei Atterer') }}
+<div class="w fm">
+<div class="fcol">
+{% for s in pp.sections %}
+<section class="jsec">
+<h2>{{s.h}}</h2>
+{% for t in s.p or [] %}<p>{{t}}</p>{% endfor %}
+{% if s.list %}<ul class="blist">{% for x in s.list %}<li>{{x}}</li>{% endfor %}</ul>{% endif %}
+{% if s.tags %}<div class="chips4">{% for t in s.tags %}<span class="at-tag at-tag--blue">{{t}}</span>{% endfor %}</div>{% endif %}
+{% if s.faq %}<dl class="faq4">{% for q in s.faq %}<div><dt>{{q[0]}}</dt><dd>{{q[1]}}</dd></div>{% endfor %}</dl>{% endif %}
+{% if s.table %}<table class="at-table"><tbody>{% for r in s.table %}<tr><td>{{r[0]}}</td><td>{{r[1]}}</td></tr>{% endfor %}</tbody></table>{% endif %}
+{% if s.services %}<ul class="svc4">{% for sv in s.services %}<li><b>{{sv[0]}}</b><p>{{sv[1]}}</p><ul>{% for x in sv[2] %}<li>{{x}}</li>{% endfor %}</ul></li>{% endfor %}</ul>{% endif %}
+{% if s.tours %}{{ ui.tours(s.tours) }}{% endif %}
+{% if s.gallery %}<div class="gal">{% for g in s.gallery %}<figure class="gfig"><img src="{{g[0]}}" alt="{{g[1]}}" loading="lazy" data-lightbox><figcaption>{{g[1]}}</figcaption></figure>{% endfor %}</div>{% endif %}
+{% if s.img %}<img class="simg" src="{{s.img}}" alt="{{s.h}}" loading="lazy" data-lightbox>{% endif %}
+{% if s.imgs %}<div class="gal gal2">{% for im in s.imgs %}<img src="{{im}}" alt="{{s.h}}, Bild {{loop.index}}" loading="lazy" data-lightbox>{% endfor %}</div>{% endif %}
+{% if s.pdfs %}{{ ui.doctable(s.pdfs, 'Dokumente') }}{% endif %}
+</section>
+{% endfor %}
+{% if pp.contact_email %}<div class="at-note">{{ icon('mail') }}<span>Anfragen zu Schweißarbeiten direkt an <a href="mailto:{{pp.contact_email}}">{{pp.contact_email}}</a>.</span></div>{% endif %}
+</div>
+{{ ui.order_side('form' if slug in ['formstahl','schweissarbeiten','schalungszubehoer'] else 'bew', pp.specs) }}
+</div>
+<section class="sec grey" style="padding:96px 0"><div class="w">
+<h2 class="h2" style="margin-bottom:40px" data-reveal>Weitere Produkte</h2>
+{{ ui.product_cards(slug, 3) }}
+</div></section>
+{% endblock %}

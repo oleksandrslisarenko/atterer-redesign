@@ -1,0 +1,22 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% set current = 'Produkte' %}
+{% block title %}Unsere Produkte{% endblock %}
+{% block main %}
+{{ ui.fh([('Produkte',None)], 'Unsere Produkte', 'Partner für alle, die Formstahl verarbeiten und Betonstahl verbauen – alles unter einem Dach in Marktoberdorf.', [('Bestellformulare','bestellen.html#formulare'),('Stahlkatalog 2026', CATALOG_PDF)]) }}
+<section class="sec" style="padding-top:72px"><div class="w">
+<div class="at-facts" style="margin-bottom:72px">
+<div class="at-fact"><strong>30.000 m²</strong><span>Gelände</span></div>
+<div class="at-fact"><strong>12.000 m²</strong><span>Halle mit Formstahl und Biegerei</span></div>
+<div class="at-fact"><strong>50+</strong><span>Trägerprofile am Lager</span></div>
+<div class="at-fact"><strong>25</strong><span>eigene LKWs</span></div>
+</div>
+<div class="split" style="margin-bottom:56px"><h2 class="h2" data-reveal>Bewehrung und Metall&shy;bearbeitung</h2><div>{% for t in PRODUCTS_INTRO %}<p class="lead" style="margin-bottom:12px">{{t}}</p>{% endfor %}</div></div>
+{{ ui.product_cards(None, 8) }}
+</div></section>
+<section class="sec grey slant"><div class="w catalog4">
+<img src="{{CATALOG_IMG}}" alt="Titelseite Stahlkatalog 2026" loading="lazy">
+<div><span class="sk">Stahlkatalog 2026</span><h2 class="h2">Das komplette Sortiment auf 23 Seiten</h2><p class="lead" style="margin:20px 0 32px">Lagermatten, Betonstahl, Bewehrungsmodule, BAMTEC, ÖNORM-Stahl, Bohrpfahlkörbe, Formstahl und Schalungszubehör – mit allen Ansprechpartnern.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px"><a class="at-btn at-btn--primary" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Katalog herunterladen {{ ui.arrow() }}</a><a class="at-btn at-btn--secondary" href="bestellen.html">So bestellen Sie</a></div></div>
+</div></section>
+{% endblock %}

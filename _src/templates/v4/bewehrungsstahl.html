@@ -1,0 +1,24 @@
+{% extends 'v4/base.html' %}
+{% import 'v4/_parts.html' as ui with context %}
+{% set current = 'Produkte' %}
+{% block title %}Bewehrungsstahl – Gewi-Stahl SAS 500 / 550{% endblock %}
+{% block main %}
+{{ ui.fh([('Produkte','produkte.html'),('Bewehrungsstahl',None)], 'Bewehrungsstahl', BEWEHRUNG.lead ~ ' Stahllängen werden bei uns individuell zugeschnitten und gebogen.', [('Bestellformulare','bestellen.html#formulare'),('Stahlkatalog 2026', CATALOG_PDF)], sk='Gewi-Stahl SAS 500 / 550 Bewehrungssystem') }}
+{{ ui.phero(BEWEHRUNG.images[1], 'Bewehrungsstahl in Bündeln') }}
+<div class="w fm">
+<div class="fcol">
+<section class="jsec"><h2>SAS 500 / 550 Gewindestahl</h2><p>Muffe und Stab in höchster Qualität aufeinander abgestimmt. Endlos schraubbares, robustes und baustellengerechtes Grobgewinde – zugelassen in diversen europäischen Ländern und für außergewöhnliche Lastfälle.</p>
+<ul class="blist">{% for f in BEWEHRUNG.features %}<li>{{f}}</li>{% endfor %}</ul></section>
+<section class="jsec"><h2>Vorteile gegenüber Feingewinde</h2>
+<ol class="proc proc2">{% for v in BEWEHRUNG.vs %}<li><span class="n">0{{loop.index}}</span><span>{{v}}</span></li>{% endfor %}</ol></section>
+<section class="jsec"><h2>Aus unserer Biegerei</h2>
+<div class="gal gal2">{% for im in [BEWEHRUNG.images[0], BEWEHRUNG.images[2]] %}<img src="{{im}}" alt="Bewehrungsstahl bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox>{% endfor %}</div></section>
+<section class="jsec"><h2>Qualität und Verlässlichkeit</h2><p>{{QM_TEXT}}</p><a class="at-link" href="qualitaetsmanagement.html">Zum Qualitätsmanagement</a></section>
+</div>
+{{ ui.order_side('bew', [('System','SAS 500 / 550'),('Stabdurchmesser','12 – 63 mm'),('Vollstoß','100 % in einer Ebene'),('Winkelabweichung','bis 3,5°'),('Sonderausführung','verzinkt')]) }}
+</div>
+<section class="sec grey" style="padding:96px 0"><div class="w">
+<h2 class="h2" style="margin-bottom:40px" data-reveal>Weitere Produkte</h2>
+{{ ui.product_cards('bewehrungsstahl', 3) }}
+</div></section>
+{% endblock %}
