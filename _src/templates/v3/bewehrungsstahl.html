@@ -1,0 +1,66 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = 'Produkte' %}
+{% block title %}Bewehrungsstahl – Gewi-Stahl SAS 500 / 550{% endblock %}
+{% block main %}
+<section class="hero hero-p">
+  <div class="hero-bg"><img src="{{ BEWEHRUNG.images[1] }}" alt="" width="1200" height="818" fetchpriority="high" data-parallax></div>
+  <div class="wrap hero-in">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span><a href="produkte.html">Produkte</a><span>/</span>Bewehrungsstahl</nav>
+    <h1 class="mega"><span>Bewehrungs-</span><span>stahl</span></h1>
+    <p class="chip chip-b hero-tag">Gewi-Stahl SAS 500 / 550 Bewehrungssystem</p>
+    <ul class="chips" role="list">
+      <li><span class="chip">Ø 12 – 63 mm</span></li><li><span class="chip">Vollstoß 100 %</span></li><li><span class="chip">bis 3,5° Winkelabweichung</span></li><li><span class="chip">verzinkt möglich</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split-grid">
+    <div>
+      <h2 class="h2">SAS 500 / 550 Gewindestahl</h2>
+      <p class="body">Muffe und Stab in höchster Qualität aufeinander abgestimmt. Endlos schraubbares, robustes und baustellengerechtes Grobgewinde – individuell zugeschnitten und gebogen in Marktoberdorf.</p>
+      <div class="row"><a class="chip chip-b chip-l" href="kontakt.html">Angebot anfragen</a><a class="more" href="{{C.phone_href}}">{{ icon('phone') }} {{C.phone}}</a></div>
+    </div>
+    <figure class="split-fig"><img src="{{ BEWEHRUNG.images[0] }}" alt="Bewehrungsstahl mit Etiketten" loading="lazy" data-lightbox></figure>
+  </div>
+</section>
+
+<section class="sec dark2">
+  <div class="wrap">
+    <h2 class="h2">Eigenschaften</h2>
+    <ul class="fgrid" role="list">
+      {% for f in BEWEHRUNG.features %}<li>{{ icon('check') }}<span>{{f}}</span></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split-grid">
+    <figure class="split-fig"><img src="{{ BEWEHRUNG.images[2] }}" alt="Betonstahlbiegerei" loading="lazy" data-lightbox></figure>
+    <div>
+      <h2 class="h2">Vorteile gegenüber Feingewinde</h2>
+      <ol class="vlist" role="list">{% for v in BEWEHRUNG.vs %}<li>{{v}}</li>{% endfor %}</ol>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap cta-in">
+    <h2 class="mega mega-s"><span>Qualität und</span><span>Verlässlichkeit.</span></h2>
+    <div>
+      <p class="body">{{ QM_TEXT }}</p>
+      <div class="row"><a class="chip chip-w chip-l" href="kontakt.html">Anfrage senden</a><a class="more more-w" href="qualitaetsmanagement.html">Qualitätsmanagement {{ icon('arrow') }}</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap head head-row"><h2 class="h2">Weitere Produkte</h2><div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div></div>
+  <div class="gal-rail tiles-rail" data-rail>
+    {% for p in PRODUCTS if p.slug != 'bewehrungsstahl' %}
+    <a class="tile" href="{{p.slug}}.html" draggable="false"><img src="{{p.img}}" alt="" loading="lazy" draggable="false"><span class="tile-b"><span class="chip chip-b">{{p.title}}</span></span>{{ icon('arrow-ur', 'ic tile-a') }}</a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

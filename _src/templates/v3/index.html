@@ -1,0 +1,110 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = '' %}
+{% block title %}Leistung, die verbindet{% endblock %}
+{% block main %}
+<section class="hero">
+  <div class="hero-bg"><img src="{{ IMG }}2022/08/Bohrpfahl_1.jpg" alt="" width="1900" height="598" fetchpriority="high" data-parallax></div>
+  <div class="wrap hero-in">
+    <p class="chip chip-b hero-tag">140 Jahre Atterer – gemeinsam gewachsen</p>
+    <h1 class="mega"><span>Leistung,</span><span>die verbindet.</span></h1>
+    <p class="hero-lead">Marktführer unter den Betonstahlbiegereien im Allgäu. Betonstahl, Bewehrungsmodule und Formstahl für Bauunternehmen in Bayern und Österreich – seit 1886.</p>
+    <ul class="chips" role="list" aria-label="Produkte">
+      {% for p in PRODUCTS %}<li><a class="chip" href="{{p.slug}}.html" style="--i:{{loop.index}}">{{p.title}}</a></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="zahlen">
+  <div class="zahlen-bg"><img src="{{ IMG }}2022/08/Bohrpfahl_2.jpg" alt="" loading="lazy" data-parallax></div>
+  <div class="wrap zahlen-in">
+    <h2 class="chip chip-b">Atterer in Zahlen</h2>
+    <ul class="z-list" role="list">
+      {% for n in NUMBERS %}
+      <li class="z z{{loop.index}}"><b><span data-count="{{n[0]}}">{{n[0]}}</span>{{n[1]}}</b> {{n[2]}}</li>
+      {% endfor %}
+    </ul>
+    <h2 class="chip chip-b z-h2">Dafür stehen wir</h2>
+    <ul class="z-values" role="list">
+      {% for v in VALUES %}<li class="chip chip-w">{{v[0]}}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2">Unsere Produkte</h2>
+      <p>{{ PRODUCTS_INTRO[0] }}</p>
+    </div>
+    <div class="tiles">
+      {% for p in PRODUCTS %}
+      <a class="tile{% if loop.index == 1 %} tile-xl{% endif %}" href="{{p.slug}}.html">
+        <img src="{{p.img}}" alt="" loading="lazy">
+        <span class="tile-b"><span class="chip chip-b">{{p.title}}</span><span class="tile-d">{{p.short}}</span></span>
+        {{ icon('arrow-ur', 'ic tile-a') }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec split">
+  <div class="wrap split-grid">
+    <figure class="split-fig"><img src="{{ IMG }}2024/03/Atterer-Stahlcenter_31-07-2019-46.jpg" alt="Schweißer an einem Bewehrungskorb" loading="lazy"></figure>
+    <div>
+      <h2 class="h2">Zuverlässiger Partner der Bauindustrie seit 1886</h2>
+      {% for t in INTRO[:2] %}<p class="body">{{t}}</p>{% endfor %}
+      <p class="claim3"><span>Schnell.</span> <span>Preisgünstig.</span> <span>Unkompliziert.</span></p>
+      <a class="more" href="firma.html">Unsere Geschichte {{ icon('arrow') }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="career">
+  <div class="career-bg"><img src="{{ IMG }}2025/02/produktion.jpg" alt="" loading="lazy" data-parallax></div>
+  <div class="wrap career-in">
+    <h2 class="mega mega-s"><span>Bewirb dich</span><span>beim Marktführer!</span></h2>
+    <ul class="jobchips" role="list">
+      {% for j in JOBS %}<li><a class="chip chip-w" href="{{j.slug}}.html">{{j.title}}</a></li>{% endfor %}
+    </ul>
+    <div class="row">
+      <a class="chip chip-b chip-l" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung</a>
+      <a class="more more-w" href="karriere.html">Alles zur Karriere {{ icon('arrow') }}</a>
+      <img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap head head-row">
+    <h2 class="h2">Eindrücke aus der Produktion</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="gal-rail" data-rail>{% for g in GALLERY %}<img src="{{g}}" alt="Produktion bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}</div>
+</section>
+
+<section class="sec info">
+  <div class="wrap info-grid">
+    <div class="info-c">
+      <h2 class="h3">Kontakt</h2>
+      <a href="{{C.phone_href}}" class="big">{{C.phone}}</a>
+      <a href="mailto:{{C.email}}" class="big">{{C.email}}</a>
+      <p>{{C.street}}, {{C.city}}<br>{{C.hours}}</p>
+      <a class="more" href="kontakt.html">Zur Kontaktseite {{ icon('arrow') }}</a>
+    </div>
+    <a class="info-c info-l" href="qualitaetsmanagement.html">
+      <img src="{{ ISO_LOGO }}" alt="" width="64" loading="lazy">
+      <h2 class="h3">Qualitätsmanagement</h2>
+      <p>Seit 2014 nach DIN EN ISO 9001 zertifiziert.</p>
+      <span class="more">Mehr erfahren {{ icon('arrow') }}</span>
+    </a>
+    <a class="info-c info-l" href="downloads.html">
+      {{ icon('download', 'ic info-ic') }}
+      <h2 class="h3">Downloads</h2>
+      <p>Stahlkatalog 2026, Formulare, Zertifikate und Dokumente.</p>
+      <span class="more">Zu den Downloads {{ icon('arrow') }}</span>
+    </a>
+  </div>
+</section>
+{% endblock %}

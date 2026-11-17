@@ -1,0 +1,95 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = 'Produkte' %}
+{% block title %}Bewehrungsstahl – Gewi-Stahl SAS 500 / 550{% endblock %}
+{% block main %}
+<section class="hero p-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span><a href="produkte.html">Produkte</a><span>/</span>Bewehrungsstahl</nav>
+      <h1 class="h1">Bewehrungs&shy;stahl</h1>
+      <p class="lead" style="margin-top:1.4rem">Gewi-Stahl SAS 500 / 550 Bewehrungssystem. Muffe und Stab in höchster Qualität aufeinander abgestimmt, individuell zugeschnitten und gebogen.</p>
+      <div class="btns">
+        <a class="btn" href="kontakt.html"><span>Angebot anfragen</span></a>
+        <a class="btn btn-ghost" href="{{C.phone_href}}"><span>{{C.phone}}</span></a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="slant"><img src="{{ BEWEHRUNG.images[0] }}" alt="Gebündelter Bewehrungsstahl mit Etiketten im Lager" width="1200" height="1200" fetchpriority="high"></div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Technische Eckdaten">
+  <div class="wrap">
+    <dl class="spec">
+      <div><dt>System</dt><dd>SAS 500 / 550</dd></div>
+      <div><dt>Stabdurchmesser</dt><dd>12 – 63 mm</dd></div>
+      <div><dt>Stoß</dt><dd>100 % Vollstoß in einer Ebene</dd></div>
+      <div><dt>Winkelabweichung</dt><dd>bis 3,5°</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="feat">
+      <div>
+        <h2 class="h2">SAS 500 / 550 Gewindestahl</h2>
+        <p style="margin-top:1.2rem;color:var(--slate);max-width:42ch">Endlos schraubbar, robust und baustellengerecht. Zulassungen in diversen europäischen Ländern und für außergewöhnliche Lastfälle.</p>
+      </div>
+      <ul class="checks" role="list">
+        {% for f in BEWEHRUNG.features %}<li>{{ icon('check') }}<span>{{f}}</span></li>{% endfor %}
+      </ul>
+    </div>
+
+    <div class="compare">
+      <h2 class="h2">Vorteile gegenüber Feingewinde</h2>
+      <ol>{% for v in BEWEHRUNG.vs %}<li>{{v}}</li>{% endfor %}</ol>
+    </div>
+
+    <div class="duo">
+      <img src="{{ BEWEHRUNG.images[1] }}" alt="Bewehrungsstahl in Bündeln" loading="lazy" data-lightbox>
+      <img src="{{ BEWEHRUNG.images[2] }}" alt="Betonstahlbiegerei bei Atterer" loading="lazy" data-lightbox>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap feat">
+    <div>
+      <p class="plate">Qualität und Verlässlichkeit</p>
+      <h2 class="h2">Zertifiziert nach DIN EN ISO 9001.</h2>
+    </div>
+    <div>
+      <p style="color:var(--slate);max-width:56ch">{{ QM_TEXT }} Für uns ist die Zertifizierung ein wichtiger Baustein zur kontinuierlichen Verbesserung unserer Prozesse.</p>
+      <a class="link" href="qualitaetsmanagement.html">Zum Qualitätsmanagement {{ icon('arrow') }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div>
+      <h2 class="h2">Fragen zu SAS 500 / 550 oder eine Stahlliste?</h2>
+      <p>Unser Vertrieb meldet sich schnell mit einem Angebot. {{C.hours}}.</p>
+    </div>
+    <div class="btns" style="margin-top:0">
+      <a class="btn" href="kontakt.html"><span>Anfrage senden</span></a>
+      <a class="btn btn-ghost-w" href="{{C.phone_href}}"><span>Anrufen</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap gal-head">
+    <h2 class="h2">Weitere Produkte</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="gal-rail more" data-rail>
+    {% for p in PRODUCTS if p.slug != 'bewehrungsstahl' %}
+    <a href="{{p.slug}}.html" draggable="false"><div class="m-img"><img src="{{p.img}}" alt="" loading="lazy" draggable="false"></div><span>{{p.title}}<small>{{p.short}}</small></span></a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

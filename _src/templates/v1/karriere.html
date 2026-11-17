@@ -1,0 +1,80 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = 'Karriere' %}
+{% block title %}Karriere – Bewirb dich beim Marktführer{% endblock %}
+{% block main %}
+<section class="hero p-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span>Karriere</nav>
+      <h1 class="h1">Baue deine Karriere auf Stahl.</h1>
+      <p class="lead" style="margin-top:1.4rem">Bewirb dich beim Marktführer im Allgäu: langfristiger, krisensicherer Arbeitsplatz, über 150 Kolleginnen und Kollegen, ein Familienunternehmen in der 4.&nbsp;Generation.</p>
+      <div class="btns">
+        <a class="btn" href="#stellen"><span>Offene Stellen ansehen</span></a>
+        <a class="btn btn-ghost" href="{{C.oneclick}}" target="_blank" rel="noopener"><span>One-Click-Bewerbung</span></a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="slant"><img src="{{ IMG }}2025/02/produktion.jpg" alt="Das Produktionsteam von Atterer in der Halle" width="1200" height="637" fetchpriority="high"></div>
+      <img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026" style="position:absolute;right:6%;bottom:-28px;margin:0;box-shadow:0 10px 30px rgba(0,0,0,.12)">
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="stellen" style="padding-top:clamp(40px,5vw,72px)">
+  <div class="wrap">
+    <h2 class="h2">Unsere offenen Stellen</h2>
+    <div class="filters" data-filter-group="#joblist" role="group" aria-label="Stellen filtern">
+      <button data-filter="all" aria-pressed="true">Alle</button>
+      <button data-filter="job" aria-pressed="false">Jobs</button>
+      <button data-filter="ausbildung" aria-pressed="false">Ausbildung</button>
+      <button data-filter="initiativ" aria-pressed="false">Initiativ</button>
+    </div>
+    <p class="f-count"><span data-filter-count>{{ JOBS|length }}</span> Angebote in Marktoberdorf</p>
+    <div class="job-cards" id="joblist">
+      {% for j in JOBS %}
+      <a class="jc" data-kind="{{j.kind}}" href="{{j.slug}}.html">
+        <div class="jc-img"><img src="{{j.img}}" alt="" loading="lazy"><span class="jc-tag">{{ {'job':'Vollzeit','ausbildung':'Ausbildung','initiativ':'Initiativ'}[j.kind] }}</span></div>
+        <div class="jc-b"><span class="jc-t">{{j.title}}</span><span class="jc-a">{{j.area}}</span><span class="jc-go">Zur Stelle {{ icon('arrow') }}</span></div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper)">
+  <div class="wrap">
+    <h2 class="h2">Was wir Dir bieten</h2>
+    <ul class="benefits" role="list">
+      <li><h3>Attraktive Entlohnung</h3><p>Mit Leistungszulage und fairer Bezahlung.</p></li>
+      <li><h3>Soziale & monetäre Benefits</h3><p>Umfassende soziale und monetäre Zusatzleistungen.</p></li>
+      <li><h3>Werkwohnung bei Bedarf</h3><p>Bei Bedarf stellen wir Dir eine Werkwohnung.</p></li>
+      <li><h3>Sicherer Arbeitsplatz</h3><p>Langfristig und krisensicher beim Marktführer.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h2">So einfach geht Deine Bewerbung</h2>
+    <ol class="steps">
+      {% for s in APPLY_STEPS %}<li><h3>{{s[0]}}</h3><p>{{s[1]}}</p></li>{% endfor %}
+    </ol>
+    <div class="apply-row">
+      <a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener"><span>One-Click-Bewerbung starten</span></a>
+      <a class="link" href="mailto:{{C.career_email}}">{{ icon('mail') }} {{C.career_email}}</a>
+      <a class="small" href="{{C.bewerber_ds}}" target="_blank" rel="noopener">Datenschutzhinweise im Bewerbungsverfahren</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec gallery" style="background:var(--paper)">
+  <div class="wrap gal-head">
+    <h2 class="h2">Dein künftiger Arbeitsplatz</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="gal-rail" data-rail>
+    {% for g in GALLERY %}<img src="{{g}}" alt="Arbeitsplatz bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}
+  </div>
+</section>
+{% endblock %}

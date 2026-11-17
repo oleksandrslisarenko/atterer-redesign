@@ -1,0 +1,70 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = 'Karriere' %}
+{% block title %}Karriere – Baue deine Karriere auf Stahl{% endblock %}
+{% block main %}
+<section class="k-hero">
+  <div class="wrap k-grid">
+    <div class="k-copy">
+      <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span>Karriere</nav>
+      <h1 class="d1">Baue deine Karriere auf Stahl.</h1>
+      <p class="k-lead">Bewirb dich beim Marktführer im Allgäu. Mehr als 150 Kolleginnen und Kollegen, ein Familienunternehmen in der 4. Generation – und ein Arbeitsplatz, der bleibt.</p>
+      <div class="row"><a class="btn" href="#stellen">Offene Stellen</a><a class="btn btn-line" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung</a></div>
+    </div>
+    <figure class="k-fig"><img src="{{ IMG }}2025/05/Azubis-2025.jpg" alt="Auszubildende bei Atterer" width="1200" height="818" fetchpriority="high"><img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026"></figure>
+  </div>
+</section>
+
+<section class="sec" id="stellen">
+  <div class="wrap">
+    <div class="sec-head sec-head-row">
+      <h2 class="d2">Offene Stellen</h2>
+      <div class="chips" data-filter-group="#jt" role="group" aria-label="Stellen filtern">
+        <button data-filter="all" aria-pressed="true">Alle</button><button data-filter="job" aria-pressed="false">Jobs</button><button data-filter="ausbildung" aria-pressed="false">Ausbildung</button><button data-filter="initiativ" aria-pressed="false">Initiativ</button>
+      </div>
+    </div>
+    <ul class="jtable" id="jt" role="list">
+      {% for j in JOBS %}
+      <li data-kind="{{j.kind}}"><a href="{{j.slug}}.html">
+        <span class="jt-img"><img src="{{j.img}}" alt="" loading="lazy"></span>
+        <span class="jt-t">{{j.title}}</span>
+        <span class="jt-a">{{j.area}}</span>
+        <span class="jt-l">Marktoberdorf</span>
+        {{ icon('arrow') }}
+      </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec tint">
+  <div class="wrap">
+    <h2 class="d2">Was wir Dir bieten</h2>
+    <ul class="ben" role="list">
+      <li><h3>Attraktive Entlohnung</h3><p>Mit Leistungszulage.</p></li>
+      <li><h3>Soziale & monetäre Benefits</h3><p>Umfassende Zusatzleistungen.</p></li>
+      <li><h3>Werkwohnung</h3><p>Bei Bedarf stellen wir Dir eine Werkwohnung.</p></li>
+      <li><h3>Sicherer Arbeitsplatz</h3><p>Langfristig und krisensicher.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap steps-grid">
+    <h2 class="d2">Deine Bewerbung in drei Schritten</h2>
+    <ol class="steps" role="list">
+      {% for s in APPLY_STEPS %}<li><span class="st-n">{{loop.index}}</span><div><h3>{{s[0]}}</h3><p>{{s[1]}}</p></div></li>{% endfor %}
+    </ol>
+  </div>
+  <div class="wrap apply">
+    <a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung starten</a>
+    <a class="tlink" href="mailto:{{C.career_email}}">{{C.career_email}}</a>
+    <a class="fine" href="{{C.bewerber_ds}}" target="_blank" rel="noopener">Datenschutzhinweise im Bewerbungsverfahren</a>
+  </div>
+</section>
+
+<section class="sec gal">
+  <div class="wrap tl-head"><h2 class="d2">Eindrücke aus der Produktion</h2><div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div></div>
+  <div class="gal-rail" data-rail>{% for g in GALLERY %}<img src="{{g}}" alt="Produktion bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}</div>
+</section>
+{% endblock %}

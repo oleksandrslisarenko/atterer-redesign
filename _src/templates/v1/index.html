@@ -1,0 +1,150 @@
+{% extends 'v1/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = '' %}
+{% block title %}Betonstahl und Stahlhandel im Allgäu{% endblock %}
+{% block main %}
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="plate">140 Jahre Atterer</p>
+      <h1 class="h1">Betonstahl, gebogen im&nbsp;Allgäu. Seit&nbsp;1886.</h1>
+      <p class="lead">Marktführer unter den Betonstahlbiegereien im Allgäu. Wir beliefern Bauunternehmen in Bayern und Österreich mit Betonstahl, Formstahl und Bauprodukten.</p>
+      <div class="btns">
+        <a class="btn" href="kontakt.html"><span>Anfrage senden</span></a>
+        <a class="btn btn-ghost" href="produkte.html"><span>Zu den Produkten</span></a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="slant"><img src="{{ IMG }}2024/03/Atterer-Stahlcenter_31-07-2019-46.jpg" alt="Schweißer an einem Bohrpfahl-Bewehrungskorb in der Halle in Marktoberdorf" width="1200" height="818" fetchpriority="high"></div>
+      <svg class="bend" viewBox="0 0 320 240" aria-hidden="true">
+        <g class="dim"><path d="M40 222h200M40 216v12M240 216v12"/><path d="M262 40v160M256 40h12M256 200h12"/></g>
+        <text x="140" y="238" text-anchor="middle">450</text><text x="282" y="124" text-anchor="middle" transform="rotate(90 282 124)">300</text>
+        <path class="bar" d="M70 40 H240 V200 H40 V40 H110 L80 70" />
+        <text class="pos" x="44" y="22">Pos. 7 – Bügel Ø 12</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="claim" aria-label="Unser Versprechen">
+  <div class="wrap claim-in"><span>Schnell</span><span>Preisgünstig</span><span>Unkompliziert</span></div>
+</section>
+
+<section class="sec numbers">
+  <div class="wrap">
+    <h2 class="sr">Atterer in Zahlen</h2>
+    <dl class="num-grid">
+      {% for n in NUMBERS %}
+      <div class="num"><dt><span data-count="{{n[0]}}">{{n[0]}}</span>{% if n[1]=='+' %}+{% elif n[1] %}<span class="u">{{n[1]|trim}}</span>{% endif %}</dt><dd>{{n[2]}}</dd></div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>
+
+<section class="sec products" id="produkte">
+  <div class="wrap prod-grid">
+    <div class="prod-intro">
+      <h2 class="h2">Partner für alle, die Formstahl verarbeiten und Betonstahl verbauen.</h2>
+      <p>{{ PRODUCTS_INTRO[0] }}</p>
+      <a class="link" href="produkte.html">Alle Produkte {{ icon('arrow') }}</a>
+    </div>
+    <ul class="prod-list" role="list">
+      {% for p in PRODUCTS %}
+      <li>
+        <a class="prod-row" href="{{p.slug}}.html">
+          <img src="{{p.img}}" alt="" loading="lazy" width="400" height="400">
+          <span class="prod-t">{{p.title}}</span>
+          <span class="prod-d">{{p.short}}</span>
+          {{ icon('arrow', 'ic prod-a') }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="company">
+  <figure class="company-fig">
+    <img src="{{ IMG }}2024/03/Atterer-Stahlcenter-GmbH.jpeg" alt="LKW-Flotte des Atterer Stahlcenters vor dem Firmengebäude" loading="lazy" width="1600" height="538" data-parallax>
+  </figure>
+  <div class="wrap company-grid">
+    <div class="company-copy">
+      <p class="plate">Willkommen bei Atterer</p>
+      <h2 class="h2">Zuverlässiger Partner der Bauindustrie seit 1886.</h2>
+      {% for t in INTRO %}<p>{{t}}</p>{% endfor %}
+      <a class="link" href="firma.html">Mehr über uns {{ icon('arrow') }}</a>
+    </div>
+    <ul class="values" role="list">
+      {% for v in VALUES %}
+      <li><h3>{{v[0]}}</h3><p>{{v[1]}}</p></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec career">
+  <div class="wrap career-grid">
+    <div class="career-copy">
+      <h2 class="h2">Bewirb dich beim Marktführer.</h2>
+      <p>Wir bieten einen langfristigen und krisensicheren Arbeitsplatz in einem innovativen Umfeld. Bewerben geht in einer Minute – ohne Unterlagen.</p>
+      <div class="btns">
+        <a class="btn" href="{{C.oneclick}}" target="_blank" rel="noopener"><span>One-Click-Bewerbung</span></a>
+        <a class="btn btn-ghost-w" href="karriere.html"><span>Karriere bei Atterer</span></a>
+      </div>
+      <img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026" loading="lazy" width="300" height="100">
+    </div>
+    <ul class="jobs" role="list">
+      {% for j in JOBS %}
+      <li><a href="{{j.slug}}.html"><span class="job-t">{{j.title}}</span><span class="job-a">{{j.area}}</span>{{ icon('arrow') }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec gallery">
+  <div class="wrap gal-head">
+    <h2 class="h2">Eindrücke aus der Produktion</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="gal-rail" data-rail>
+    {% for g in GALLERY %}<img src="{{g}}" alt="Produktion bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}
+  </div>
+</section>
+
+<section class="sec service">
+  <div class="wrap service-grid">
+    <article class="panel">
+      <img class="iso" src="{{ ISO_LOGO }}" alt="DIN EN ISO 9001" width="96" height="96" loading="lazy">
+      <h2 class="h3">Qualitätsmanagement</h2>
+      <p>{{ QM_TEXT }}</p>
+      <a class="link" href="qualitaetsmanagement.html">Zum Qualitätsmanagement {{ icon('arrow') }}</a>
+    </article>
+    <article class="panel panel-blue">
+      <h2 class="h3">Downloads</h2>
+      <p>Kataloge, Zertifikate, Formulare und Dokumente für Ihre Bestellung.</p>
+      <a class="dl" href="https://usercontent.one/wp/www.atterer.de/wp-content/uploads/2026/06/Stahlkatalog_2026_3.pdf" target="_blank" rel="noopener">{{ icon('download') }}<span><b>Stahlkatalog 2026</b><small>PDF, 23 Seiten</small></span></a>
+      <a class="link link-w" href="downloads.html">Alle Downloads {{ icon('arrow') }}</a>
+    </article>
+  </div>
+</section>
+
+<section class="sec contact" id="kontakt">
+  <div class="wrap contact-grid">
+    <div>
+      <h2 class="h2">Womit können wir Ihnen helfen?</h2>
+      <ul class="c-list" role="list">
+        <li>{{ icon('phone') }}<span><small>Telefon</small><a href="{{C.phone_href}}">{{C.phone}}</a></span></li>
+        <li>{{ icon('mail') }}<span><small>E-Mail</small><a href="mailto:{{C.email}}">{{C.email}}</a></span></li>
+        <li>{{ icon('pin') }}<span><small>Anfahrt</small>{{C.street}}, {{C.city}}</span></li>
+        <li>{{ icon('clock') }}<span><small>Öffnungszeiten</small>{{C.hours}}<br>Sa – So geschlossen</span></li>
+      </ul>
+      <a class="btn" href="kontakt.html"><span>Zur Kontaktseite</span></a>
+    </div>
+    <div class="map" data-map>
+      <img src="{{ IMG }}2024/03/Auftragserfassung.jpg" alt="" loading="lazy">
+      <div class="map-ov"><p><b>Atterer Stahlcenter</b><br>{{C.street}}, {{C.city}}</p><a class="btn btn-s" href="{{C.maps}}" target="_blank" rel="noopener"><span>Route planen</span></a></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

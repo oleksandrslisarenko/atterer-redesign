@@ -1,0 +1,61 @@
+{% from '_icons.html' import icon, logo, desktop_nav, mobile_nav with context %}
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{% endblock %} | Atterer Stahlcenter</title>
+<meta name="description" content="{% block desc %}Atterer Stahlcenter GmbH – Betonstahlbiegerei und Stahlhandel in Marktoberdorf seit 1886.{% endblock %}">
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-built="{{built}}">
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <span>{{ icon('clock') }} {{C.hours}}</span>
+    <a href="{{C.phone_href}}">{{ icon('phone') }} {{C.phone}}</a>
+    <a href="mailto:{{C.email}}">{{ icon('mail') }} {{C.email}}</a>
+  </div>
+</div>
+<header class="hd" data-header>
+  <div class="wrap hd-in">
+    {{ logo() }}
+    {{ desktop_nav(NAV, current) }}
+    <a class="btn btn-s hd-cta" href="kontakt.html"><span>Anfrage senden</span></a>
+    <button class="burger" data-burger aria-expanded="false" aria-controls="mnav" aria-label="Menü"><i></i><i></i></button>
+  </div>
+  {{ mobile_nav(NAV, C) }}
+</header>
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+<footer class="ft">
+  <div class="wrap ft-grid">
+    <div class="ft-brand">
+      <img src="{{ LOGO }}" alt="Atterer Stahlcenter" width="180" height="62">
+      <p>Zuverlässiger Partner der Bauindustrie seit 1886.</p>
+    </div>
+    <div>
+      <h2 class="ft-h">Kontakt</h2>
+      <address>{{C.name}}<br>{{C.street}}<br>{{C.city}}</address>
+      <p><a href="{{C.phone_href}}">{{C.phone}}</a><br>Fax {{C.fax}}<br><a href="mailto:{{C.email}}">{{C.email}}</a></p>
+    </div>
+    <div>
+      <h2 class="ft-h">Unternehmen</h2>
+      <ul role="list"><li><a href="firma.html">Firma</a></li><li><a href="produkte.html">Produkte</a></li><li><a href="karriere.html">Karriere</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="kontakt.html">Kontakt</a></li></ul>
+    </div>
+    <div>
+      <h2 class="ft-h">Folgen Sie uns</h2>
+      <ul role="list">{% for s in C.social %}<li><a href="{{s[1]}}" target="_blank" rel="noopener">{{s[0]}}</a></li>{% endfor %}</ul>
+    </div>
+  </div>
+  <div class="wrap ft-legal">
+    <span>© 2026 {{C.name}}</span>
+    <span><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></span>
+  </div>
+</footer>
+<script src="../assets/proto.js" defer></script>
+</body>
+</html>

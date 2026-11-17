@@ -1,0 +1,124 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = '' %}
+{% block title %}140 Jahre – Gemeinsam gewachsen{% endblock %}
+{% block main %}
+
+<section class="hero">
+  <figure class="hero-fig">
+    <img src="{{ IMG }}2025/02/produktion.jpg" alt="Das Team des Atterer Stahlcenters in der Produktionshalle" width="1200" height="637" fetchpriority="high">
+  </figure>
+  <div class="wrap hero-text">
+    <h1 class="d1"><span class="d1-l">140 Jahre Atterer.</span><span class="d1-l">Gemeinsam gewachsen.</span></h1>
+    <div class="hero-aside">
+      <p>Seit 1886 beliefern wir aus Marktoberdorf Bauunternehmen in Bayern und Österreich mit Betonstahl, Formstahl und Bauprodukten – heute mit mehr als 150 Mitarbeitern, in der 4. Generation.</p>
+      <a class="btn" href="kontakt.html">Anfrage senden</a>
+    </div>
+  </div>
+</section>
+
+<section class="timeline" aria-labelledby="tl-h">
+  <div class="wrap tl-head">
+    <h2 id="tl-h" class="d2">Vom Eisenhandel zum Marktführer</h2>
+    <div class="rail-nav" data-rail-nav><button data-prev aria-label="Zurück">{{ icon('arrow') }}</button><button data-next aria-label="Weiter">{{ icon('arrow') }}</button></div>
+  </div>
+  <div class="tl-wrap">
+    <ol class="tl" data-rail>
+      {% for t in TIMELINE %}
+      <li class="tl-i{% if t[3] %} has-img{% endif %}">
+        <span class="tl-y">{{t[0]}}</span>
+        {% if t[3] %}<img src="{{t[3]}}" alt="" loading="lazy" draggable="false">{% endif %}
+        <h3>{{t[1]}}</h3>
+        <p>{{t[2]}}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="wrap quote-in">
+    <blockquote>
+      <p>„Was will mein Kunde?“</p>
+      <footer>Das Ideal von Gründer Anton Atterer – und bis heute unser Maßstab.</footer>
+    </blockquote>
+  </div>
+</section>
+
+<section class="sec products">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="d2">Partner für alle, die Formstahl verarbeiten und Betonstahl verbauen</h2>
+      <p>{{ PRODUCTS_INTRO[0] }}</p>
+    </div>
+    <div class="mag">
+      {% for p in PRODUCTS %}
+      <a class="mag-i mag-{{loop.index}}" href="{{p.slug}}.html">
+        <span class="mag-img"><img src="{{p.img}}" alt="" loading="lazy"></span>
+        <span class="mag-t">{{p.title}}</span>
+        <span class="mag-d">{{p.short}}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="facts" aria-label="Atterer in Zahlen">
+  <div class="wrap">
+    <p class="facts-line">
+      {% for n in NUMBERS[1:] %}<span><b>{{n[0]}}{{n[1]}}</b> {{n[2]}}</span>{% endfor %}
+    </p>
+  </div>
+</section>
+
+<section class="sec career">
+  <div class="wrap career-grid">
+    <figure class="career-fig"><img src="{{ IMG }}2025/05/Azubis-2025.jpg" alt="Auszubildende 2025 bei Atterer" loading="lazy" width="1200" height="818"></figure>
+    <div class="career-copy">
+      <h2 class="d2">Bewirb dich beim Marktführer</h2>
+      <p>Wir bieten einen langfristigen und krisensicheren Arbeitsplatz in einem innovativen Umfeld – in der Produktion, in der Logistik, im Büro oder in der Ausbildung.</p>
+      <ul class="jlist" role="list">
+        {% for j in JOBS %}<li><a href="{{j.slug}}.html"><span>{{j.title}}</span>{{ icon('arrow') }}</a></li>{% endfor %}
+      </ul>
+      <div class="row">
+        <a class="btn" href="karriere.html">Alle Stellen ansehen</a>
+        <img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026" loading="lazy" width="300" height="100">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec help">
+  <div class="wrap help-grid">
+    <h2 class="d2">Atterer hilft</h2>
+    <div>
+      <p>Mehr als 25.000 Euro spenden wir jährlich an Hilfsorganisationen: gegen Hunger und Armut in der Welt, für Jugendliche in der Dritten Welt, für Hilfseinrichtungen im Allgäu und für in Not geratene Familien und deren kranke Kinder.</p>
+      <div class="help-logos"><img src="{{ IMG }}2024/03/Humedica_neu.png" alt="humedica" loading="lazy"><img src="{{ IMG }}2024/03/Kinderherzen_neu.png" alt="Kinderherzen" loading="lazy"></div>
+      <a class="tlink" href="firma.html#hilft">Mehr über unser Engagement</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec service">
+  <div class="wrap service-grid">
+    <a class="svc" href="qualitaetsmanagement.html">
+      <img src="{{ ISO_LOGO }}" alt="" width="72" height="72" loading="lazy">
+      <h2>Qualitätsmanagement</h2>
+      <p>Seit 2014 nach DIN EN ISO 9001 zertifiziert, jedes Jahr erfolgreich re-zertifiziert.</p>
+      <span class="tlink">Zertifikat ansehen</span>
+    </a>
+    <a class="svc" href="downloads.html">
+      {{ icon('download', 'ic svc-ic') }}
+      <h2>Downloads</h2>
+      <p>Stahlkatalog 2026, Formulare, Zertifikate und Dokumente für Ihre Bestellung.</p>
+      <span class="tlink">Zu den Downloads</span>
+    </a>
+    <div class="svc svc-dark">
+      <h2>Besuchen Sie uns</h2>
+      <p>{{C.street}}<br>{{C.city}}<br>{{C.hours}}</p>
+      <p><a href="{{C.phone_href}}">{{C.phone}}</a><br><a href="mailto:{{C.email}}">{{C.email}}</a></p>
+      <a class="tlink" href="{{C.maps}}" target="_blank" rel="noopener">Route planen</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

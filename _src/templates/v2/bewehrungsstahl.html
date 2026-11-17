@@ -1,0 +1,70 @@
+{% extends 'v2/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = 'Produkte' %}
+{% block title %}Bewehrungsstahl – Gewi-Stahl SAS 500 / 550{% endblock %}
+{% block main %}
+<section class="p-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span><a href="produkte.html">Produkte</a><span>/</span>Bewehrungsstahl</nav>
+    <h1 class="d1 p-title">Bewehrungsstahl</h1>
+    <p class="p-sub">Gewi-Stahl SAS 500 / 550 Bewehrungssystem</p>
+  </div>
+  <figure class="p-fig"><img src="{{ BEWEHRUNG.images[1] }}" alt="Bewehrungsstahl in Bündeln" width="1200" height="818" fetchpriority="high" data-parallax></figure>
+</section>
+
+<div class="wrap doc">
+  <aside class="toc">
+    <p class="toc-h">Auf dieser Seite</p>
+    <ol role="list">
+      <li><a href="#eigenschaften">Eigenschaften</a></li>
+      <li><a href="#vorteile">Vorteile gegenüber Feingewinde</a></li>
+      <li><a href="#qualitaet">Qualität</a></li>
+      <li><a href="#anfrage">Anfrage</a></li>
+    </ol>
+    <div class="toc-card">
+      <p>Fragen zum System?</p>
+      <a href="{{C.phone_href}}">{{ icon('phone') }} {{C.phone}}</a>
+      <a href="mailto:{{C.email}}">{{ icon('mail') }} {{C.email}}</a>
+    </div>
+  </aside>
+  <article class="doc-body">
+    <p class="intro">SAS 500 / 550 Gewindestahl: Muffe und Stab sind in höchster Qualität aufeinander abgestimmt. Stahllängen werden bei uns individuell zugeschnitten und gebogen – auf Wunsch auch verzinkt.</p>
+
+    <dl class="kv">
+      <div><dt>System</dt><dd>SAS 500 / 550</dd></div>
+      <div><dt>Durchmesser</dt><dd>12 – 63 mm</dd></div>
+      <div><dt>Vollstoß</dt><dd>100 % in einer Ebene</dd></div>
+      <div><dt>Winkelabweichung</dt><dd>bis 3,5°</dd></div>
+    </dl>
+
+    <h2 id="eigenschaften" class="d3">Eigenschaften</h2>
+    <ul class="rules" role="list">{% for f in BEWEHRUNG.features %}<li>{{f}}</li>{% endfor %}</ul>
+
+    <figure class="doc-fig"><img src="{{ BEWEHRUNG.images[2] }}" alt="Betonstahlbiegerei in Marktoberdorf" loading="lazy" data-lightbox><figcaption>Unsere Betonstahlbiegerei in Marktoberdorf.</figcaption></figure>
+
+    <h2 id="vorteile" class="d3">Vorteile gegenüber Feingewinde</h2>
+    <ol class="nums" role="list">{% for v in BEWEHRUNG.vs %}<li>{{v}}</li>{% endfor %}</ol>
+
+    <h2 id="qualitaet" class="d3">Qualität und Verlässlichkeit</h2>
+    <p>{{ QM_TEXT }}</p>
+    <a class="tlink" href="qualitaetsmanagement.html">Zum Qualitätsmanagement</a>
+
+    <div id="anfrage" class="ask">
+      <h2 class="d3">Stahlliste oder Anfrage?</h2>
+      <p>Schicken Sie uns Ihre Unterlagen, wir melden uns schnell mit einem Angebot.</p>
+      <div class="row"><a class="btn" href="kontakt.html">Anfrage senden</a><a class="btn btn-line" href="{{C.phone_href}}">Anrufen</a></div>
+    </div>
+  </article>
+</div>
+
+<section class="sec more-sec">
+  <div class="wrap">
+    <h2 class="d2">Weitere Produkte</h2>
+    <ul class="more" role="list">
+      {% for p in PRODUCTS if p.slug != 'bewehrungsstahl' %}
+      <li><a href="{{p.slug}}.html"><span>{{p.title}}</span><img src="{{p.img}}" alt="" loading="lazy">{{ icon('arrow') }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}

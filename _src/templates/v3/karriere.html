@@ -1,0 +1,61 @@
+{% extends 'v3/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = 'Karriere' %}
+{% block title %}Karriere – Deine Chance beim Marktführer{% endblock %}
+{% block main %}
+<section class="hero hero-p">
+  <div class="hero-bg"><img src="{{ IMG }}2025/02/produktion.jpg" alt="" width="1200" height="637" fetchpriority="high" data-parallax></div>
+  <div class="wrap hero-in">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="index.html">Start</a><span>/</span>Karriere</nav>
+    <p class="chip chip-b hero-tag">Deine Chance!</p>
+    <h1 class="mega"><span>Bewirb dich</span><span>beim Marktführer!</span></h1>
+    <div class="row"><a class="chip chip-w chip-l" href="#stellen">Offene Stellen</a><a class="chip chip-b chip-l" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung</a><img class="badge" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026"></div>
+  </div>
+</section>
+
+<section class="sec" id="stellen">
+  <div class="wrap">
+    <div class="head head-row">
+      <h2 class="h2">Unsere offenen Stellen</h2>
+      <div class="filters" data-filter-group="#jobs" role="group" aria-label="Stellen filtern">
+        <button data-filter="all" aria-pressed="true">Alle</button><button data-filter="job" aria-pressed="false">Jobs</button><button data-filter="ausbildung" aria-pressed="false">Ausbildung</button><button data-filter="initiativ" aria-pressed="false">Initiativ</button>
+      </div>
+    </div>
+    <div class="tiles jobtiles" id="jobs">
+      {% for j in JOBS %}
+      <a class="tile" data-kind="{{j.kind}}" href="{{j.slug}}.html"><img src="{{j.img}}" alt="" loading="lazy"><span class="tile-b"><span class="chip chip-b">{{j.title}}</span><span class="tile-d">{{j.area}}</span></span>{{ icon('arrow-ur', 'ic tile-a') }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec dark2">
+  <div class="wrap">
+    <h2 class="h2">Baue deine Karriere auf Stahl!</h2>
+    <ul class="fgrid fgrid-4" role="list">
+      <li><b>Attraktive Entlohnung</b><span>mit Leistungszulage</span></li>
+      <li><b>Soziale & monetäre Benefits</b><span>umfassende Zusatzleistungen</span></li>
+      <li><b>Werkwohnung</b><span>bei Bedarf</span></li>
+      <li><b>Krisensicherer Arbeitsplatz</b><span>langfristig beim Marktführer</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h2">Deine Bewerbung</h2>
+    <ol class="steps" role="list">
+      {% for s in APPLY_STEPS %}<li><span class="st-n">{{loop.index}}</span><h3>{{s[0]}}</h3><p>{{s[1]}}</p></li>{% endfor %}
+    </ol>
+    <div class="row">
+      <a class="chip chip-b chip-l" href="{{C.oneclick}}" target="_blank" rel="noopener">One-Click-Bewerbung starten</a>
+      <a class="more" href="mailto:{{C.career_email}}">{{ icon('mail') }} {{C.career_email}}</a>
+      <a class="fine" href="{{C.bewerber_ds}}" target="_blank" rel="noopener">Datenschutzhinweise im Bewerbungsverfahren</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="gal-rail" data-rail>{% for g in GALLERY %}<img src="{{g}}" alt="Arbeitsplatz bei Atterer, Bild {{loop.index}}" loading="lazy" data-lightbox draggable="false">{% endfor %}</div>
+</section>
+{% endblock %}
