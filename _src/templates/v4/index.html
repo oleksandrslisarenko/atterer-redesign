@@ -1,0 +1,174 @@
+{% extends 'v4/base.html' %}
+{% from '_icons.html' import icon %}
+{% set current = 'Start' %}
+{% block title %}Bewehrung für Ihr Projekt{% endblock %}
+{% set arrow %}<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>{% endset %}
+{% set DOCICON = {
+ 'Stahlkatalog':'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/><path d="M9 8h6"/>',
+ 'Formulare':'<rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 3h6v3H9z"/><path d="M8.5 11h7M8.5 15h4"/>',
+ 'Zertifikate':'<circle cx="12" cy="9" r="5"/><path d="M9.5 9l1.8 1.8L14.8 7.4"/><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5"/>',
+ 'Dokumente':'<path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/>'} %}
+{% macro docrow(d, cat) -%}
+<tr><td><span class="dic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ DOCICON[cat] }}</svg></span><b>{{d[0]}}</b></td><td>{{ {'Stahlkatalog':'Katalog','Formulare':'Formular','Zertifikate':'Zertifikat','Dokumente':'Dokument'}[cat] }}</td><td class="fmt">{{d[2]}}</td><td style="text-align:right"><a class="dl" href="{{d[1]}}" target="_blank" rel="noopener">Download ↓</a></td></tr>
+{%- endmacro %}
+{% block main %}
+<section class="hero">
+<img src="{{ IMG }}2022/08/Bohrpfahl_1.jpg" alt="" fetchpriority="high">
+<div class="tnl" aria-hidden="true"></div>
+<div class="w">
+<div class="ttl">
+<span class="sk">Biegebetrieb im Allgäu · seit 1886</span>
+<h1>Bewehrung für Ihr Projekt</h1>
+<p>Wir biegen, schweißen und liefern mit eigenem Fuhrpark auf die Baustelle – für Baufirmen in Bayern und Österreich seit 1886.</p>
+</div>
+<div class="ask">
+<span class="t">Stahlkatalog 2026</span>
+<p>Alle Produkte, Lagermatten, Maße und Ansprechpartner auf 23 Seiten – dazu die Bestellformulare für Betonstahl, Matten und Stahlcenter.</p>
+<a class="at-btn at-btn--primary" href="{{CATALOG_PDF}}" target="_blank" rel="noopener">Katalog herunterladen {{arrow}}</a>
+<small>Bestellen per Formular: <a href="bestellen.html#formulare">Bestellformulare</a> · <a href="{{C.phone_href}}">08342 9641-600</a></small>
+</div>
+</div>
+</section>
+
+<section class="band" aria-label="Atterer in Zahlen"><div class="w"><div class="g">
+<div><strong>1886</strong><span>Gründungsjahr</span></div>
+<div><strong>150+</strong><span>Mitarbeiter</span></div>
+<div><strong>30.000 m²</strong><span>Gelände, Halle 12.000 m²</span></div>
+<div><strong>25</strong><span>eigene LKWs für DE · AT</span></div>
+</div></div></section>
+
+<section class="sec" style="padding:112px 0 96px"><div class="w">
+<h2 class="h2" style="margin-bottom:32px" data-reveal>Womit fangen wir an?</h2>
+<nav class="idx" aria-label="Aufgabe wählen" data-reveal>
+<a href="bestellen.html"><strong>Ich baue</strong><span>Betonstahl nach Stahlliste: Katalog, Bestellformular, Lieferung auf die Baustelle</span><i aria-hidden="true"><em>So bestellen Sie</em>→</i></a>
+<a href="formstahl.html"><strong>Ich bearbeite Metall</strong><span>Formstahl ab Lager, Sägen, Bohren, Strahlen, Konservieren</span><i aria-hidden="true"><em>Zu den Produkten</em>→</i></a>
+<a href="bestellen.html#formulare"><strong>Ich handle mit Baustoffen</strong><span>Kontoeröffnung und Projekteröffnungsbogen für Baustoffhändler</span><i aria-hidden="true"><em>Zu den Formularen</em>→</i></a>
+<a href="karriere.html"><strong>Ich suche Arbeit</strong><span>7 Stellen und Ausbildung. Bewerbung per One-Click, ohne Unterlagen</span><i aria-hidden="true"><em>Zu den Stellen</em>→</i></a>
+</nav>
+</div></section>
+
+{% set CAT_A = [
+ ('bewehrungsstahl','Bewehrungsstahl SAS 500 / 550','SAS 500 / 550 – Gewindestahl, individuell gebogen', IMG ~ '2024/03/Bewehrungsstahl.jpg'),
+ ('geschweisste-bewehrungsmodule','Geschweißte Bewehrungsmodule','Geschweißte Module – weniger Flechten auf der Baustelle', IMG ~ '2024/03/Geschweisste-Bewehrungsmodulel.jpg'),
+ ('bohrpfahl-bewehrungskoerbe','Bohrpfahl-Bewehrungskörbe','Pfahlkörbe bis 22 m – geschweißt auf eigener Anlage', IMG ~ '2024/03/Bohrpfaehle.jpg'),
+ ('bamtec','BAMTEC®','BAMTEC – Rollbewehrung für Decken und Bodenplatten', IMG ~ '2024/03/BAMTEC.jpg'),
+ ('oenorm-stahl','ÖNORM-Stahl','ÖNORM-Stahl – Bewehrung nach österreichischer Norm', IMG ~ '2024/03/OeNORM.jpg')] %}
+{% set CAT_B = [
+ ('formstahl','Formstahl und Bearbeitung','Formstahl – CNC-Bohren, Sägen, Strahlen', IMG ~ '2024/03/Atterer-Stahlcenter_31-07-2019-1.jpg'),
+ ('schweissarbeiten','Schweißarbeiten','Schweißarbeiten – Stützen, Träger, Betonstahl', IMG ~ '2024/03/Schweissarbeiten.jpg'),
+ ('schalungszubehoer','Schalungszubehör','Schalungszubehör – ab Lager, in einer Lieferung', IMG ~ '2024/03/Schalungszubehoer.jpg')] %}
+<section class="sec slant grey"><div class="w">
+<h2 class="h2" style="margin-bottom:40px">Produkte</h2>
+<div class="cat" data-cat>
+<div>
+<div class="ctabs" role="tablist" aria-label="Produktgruppen">
+<button class="ctab" role="tab" aria-selected="true">Bewehrung</button>
+<button class="ctab" role="tab" aria-selected="false">Metallbearbeitung</button>
+</div>
+<div class="cat-list">{% for c in CAT_A %}<a class="it" href="{{c[0]}}.html" data-key="{{c[0]}}" data-cap="{{c[2]}}"><b>{{c[1]}}</b><span class="ia" aria-hidden="true">{{arrow}}</span></a>{% endfor %}</div>
+<div class="cat-list" hidden>{% for c in CAT_B %}<a class="it" href="{{c[0]}}.html" data-key="{{c[0]}}" data-cap="{{c[2]}}"><b>{{c[1]}}</b><span class="ia" aria-hidden="true">{{arrow}}</span></a>{% endfor %}</div>
+<div class="cat-more"><a class="at-link" href="produkte.html">Alle Produkte</a></div>
+</div>
+<figure class="frame">
+<a class="flink" href="bewehrungsstahl.html" aria-label="Mehr zum Produkt"></a>
+{% for c in CAT_A + CAT_B %}<img src="{{c[3]}}" alt="{{c[1]}}" data-key="{{c[0]}}" loading="lazy">{% endfor %}
+<div class="tnl" aria-hidden="true"></div>
+<figcaption><span data-cap></span><a data-cap-link href="bewehrungsstahl.html">Mehr erfahren →</a></figcaption>
+</figure>
+</div>
+</div></section>
+
+<section class="sec"><div class="w">
+<div class="split" style="margin-bottom:64px" data-reveal>
+<h2 class="h2">So bestellen Sie</h2>
+<p class="lead" style="align-self:end">Von der Stahlliste bis zur Baustelle: Bestellformular ausfüllen oder Liste schicken – wir biegen, schweißen und liefern.</p>
+</div>
+<ol class="steps" data-reveal>
+<li><h3>Stahlliste senden</h3><p>Per E-Mail, Fax oder mit unserem <a href="bestellen.html#formulare">Bestellformular</a> – auch als Bewehrungsplan.</p></li>
+<li><h3>Angebot erhalten</h3><p>Der Vertriebsinnendienst meldet sich mit Preis und Liefertermin.</p></li>
+<li><h3>Produktion</h3><p>Biegen, Schweißen und Kommissionieren nach Positionen in Marktoberdorf.</p></li>
+<li><h3>Lieferung auf die Baustelle</h3><p>Mit eigenem Fuhrpark oder als Abholung – in Bayern und Österreich.</p></li>
+</ol>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:56px"><a class="at-btn at-btn--primary" href="bestellen.html#formulare">Bestellformulare</a><a class="at-btn at-btn--secondary" href="bestellen.html#lieferung">Lieferung und Abholung</a></div>
+</div></section>
+
+<section class="pair" data-pair aria-label="Produktion und Fuhrpark">
+<div class="sl lft">
+<img data-p="0" class="on" src="{{ IMG }}2022/08/image21.jpg" alt="Atterer Halle, 12.000 m²" loading="lazy">
+<img data-p="1" src="{{ IMG }}2025/08/Betonstahlbiegrei.jpg" alt="Biegen von Betonstahl" loading="lazy">
+<img data-p="2" src="{{ IMG }}2024/03/Atterer-Stahlcenter_31-07-2019-1.jpg" alt="Formstahl im Lager" loading="lazy">
+<div class="tnl" aria-hidden="true"></div>
+<div class="dots" aria-hidden="true"><i data-p="0" class="on"></i><i data-p="1"></i><i data-p="2"></i></div>
+<div class="ctr"><button class="sbtn" data-prev aria-label="Vorherige Fotos"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button></div>
+</div>
+<div class="sl rgt">
+<img data-p="0" class="on" src="{{ IMG }}2024/03/LKW_Atterer-Stahlcenter-GmbH.jpg" alt="Atterer LKW" loading="lazy">
+<img data-p="1" src="{{ IMG }}2022/09/Kontakt_1900_600.jpg" alt="Atterer Fuhrpark" loading="lazy">
+<img data-p="2" src="{{ IMG }}2022/08/Bohrpfahl_2.jpg" alt="Pfahlkorb" loading="lazy">
+<div class="tnl" aria-hidden="true"></div>
+<div class="dots" aria-hidden="true"><i data-p="0" class="on"></i><i data-p="1"></i><i data-p="2"></i></div>
+<div class="ctr"><button class="sbtn" data-next aria-label="Nächste Fotos"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+</div>
+</section>
+
+<section class="sec"><div class="w" data-doctabs>
+<h2 class="h2" style="margin-bottom:40px">Dokumente für Bestellung und Abnahme</h2>
+<div class="ctabs sm" role="tablist" aria-label="Dokumentkategorien">
+<button class="ctab" role="tab" aria-selected="true">Beliebt</button>
+{% for g in DOWNLOADS %}<button class="ctab" role="tab" aria-selected="false">{{g[0]}}</button>{% endfor %}
+</div>
+<table class="docs">
+<thead><tr><th>Dokument</th><th>Kategorie</th><th>Format</th><th></th></tr></thead>
+<tbody>{{ docrow(DOWNLOADS[0][1][0],'Stahlkatalog') }}{{ docrow(DOWNLOADS[1][1][6],'Formulare') }}{{ docrow(DOWNLOADS[1][1][5],'Formulare') }}{{ docrow(DOWNLOADS[2][1][0],'Zertifikate') }}{{ docrow(DOWNLOADS[2][1][1],'Zertifikate') }}</tbody>
+{% for g in DOWNLOADS %}<tbody hidden>{% for d in g[1] %}{{ docrow(d, g[0]) }}{% endfor %}</tbody>{% endfor %}
+</table>
+<div style="margin-top:32px"><a class="at-link" href="downloads.html">Alle Dokumente</a></div>
+</div></section>
+
+<section class="car">
+<div class="ph"><img src="{{ IMG }}2025/02/produktion.jpg" alt="Atterer Team in der Halle" loading="lazy"><div class="tnl" aria-hidden="true"></div></div>
+<div>
+<h2 class="h2">Arbeiten beim Marktführer im Allgäu</h2>
+<p>Attraktive Entlohnung mit Leistungszulage, Werkwohnung bei Bedarf, den LKW-Führerschein bezahlen wir. Bewerben geht per One-Click – ohne Unterlagen.</p>
+<div class="jobs">
+{% for j in JOBS[:4] %}<a class="job" href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic ji') }}<b>{{j.title}}</b><span>{{j.area}}</span><i aria-hidden="true">→</i></a>{% endfor %}
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center"><a class="at-btn at-btn--on-dark" href="karriere.html">Alle Stellen</a><a class="at-btn at-btn--ghost-dark" href="ausbildung.html">Ausbildung</a><img class="badge-k" src="{{ TOPCOMPANY }}" alt="kununu Top Company 2026" loading="lazy"></div>
+</div>
+</section>
+
+<section class="sec"><div class="w">
+<div class="split" data-reveal>
+<h2 class="h2">Familienunternehmen seit 1886</h2>
+<div style="display:flex;flex-direction:column;gap:20px"><p class="lead" style="color:var(--slate)">1886 gründeten Anton Atterer und seine Frau Theresia in Marktoberdorf die „Eisenhandlung Atterer“. Sein Ideal „Was will mein Kunde?“ bestimmt bis heute, wie wir arbeiten. Heute führt Andreas Wachter das Familienunternehmen in der 4. Generation: über 150 Mitarbeiter, 27.000 m² Hallen und Lager, zertifiziert nach ISO 9001 seit 2014.</p><div style="display:flex;flex-wrap:wrap;gap:24px"><a class="at-link" href="firma.html#geschichte">Geschichte</a><a class="at-link" href="firma.html#hilft">Atterer hilft</a><a class="at-link" href="qualitaetsmanagement.html">Qualitätsmanagement</a></div></div>
+</div>
+<div class="rule" role="img" aria-label="Zeitleiste 1886–2026: Gründung, Halle für Betonstahl 1985, Stahlcenter 2009, 140 Jahre 2026">
+<div class="mark" style="left:0"><b>1886</b><span>Gründung</span></div>
+<div class="mark" style="left:70.7%"><b>1985</b><span>Halle für Betonstahl</span></div>
+<div class="mark" style="left:87.8%;padding-top:72px"><b>2009</b><span>Stahlcenter, 27.000 m²</span></div>
+<div class="mark" style="right:0;left:auto;border-left:0;border-right:2px solid var(--blue);text-align:right;align-items:flex-end"><b style="padding:0 10px 0 0">2026</b><span style="padding:0 10px 0 0">140 Jahre</span></div>
+</div>
+</div></section>
+
+<section class="sec grey" style="padding:96px 0"><div class="w">
+<div class="split">
+<div><h2 class="h2" style="margin-bottom:20px">Aktuelles</h2>
+<a class="nfeat" href="firma.html#geschichte"><span class="nim big"><img src="{{ IMG }}2026/09/140-Jahre.jpg" alt="140 Jahre Atterer" loading="lazy"></span><b>140 Jahre Atterer – gemeinsam gewachsen</b><p>Von der Eisenhandlung 1886 zum Marktführer unter den Betonstahlbiegereien im Allgäu. Gemeinsam in die nächsten 140 Jahre.</p></a>
+</div>
+<div class="news">
+<a href="karriere.html"><span class="nim"><img src="{{ TOPCOMPANY }}" alt="" loading="lazy" style="object-fit:contain;background:#fff"></span><b>kununu Top Company 2026: Wir gehören zu den besten 5 % der Arbeitgeber</b><span aria-hidden="true">→</span></a>
+<a href="firma.html#hilft"><span class="nim"><img src="{{ IMG }}2026/10/Attererhilft2025.jpg" alt="" loading="lazy"></span><b>Atterer hilft: über 25.000 € im Jahr für Hilfsorganisationen</b><span aria-hidden="true">→</span></a>
+<a href="ausbildung.html"><span class="nim"><img src="{{ IMG }}2025/05/Azubis-2025.jpg" alt="" loading="lazy"></span><b>Ausbildung 2027/28: Jetzt bewerben – ab sofort</b><span aria-hidden="true">→</span></a>
+</div>
+</div>
+</div></section>
+
+<section class="sec" style="padding:96px 0 112px"><div class="w">
+<h2 class="h2" style="margin-bottom:48px">Direkt zur richtigen Abteilung</h2>
+<div class="ppl">
+<div class="pp"><span class="mono-av" aria-hidden="true">MW</span><div><h3>Verkauf Bewehrung</h3><p>Maximilian Weber</p><a href="tel:+4983429641658">08342 9641-658</a><br><a href="mailto:angebot@atterer.com">angebot@atterer.com</a></div></div>
+<div class="pp"><span class="mono-av" aria-hidden="true">FE</span><div><h3>Formstahl und Baustoffe</h3><p>Florian Eltrich</p><a href="tel:+4983429641656">08342 9641-656</a><br><a href="mailto:bauartikel@atterer.com">bauartikel@atterer.com</a></div></div>
+<div><h3>Adresse und Öffnungszeiten</h3><p>{{C.street}}, Marktoberdorf</p><span style="color:var(--ink-muted)">Mo–Fr 7:30–17:00 · </span><a href="kontakt.html">Route</a></div>
+</div>
+</div></section>
+{% endblock %}

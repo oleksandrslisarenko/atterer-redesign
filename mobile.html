@@ -14,7 +14,7 @@ a{color:inherit}
 .back:hover{color:#0071B7}
 h1{font-weight:800;font-style:italic;font-stretch:72%;font-size:1.9rem;line-height:1;margin:18px 0 18px}
 .tabs{display:flex;gap:6px;margin-bottom:22px}
-.tabs a{flex:1;text-align:center;padding:9px 0;font-weight:700;text-decoration:none;background:#EEF1F3;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);font-size:.92rem}
+.tabs{flex-wrap:wrap}.tabs a{flex:1 1 40%;text-align:center;padding:9px 0;font-weight:700;text-decoration:none;background:#EEF1F3;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);font-size:.92rem}
 .tabs a[aria-current]{background:#0071B7;color:#fff}
 h2{font-size:.78rem;letter-spacing:.06em;color:#8696A0;font-weight:700;margin:18px 0 6px}
 ul{list-style:none;margin:0;padding:0}
@@ -39,19 +39,19 @@ iframe{width:390px;height:100%;border:0;border-radius:6px 6px 42px 42px;backgrou
 </aside>
 <main><div class="phone"><iframe id="f" title="Mobile Vorschau"></iframe></div></main>
 <script>
-const V={v1:'Biegeplan',v2:'Vier Generationen',v3:'Halle'};
+const V={v1:'Biegeplan',v2:'Vier Generationen',v3:'Halle',v4:'Freigegeben'};
 const G=[
  ['Start',[['index','Startseite']]],
  ['Firma',[['firma','Unsere Geschichte'],['qualitaetsmanagement','Qualitätsmanagement']]],
  ['Produkte',[['produkte','Übersicht'],['bewehrungsstahl','Bewehrungsstahl'],['geschweisste-bewehrungsmodule','Geschweißte Bewehrungsmodule'],['bamtec','BAMTEC®'],['oenorm-stahl','ÖNORM-Stahl'],['bohrpfahl-bewehrungskoerbe','Bohrpfahl-Bewehrungskörbe'],['schweissarbeiten','Schweißarbeiten'],['schalungszubehoer','Schalungszubehör'],['formstahl','Formstahl']]],
  ['Karriere',[['karriere','Übersicht'],['vertriebsinnendienst','Vertriebsinnendienst'],['betonstahlbieger','Betonstahlbieger'],['bohrpfahl-schweisser','Bohrpfahl-Schweißer'],['schlosser','Schlosser'],['ladearbeiter','Ladearbeiter'],['maschinenbediener','Maschinenbediener'],['lkw-fahrer','LKW-Fahrer'],['ausbildung','Ausbildung'],['ausbildung-kaufmann','Kaufmann/-frau Groß- und Außenhandel'],['ausbildung-industriekaufmann','Industriekaufmann/-frau'],['initiativbewerbung','Initiativbewerbung']]],
- ['Service',[['downloads','Downloads'],['kontakt','Kontakt'],['impressum','Impressum'],['datenschutz','Datenschutz'],['agb','AGB']]],
+ ['Service',[['bestellen','So bestellen Sie'],['downloads','Downloads'],['kontakt','Kontakt'],['impressum','Impressum'],['datenschutz','Datenschutz'],['agb','AGB']]],
 ];
 const q=new URLSearchParams(location.search);let v=V[q.get('v')]?q.get('v'):'v1';let p=q.get('p')||'index';
 const f=document.getElementById('f');
 function render(){
   document.getElementById('tabs').innerHTML=Object.entries(V).map(([k,n],i)=>`<a href="?v=${k}&p=${p}" ${k===v?'aria-current="page"':''}>${i+1}. ${n}</a>`).join('');
-  document.getElementById('list').innerHTML=G.map(([h,ps])=>`<h2>${h.toUpperCase()}</h2><ul>${ps.map(([s,n])=>`<li><button data-p="${s}" ${s===p?'aria-current="page"':''}>${n}</button></li>`).join('')}</ul>`).join('');
+  document.getElementById('list').innerHTML=G.map(([h,ps])=>`<h2>${h.toUpperCase()}</h2><ul>${ps.filter(([s])=>s!=='bestellen'||v==='v4').map(([s,n])=>`<li><button data-p="${s}" ${s===p?'aria-current="page"':''}>${n}</button></li>`).join('')}</ul>`).join('');
   document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{p=b.dataset.p;go()});
   document.getElementById('desk').href=`${v}/${p}.html`;
 }

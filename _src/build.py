@@ -65,6 +65,7 @@ def pages():
     for slug, ap in C.AUSBILDUNG_PAGES.items():
         yield f"{slug}.html", "ausbildung-beruf", {"slug": slug, "ap": ap}
     yield "initiativbewerbung.html", "initiativbewerbung", {}
+    yield "bestellen.html", "bestellen", {}
     yield "downloads.html", "downloads", {}
     yield "kontakt.html", "kontakt", {}
     yield "impressum.html", "legal", {"legal_title": "Impressum", "legal_kind": "impressum"}

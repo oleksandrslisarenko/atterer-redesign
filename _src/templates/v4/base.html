@@ -1,0 +1,78 @@
+{% from '_icons.html' import icon, mobile_nav with context %}
+{% set NAV4 = [
+  {'label':'Produkte','href':'produkte.html','groups':[('Bewehrung',[('Bewehrungsstahl SAS 500 / 550','bewehrungsstahl.html'),('Geschweißte Bewehrungsmodule','geschweisste-bewehrungsmodule.html'),('Bohrpfahl-Bewehrungskörbe','bohrpfahl-bewehrungskoerbe.html'),('BAMTEC®','bamtec.html'),('ÖNORM-Stahl','oenorm-stahl.html')]),('Metallbearbeitung',[('Formstahl und Bearbeitung','formstahl.html'),('Schweißarbeiten','schweissarbeiten.html'),('Schalungszubehör','schalungszubehoer.html')])],'children':[('Bewehrungsstahl SAS 500 / 550','bewehrungsstahl.html'),('Geschweißte Bewehrungsmodule','geschweisste-bewehrungsmodule.html'),('Bohrpfahl-Bewehrungskörbe','bohrpfahl-bewehrungskoerbe.html'),('BAMTEC®','bamtec.html'),('ÖNORM-Stahl','oenorm-stahl.html'),('Formstahl und Bearbeitung','formstahl.html'),('Schweißarbeiten','schweissarbeiten.html'),('Schalungszubehör','schalungszubehoer.html')]},
+  {'label':'So bestellen Sie','href':'bestellen.html','children':[('Stahlkatalog 2026','bestellen.html#katalog'),('Bestellformulare','bestellen.html#formulare'),('Lieferung und Abholung','bestellen.html#lieferung')]},
+  {'label':'Unternehmen','href':'firma.html','children':[('Unsere Geschichte','firma.html#geschichte'),('Atterer hilft','firma.html#hilft'),('Qualitätsmanagement','qualitaetsmanagement.html')]},
+  {'label':'Karriere','href':'karriere.html','children':[('Stellenangebote','karriere.html'),('Ausbildung','ausbildung.html'),('Initiativbewerbung','initiativbewerbung.html')]},
+  {'label':'Dokumente','href':'downloads.html','children':[]},
+  {'label':'Kontakt','href':'kontakt.html','children':[]},
+] %}
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{% endblock %} | Atterer Stahlcenter</title>
+<meta name="description" content="{% block desc %}Atterer Stahlcenter GmbH – Biegebetrieb und Stahlhandel in Marktoberdorf seit 1886.{% endblock %}">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-built="{{built}}">
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="at-root">
+
+<div class="at-utility"><div class="at-wrap">
+<span class="at-spacer"></span>
+<a class="ut" href="{{C.phone_href}}">{{ icon('phone') }}<span>08342 9641-600</span></a>
+<a class="icb" href="mailto:{{C.email}}" aria-label="E-Mail: {{C.email}}">{{ icon('mail') }}</a>
+<span class="soc">
+<a href="{{C.social[0][1]}}" target="_blank" rel="noopener" aria-label="Facebook"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.9-4.5 4.6V11H7v4h2.5v6h4v-6h3l.5-4h-3.5V8.8c0-.5.3-.8.8-.8z"/></svg></a>
+<a href="{{C.social[1][1]}}" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+<a href="{{C.social[2][1]}}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h3.5v11H4zM5.7 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM9.5 9H13v1.6c.5-.9 1.7-1.9 3.6-1.9 3.6 0 4.3 2.3 4.3 5.4V20h-3.5v-5.2c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V20H9.5z"/></svg></a>
+</span>
+<a class="ut-cta" href="bestellen.html#katalog">{{ icon('download') }} Stahlkatalog 2026</a>
+</div></div>
+
+<header class="at-header" data-header><div class="at-wrap">
+<a class="logo" href="index.html" aria-label="Atterer Stahlcenter – zur Startseite"><img src="{{ LOGO }}" alt="Atterer Stahlcenter" width="134" height="46"></a>
+<span class="b140" aria-label="140 Jahre Atterer"><b>140</b>Jahre</span>
+<nav class="at-nav" aria-label="Hauptmenü">
+<a href="index.html"{% if current == 'Start' %} aria-current="page"{% endif %}>Startseite</a>
+{% for item in NAV4 %}
+  {% if item.children %}
+  <div class="nav-i" data-dd><a href="{{item.href}}"{% if current == item.label %} aria-current="page"{% endif %}>{{item.label}}<svg class="chev" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+    {% if item.groups %}
+    <div class="dd wide">{% for g in item.groups %}<div><h4>{{g[0]}}</h4>{% for c in g[1] %}<a href="{{c[1]}}">{{c[0]}}</a>{% endfor %}</div>{% endfor %}<div class="all"><a href="{{item.href}}">Alle Produkte →</a></div></div>
+    {% else %}
+    <div class="dd">{% for c in item.children %}<a href="{{c[1]}}">{{c[0]}}</a>{% endfor %}</div>
+    {% endif %}
+  </div>
+  {% else %}
+  <a href="{{item.href}}"{% if current == item.label %} aria-current="page"{% endif %}>{{item.label}}</a>
+  {% endif %}
+{% endfor %}
+</nav>
+<button class="burger" data-burger aria-expanded="false" aria-controls="mnav" aria-label="Menü"><i></i><i></i></button>
+</div>
+{{ mobile_nav(NAV4, C) }}
+</header>
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+
+<footer class="at-footer"><div class="at-wrap">
+<div class="at-footer__grid">
+<div style="display:flex;flex-direction:column;gap:14px"><span class="flogo"><img src="{{ LOGO }}" alt="Atterer Stahlcenter"></span><span>Leistung, die verbindet!</span><span>{{C.street}}<br>{{C.city}}</span></div>
+<div><h4>Produkte</h4><ul><li><a href="produkte.html">Alle Produkte</a></li><li><a href="bewehrungsstahl.html">Bewehrung</a></li><li><a href="formstahl.html">Formstahl und Bearbeitung</a></li><li><a href="downloads.html">Dokumente</a></li></ul></div>
+<div><h4>So bestellen Sie</h4><ul><li><a href="bestellen.html#katalog">Stahlkatalog 2026</a></li><li><a href="bestellen.html#formulare">Bestellformulare</a></li><li><a href="bestellen.html#lieferung">Lieferung und Abholung</a></li><li><a href="karriere.html">Karriere</a></li></ul></div>
+<div><h4>Kontakt</h4><ul><li><a href="{{C.phone_href}}">+49 8342 9641-600</a></li><li><a href="mailto:{{C.email}}">{{C.email}}</a></li><li>{{C.hours}}</li><li><a href="kontakt.html">Anfahrt</a></li></ul></div>
+</div>
+<div class="at-footer__base"><span>© 2026 Atterer Stahlcenter GmbH</span><span class="at-spacer"></span><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div>
+</div></footer>
+</div>
+<script src="../assets/proto.js" defer></script>
+<script src="v4.js" defer></script>
+</body>
+</html>
