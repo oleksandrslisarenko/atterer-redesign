@@ -521,3 +521,4 @@ p.plate,.company-copy p.plate{color:#fff}
 }
 .sent[hidden]{display:none}
 .service-grid>*,.contact-grid>*,.feat>*,.prod-grid>*,.career-grid>*{min-width:0} .dl span{min-width:0}
+.btn-ghost::before,.btn-ghost-w::before{inset:0 5px}
