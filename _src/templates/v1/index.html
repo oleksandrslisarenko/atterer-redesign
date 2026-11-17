@@ -96,7 +96,7 @@
     </div>
     <ul class="jobs" role="list">
       {% for j in JOBS %}
-      <li><a href="{{j.slug}}.html"><span class="job-t">{{j.title}}</span><span class="job-a">{{j.area}}</span>{{ icon('arrow') }}</a></li>
+      <li><a href="{{j.slug}}.html">{{ icon('job-'+j.slug, 'ic job-i') }}<span class="job-t">{{j.title}}</span><span class="job-a">{{j.area}}</span>{{ icon('arrow') }}</a></li>
       {% endfor %}
     </ul>
   </div>

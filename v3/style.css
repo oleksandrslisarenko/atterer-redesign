@@ -234,3 +234,14 @@ a.chip-b:hover{background:#fff;color:var(--blue)}
 }
 .tiles:not(.jobtiles) .tile:last-child{grid-column:span 2;aspect-ratio:auto}
 @media (max-width:900px){.tiles:not(.jobtiles) .tile:last-child{grid-column:auto;aspect-ratio:1}}
+/* fixes 2: Zahlen on solid light blue, rising steps */
+.zahlen{background:var(--blue-l)}
+.zahlen-bg{display:none}
+.zahlen .chip-b{background:var(--night);color:#fff}
+.z{box-shadow:0 14px 30px rgba(0,60,100,.18)}
+.z1,.z4{transform:translateY(48px)}
+.z2,.z5{transform:translateY(24px)}
+.z3,.z6{transform:none}
+.z-values .chip{background:#fff}
+@media (max-width:900px){.z1,.z2,.z3,.z4,.z5,.z6{transform:none}.z:nth-child(2n-1){transform:translateY(20px)}}
+.u{font-size:.5em;margin-left:.1em;vertical-align:.7em}

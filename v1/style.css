@@ -336,3 +336,11 @@ p.plate,.company-copy p.plate{color:#fff}
 .panel .h3,.panel>p:first-of-type{padding-right:90px}
 .values{padding-top:140px}
 .bend{background:#fff;padding:14px 30px 8px 16px;left:-14%;bottom:-12%;width:46%;box-shadow:0 14px 34px rgba(38,52,59,.14);filter:none}
+/* fixes 2 */
+.company-copy{padding:44px 56px 0 48px;margin-left:-48px}
+.values{padding-top:0;margin-top:112px}
+.jobs a{grid-template-columns:44px 1fr auto 24px}
+.job-i{width:44px;height:44px;padding:10px;background:rgba(255,255,255,.08);color:#7CC4F2;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);transition:background .25s,color .25s}
+.jobs a:hover .job-i{background:var(--blue);color:#fff}
+@media (max-width:900px){.company-copy{margin-left:0;padding:40px 0 0}.values{margin-top:0}}
+@media (max-width:560px){.jobs a{grid-template-columns:40px 1fr 24px}.job-i{width:40px;height:40px;padding:9px}}

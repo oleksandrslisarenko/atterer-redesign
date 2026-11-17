@@ -21,7 +21,7 @@
     <h2 class="chip chip-b">Atterer in Zahlen</h2>
     <ul class="z-list" role="list">
       {% for n in NUMBERS %}
-      <li class="z z{{loop.index}}"><b><span data-count="{{n[0]}}">{{n[0]}}</span>{{n[1]}}</b> {{n[2]}}</li>
+      <li class="z z{{loop.index}}"><b><span data-count="{{n[0]}}">{{n[0]}}</span>{% if n[1]=='+' %}+{% elif n[1] %}<span class="u">{{n[1]|trim}}</span>{% endif %}</b> {{n[2]}}</li>
       {% endfor %}
     </ul>
     <h2 class="chip chip-b z-h2">Dafür stehen wir</h2>
