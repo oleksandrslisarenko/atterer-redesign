@@ -344,3 +344,8 @@ p.plate,.company-copy p.plate{color:#fff}
 .jobs a:hover .job-i{background:var(--blue);color:#fff}
 @media (max-width:900px){.company-copy{margin-left:0;padding:40px 0 0}.values{margin-top:0}}
 @media (max-width:560px){.jobs a{grid-template-columns:40px 1fr 24px}.job-i{width:40px;height:40px;padding:9px}}
+/* fixes 3: icons without plate */
+.job-i{width:30px;height:30px;padding:0;background:none;clip-path:none;color:#7CC4F2}
+.jobs a{grid-template-columns:30px 1fr auto 24px}
+.jobs a:hover .job-i{background:none;color:#fff}
+@media (max-width:560px){.jobs a{grid-template-columns:28px 1fr 24px}.job-i{width:28px;height:28px;padding:0}}

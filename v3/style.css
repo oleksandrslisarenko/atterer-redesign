@@ -245,3 +245,17 @@ a.chip-b:hover{background:#fff;color:var(--blue)}
 .z-values .chip{background:#fff}
 @media (max-width:900px){.z1,.z2,.z3,.z4,.z5,.z6{transform:none}.z:nth-child(2n-1){transform:translateY(20px)}}
 .u{font-size:.5em;margin-left:.1em;vertical-align:.7em}
+/* fixes 3: Zahlen — brand blue, rebar-mesh pattern, rising numbers */
+.zahlen{background-color:var(--blue);background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,transparent 2px 56px),repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 2px,transparent 2px 56px);padding:clamp(88px,10vw,140px) 0 clamp(72px,8vw,112px)}
+.zahlen .chip-b{background:#fff;color:var(--blue)}
+.z-list{grid-template-columns:repeat(6,1fr);gap:0 24px;max-width:none;margin-top:40px;align-items:end}
+.z,.z1,.z2,.z3,.z4,.z5,.z6{background:none;clip-path:none;box-shadow:none;color:#D2E8F7;padding:16px 0 0;border-top:3px solid rgba(255,255,255,.55);font-size:1rem;font-weight:600;font-style:normal;font-stretch:100%}
+.z b{color:#fff;font-size:clamp(2.6rem,4vw,4rem);margin-bottom:8px}
+.z1{transform:translateY(0);margin-top:150px}.z2{margin-top:120px}.z3{margin-top:90px}.z4{margin-top:60px}.z5{margin-top:30px}.z6{margin-top:0}
+.z1,.z2,.z3,.z4,.z5,.z6{transform:none}
+.z6{border-top-color:#fff}
+.z-values .chip{background:rgba(255,255,255,.14);color:#fff}
+@media (max-width:1100px){.z-list{grid-template-columns:repeat(3,1fr);gap:32px 20px}.z1,.z4{margin-top:60px}.z2,.z5{margin-top:30px}.z3,.z6{margin-top:0}}
+@media (max-width:900px){.z1,.z2,.z3,.z4,.z5,.z6,.z:nth-child(2n-1){transform:none}}
+@media (max-width:560px){.z-list{grid-template-columns:1fr 1fr}.z1,.z3,.z5{margin-top:28px}.z2,.z4,.z6{margin-top:0}}
+.z-list{align-items:start}
