@@ -99,14 +99,14 @@
   const imgs = $$('[data-lightbox]');
   if (imgs.length) {
     const box = document.createElement('div');
-    box.className = 'lb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.hidden = true;
-    box.innerHTML = '<button class="lb-x" aria-label="Schließen">×</button><button class="lb-p" aria-label="Vorheriges Bild">‹</button><img alt=""><button class="lb-n" aria-label="Nächstes Bild">›</button><span class="lb-c"></span>';
+    box.className = 'plb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.hidden = true;
+    box.innerHTML = '<button class="plb-x" aria-label="Schließen">×</button><button class="plb-p" aria-label="Vorheriges Bild">‹</button><img alt=""><button class="plb-n" aria-label="Nächstes Bild">›</button><span class="plb-c"></span>';
     document.body.append(box);
     let i = 0;
-    const show = (n) => { i = (n + imgs.length) % imgs.length; $('img', box).src = imgs[i].dataset.lightbox || imgs[i].src; $('.lb-c', box).textContent = (i + 1) + ' / ' + imgs.length; };
+    const show = (n) => { i = (n + imgs.length) % imgs.length; $('img', box).src = imgs[i].dataset.lightbox || imgs[i].src; $('.plb-c', box).textContent = (i + 1) + ' / ' + imgs.length; };
     const close = () => { box.classList.remove('on'); setTimeout(() => (box.hidden = true), 250); };
-    imgs.forEach((im, n) => { im.style.cursor = 'zoom-in'; im.addEventListener('click', () => { box.hidden = false; show(n); requestAnimationFrame(() => box.classList.add('on')); $('.lb-x', box).focus(); }); });
-    $('.lb-x', box).onclick = close; $('.lb-p', box).onclick = () => show(i - 1); $('.lb-n', box).onclick = () => show(i + 1);
+    imgs.forEach((im, n) => { im.style.cursor = 'zoom-in'; im.addEventListener('click', () => { box.hidden = false; show(n); requestAnimationFrame(() => box.classList.add('on')); $('.plb-x', box).focus(); }); });
+    $('.plb-x', box).onclick = close; $('.plb-p', box).onclick = () => show(i - 1); $('.plb-n', box).onclick = () => show(i + 1);
     box.addEventListener('click', (e) => e.target === box && close());
     addEventListener('keydown', (e) => { if (box.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
   }
