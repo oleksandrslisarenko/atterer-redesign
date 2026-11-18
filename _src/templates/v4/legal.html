@@ -3,7 +3,7 @@
 {% set current = '' %}
 {% block title %}{{legal_title}}{% endblock %}
 {% block main %}
-{{ ui.fh([(legal_title,None)], legal_title) }}
+{{ ui.fh([(legal_title,None)], legal_title, img=IMG ~ '2024/03/Atterer-Stahlcenter-GmbH.jpeg', alt='Atterer Stahlcenter in Marktoberdorf') }}
 <div class="w legal">
 {% if legal_kind == 'impressum' %}
 <aside class="legal-toc"><b>Inhalt</b><ol>{% for s in IMPRESSUM %}<li><a href="#s{{loop.index}}">{{s[0]}}</a></li>{% endfor %}</ol></aside>

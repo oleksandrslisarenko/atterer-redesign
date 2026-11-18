@@ -3,7 +3,7 @@
 {% set current = 'Dokumente' %}
 {% block title %}Dokumente – Kataloge, Formulare, Zertifikate{% endblock %}
 {% block main %}
-{{ ui.fh([('Dokumente',None)], 'Dokumente', 'Kataloge, Formulare, Zertifikate und Dokumente – um sich zu informieren oder eine Bestellung aufzugeben.', [('Stahlkatalog 2026', CATALOG_PDF),('So bestellen Sie','bestellen.html')]) }}
+{{ ui.fh([('Dokumente',None)], 'Dokumente', 'Kataloge, Formulare, Zertifikate und Dokumente – um sich zu informieren oder eine Bestellung aufzugeben.', [('Stahlkatalog 2026', CATALOG_PDF),('So bestellen Sie','bestellen.html')], img=QM.hero, alt='Auftragserfassung bei Atterer') }}
 <section class="sec" style="padding-top:64px"><div class="w">
 <nav class="dlnav4" aria-label="Kategorien">{% for g in DOWNLOADS %}<a href="#{{g[0]|lower}}">{{g[0]}} <span class="cnt">{{g[1]|length}}</span></a>{% endfor %}</nav>
 <div class="catalog4" id="stahlkatalog" style="margin-bottom:96px">

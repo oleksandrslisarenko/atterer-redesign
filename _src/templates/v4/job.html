@@ -5,10 +5,9 @@
 {% block title %}{{jp.short}} – Karriere{% endblock %}
 {% block main %}
 {% set tags %}<span>{{ icon('pin') }}Marktoberdorf, {{C.street}}</span><span>{{ icon('clock') }}{{jp.type}}</span><span>{{ icon('job-' ~ slug) }}{{jp.area}}</span>{% endset %}
-{{ ui.fh([('Karriere','karriere.html'),(jp.short,None)], jp.title, None, None, tags, jp.badge) }}
+{{ ui.fh([('Karriere','karriere.html'),(jp.short,None)], jp.title, None, None, tags, jp.badge, img=jp.img, alt=jp.short ~ ' bei Atterer') }}
 <div class="w fm">
 <div class="fcol">
-<div class="jhero4"><img src="{{jp.img}}" alt="{{jp.short}} bei Atterer" fetchpriority="high"><div class="tnl" aria-hidden="true"></div></div>
 <section class="jsec" style="border-top:0;padding-top:0"><p style="font-size:19px;line-height:29px;color:var(--slate)">{{jp.intro}}</p></section>
 <section class="jsec"><h2>Deine Aufgaben</h2><ul class="blist">{% for x in jp.aufgaben %}<li>{{x}}</li>{% endfor %}</ul></section>
 {% if jp.bieten %}<section class="jsec"><h2>Wir bieten Dir</h2><ul class="offer">{% for x in jp.bieten %}<li><i>{{ icon('check') }}</i><div><b>{{x}}</b></div></li>{% endfor %}</ul></section>{% endif %}

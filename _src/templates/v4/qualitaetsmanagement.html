@@ -3,7 +3,7 @@
 {% set current = 'Unternehmen' %}
 {% block title %}Qualitätsmanagement – DIN EN ISO 9001{% endblock %}
 {% block main %}
-{{ ui.fh([('Unternehmen','firma.html'),('Qualitätsmanagement',None)], 'Qualitätsmanagement', QM.lead ~ ' – seit 2014, jedes Jahr erfolgreich re-zertifiziert.', [('Zertifikate','downloads.html#zertifikate')]) }}
+{{ ui.fh([('Unternehmen','firma.html'),('Qualitätsmanagement',None)], 'Qualitätsmanagement', QM.lead ~ ' – seit 2014, jedes Jahr erfolgreich re-zertifiziert.', [('Zertifikate','downloads.html#zertifikate')], img=IMG ~ '2022/08/image28.jpg', alt='Produktion bei Atterer') }}
 <div class="w fm">
 <div class="fcol">
 <section class="jsec" style="border-top:0;padding-top:0"><h2>Qualität und Verlässlichkeit</h2>{% for t in QM.text %}<p>{{t}}</p>{% endfor %}</section>

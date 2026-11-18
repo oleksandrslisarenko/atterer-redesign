@@ -5,10 +5,9 @@
 {% block title %}Ausbildung {{ap.title}}{% endblock %}
 {% block main %}
 {% set tags %}<span>{{ icon('pin') }}Marktoberdorf</span><span>{{ icon('clock') }}{{ap.start}}</span><span>{{ icon('job-ausbildung') }}Ausbildung</span>{% endset %}
-{{ ui.fh([('Karriere','karriere.html'),('Ausbildung','ausbildung.html'),(ap.title,None)], ap.title, None, None, tags, 'Ausbildung bei Atterer') }}
+{{ ui.fh([('Karriere','karriere.html'),('Ausbildung','ausbildung.html'),(ap.title,None)], ap.title, None, None, tags, 'Ausbildung bei Atterer', img=AUSBILDUNG.hero, alt='Auszubildende bei Atterer') }}
 <div class="w fm">
 <div class="fcol">
-<div class="jhero4"><img src="{{ap.img}}" alt="{{ap.title}}" fetchpriority="high"><div class="tnl" aria-hidden="true"></div></div>
 <section class="jsec" style="border-top:0;padding-top:0"><p style="font-size:19px;line-height:29px;color:var(--slate)">{{ap.intro}}</p></section>
 <section class="jsec"><h2>Deine Ausbildung</h2><ul class="blist">{% for x in ap.ausbildung %}<li>{{x}}</li>{% endfor %}</ul></section>
 <section class="jsec"><h2>Das bist Du</h2><p>{{ap.du_intro}}</p><ul class="blist">{% for x in AUSBILDUNG_DU %}<li>{{x}}</li>{% endfor %}</ul></section>

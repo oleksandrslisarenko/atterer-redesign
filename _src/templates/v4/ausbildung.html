@@ -3,8 +3,7 @@
 {% set current = 'Karriere' %}
 {% block title %}Ausbildung 2027/28{% endblock %}
 {% block main %}
-{{ ui.fh([('Karriere','karriere.html'),('Ausbildung',None)], 'Raus aus der Schule, rein in die Ausbildung!', AUSBILDUNG.intro[0], [('One-Click-Bewerbung', C.oneclick),('Azubi-Magazin', AUSBILDUNG.magazin)], sk=AUSBILDUNG.title) }}
-{{ ui.phero(AUSBILDUNG.hero, 'Auszubildende bei Atterer') }}
+{{ ui.fh([('Karriere','karriere.html'),('Ausbildung',None)], 'Raus aus der Schule, rein in die Ausbildung!', AUSBILDUNG.intro[0], [('One-Click-Bewerbung', C.oneclick),('Azubi-Magazin', AUSBILDUNG.magazin)], sk=AUSBILDUNG.title, img=AUSBILDUNG.hero, alt='Auszubildende bei Atterer') }}
 <section class="sec" style="padding-top:72px"><div class="w">
 <div class="at-facts" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:72px">{% for f in AUSBILDUNG.facts %}<div class="at-fact"><span>{{f[0]}}</span><strong>{{f[1]}}</strong></div>{% endfor %}</div>
 <div class="split" style="margin-bottom:48px"><h2 class="h2" data-reveal>Deine Ausbildung bei Atterer</h2><p class="lead" style="align-self:end">{{AUSBILDUNG.intro[1]}}</p></div>

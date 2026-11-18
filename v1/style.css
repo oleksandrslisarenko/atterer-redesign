@@ -536,3 +536,4 @@ p.plate,.company-copy p.plate{color:#fff}
   .hero-copy:has(> .plate:first-child){margin-top:-30px}
   .hero-copy .plate{margin-bottom:1.1rem;position:relative}
 }
+@media (max-width:900px){.hero .h1,.p-hero .h1,.h1-job{max-width:none}}
