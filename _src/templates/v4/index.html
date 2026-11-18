@@ -65,8 +65,8 @@
 <button class="ctab" role="tab" aria-selected="true">Bewehrung</button>
 <button class="ctab" role="tab" aria-selected="false">Metallbearbeitung</button>
 </div>
-<div class="cat-list">{% for c in CAT_A %}<a class="it" href="{{c[0]}}.html" data-key="{{c[0]}}" data-cap="{{c[2]}}"><b>{{c[1]}}</b><span class="ia" aria-hidden="true">{{arrow}}</span></a>{% endfor %}</div>
-<div class="cat-list" hidden>{% for c in CAT_B %}<a class="it" href="{{c[0]}}.html" data-key="{{c[0]}}" data-cap="{{c[2]}}"><b>{{c[1]}}</b><span class="ia" aria-hidden="true">{{arrow}}</span></a>{% endfor %}</div>
+<div class="cat-list" data-g="Bewehrung">{% for c in CAT_A %}<a class="it" href="{{c[0]}}.html" data-key="{{c[0]}}" data-cap="{{c[2]}}"><b>{{c[1]}}</b><span class="ia" aria-hidden="true">{{arrow}}</span></a>{% endfor %}</div>
+<div class="cat-list" data-g="Metallbearbeitung" hidden>{% for c in CAT_B %}<a class="it" href="{{c[0]}}.html" data-key="{{c[0]}}" data-cap="{{c[2]}}"><b>{{c[1]}}</b><span class="ia" aria-hidden="true">{{arrow}}</span></a>{% endfor %}</div>
 <div class="cat-more"><a class="at-link" href="produkte.html">Alle Produkte</a></div>
 </div>
 <figure class="frame">
@@ -100,6 +100,7 @@
 <div class="tnl" aria-hidden="true"></div>
 <div class="dots" aria-hidden="true"><i data-p="0" class="on"></i><i data-p="1"></i><i data-p="2"></i></div>
 <div class="ctr"><button class="sbtn" data-prev aria-label="Vorherige Fotos"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button></div>
+<div class="ctr ctr-m"><button class="sbtn" data-prev aria-label="Vorherige Fotos"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button class="sbtn" data-next aria-label="Nächste Fotos"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
 </div>
 <div class="sl rgt">
 <img data-p="0" class="on" src="{{ IMG }}2024/03/LKW_Atterer-Stahlcenter-GmbH.jpg" alt="Atterer LKW" loading="lazy">

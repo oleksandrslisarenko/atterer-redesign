@@ -522,3 +522,17 @@ p.plate,.company-copy p.plate{color:#fff}
 .sent[hidden]{display:none}
 .service-grid>*,.contact-grid>*,.feat>*,.prod-grid>*,.career-grid>*{min-width:0} .dl span{min-width:0}
 .btn-ghost::before,.btn-ghost-w::before{inset:0 5px}
+
+/* mobile hero: photo bleeds edge to edge on top, slanted lower edge, plate rides the edge */
+@media (max-width:900px){
+  .hero{padding-top:0}
+  .hero-grid{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .hero-media{order:-1;margin:0 calc(-1*var(--gut));width:auto}
+  .hero-media .slant{aspect-ratio:4/3.1;clip-path:polygon(0 0,100% 0,100% 82%,0 100%)}
+  .p-hero .hero-media .slant{aspect-ratio:16/11}
+  .hero-media .bend{display:none}
+  .hero-media .badge,.hero-media [class*=badge]{right:var(--gut)}
+  .hero-copy{margin-top:20px}
+  .hero-copy:has(> .plate:first-child){margin-top:-30px}
+  .hero-copy .plate{margin-bottom:1.1rem;position:relative}
+}

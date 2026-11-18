@@ -3,8 +3,7 @@
 {% set current = 'Unternehmen' %}
 {% block title %}Unternehmen – Seit 1886 für Sie da{% endblock %}
 {% block main %}
-{{ ui.fh([('Unternehmen',None)], 'Seit 1886 für Sie da', 'Vom Eisenhandel in Marktoberdorf zum Marktführer unter den Betonstahlbiegereien im Allgäu – familiengeführt in der 4. Generation.', [('Unsere Geschichte','#geschichte'),('Atterer hilft','#hilft')], sk='140 Jahre Atterer') }}
-{{ ui.phero(IMG ~ '2024/03/Atterer-Stahlcenter-GmbH.jpeg', 'LKW-Flotte vor dem Atterer Stahlcenter') }}
+{{ ui.fh([('Unternehmen',None)], 'Seit 1886 für Sie da', 'Vom Eisenhandel in Marktoberdorf zum Marktführer unter den Betonstahlbiegereien im Allgäu – familiengeführt in der 4. Generation.', [('Unsere Geschichte','#geschichte'),('Atterer hilft','#hilft')], sk='140 Jahre Atterer', img=IMG ~ '2024/03/Atterer-Stahlcenter-GmbH.jpeg', alt='LKW-Flotte vor dem Atterer Stahlcenter') }}
 <section class="sec"><div class="w">
 <div class="split" style="margin-bottom:64px"><h2 class="h2" data-reveal>Zuverlässiger Partner der Bauindustrie</h2><div>{% for t in INTRO %}<p class="lead" style="margin-bottom:14px">{{t}}</p>{% endfor %}</div></div>
 <div class="at-facts">{% for n in NUMBERS[:4] %}<div class="at-fact"><strong>{{n[0]}}{{n[1]}}</strong><span>{{n[2]}}</span></div>{% endfor %}</div>

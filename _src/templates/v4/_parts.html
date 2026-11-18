@@ -2,8 +2,8 @@
 
 {% macro arrow() -%}<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>{%- endmacro %}
 
-{% macro fh(crumbs, title, lead=None, btns=None, tags=None, sk=None) -%}
-<section class="fh"><div class="w">
+{% macro fh(crumbs, title, lead=None, btns=None, tags=None, sk=None, img=None, alt='') -%}
+<section class="fh{% if img %} fh--img{% endif %}">{% if img %}<figure class="fh-ph"><img src="{{img}}" alt="{{alt}}" fetchpriority="high"><div class="tnl" aria-hidden="true"></div></figure>{% endif %}<div class="w">
 <ol class="at-crumbs" aria-label="Navigation"><li><a href="index.html">Startseite</a></li>{% for c in crumbs %}<li{% if not c[1] %} aria-current="page"{% endif %}>{% if c[1] %}<a href="{{c[1]}}">{{c[0]}}</a>{% else %}{{c[0]}}{% endif %}</li>{% endfor %}</ol>
 {% if sk %}<span class="sk" style="margin-bottom:0">{{sk}}</span>{% endif %}
 <h1>{{title}}</h1>

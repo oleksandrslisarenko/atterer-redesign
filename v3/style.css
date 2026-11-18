@@ -455,3 +455,10 @@ a.chip-b:hover{background:#fff;color:var(--blue)}
 @media (max-width:900px){.tl3 li{grid-template-columns:minmax(0,1fr) 88px}}
 @media (max-width:560px){.legal3-hero .mega{font-size:clamp(2rem,10vw,2.8rem)}.mega-p{font-size:clamp(2.2rem,10.5vw,3.2rem)}}
 .legal3-body h2,.legal3-body h3{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere}
+
+/* header plate: slant drawn by a pseudo layer so dropdowns are not clipped */
+.hd-in{clip-path:none;background:none;position:relative;isolation:isolate}
+.hd-in::before{content:"";position:absolute;inset:0;z-index:-1;background:#fff;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.has-dd>.dd{top:calc(100% + 18px)}
+.has-dd>.dd::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+.has-dd>.dd{border-top:3px solid var(--blue)}

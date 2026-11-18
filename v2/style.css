@@ -1,10 +1,10 @@
 /* V2 — "Vier Generationen": editorial heritage */
 :root{
-  --paper:#fff; --ink:#1E2A30; --blue:#0071B7; --blue-d:#005A93; --sky:#E4EEF5; --stone:#64737A; --rule:#D7DFE4;
-  --serif:'Source Serif',Georgia,serif; --sans:'Archivo',system-ui,sans-serif;
+  --paper:#fff; --ink:#1E2A30; --blue:#0071B7; --blue-d:#005A93; --sky:#E4EEF5; --stone:#47565D; --rule:#D7DFE4;
+  --serif:'Archivo',system-ui,sans-serif; --sans:'Archivo',system-ui,sans-serif;
   --wrap:1320px; --gut:clamp(20px,4vw,56px); --ease:cubic-bezier(.2,.7,.2,1);
 }
-body{font-family:var(--serif);font-size:19px;line-height:1.7;color:var(--ink);background:var(--paper)}
+body{font-family:var(--serif);font-size:18px;line-height:1.62;font-stretch:96%;color:var(--ink);background:var(--paper)}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
 .sec{padding:clamp(72px,10vw,140px) 0}
 .d1,.d2,.d3,.btn,.nav,.hd-phone,.crumbs,.mnav,.ft,.chips,.tlink,.kv,.toc{font-family:var(--sans)}
@@ -441,3 +441,10 @@ a.svc:hover{border-color:var(--blue)}
   .tbl2 td{display:block;padding-top:4px}
   .p-title{word-break:break-word;hyphens:auto}
 }
+
+/* body face: Archivo text width replaces the serif */
+.quote p{font-style:normal;font-weight:700;font-stretch:64%;letter-spacing:-.015em}
+.story-q,.help-lead,.tl-end{font-style:normal;font-weight:500}
+.doc-fig figcaption,.plans2 figcaption{font-style:normal}
+.toc a.is-active{color:var(--ink);font-weight:600;border-color:var(--blue)}
+.toc a.is-active:hover{color:var(--blue)}

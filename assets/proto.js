@@ -25,7 +25,9 @@
   const burger = $('[data-burger]');
   const panel = $('[data-mobile-nav]');
   if (burger && panel) {
+    document.body.appendChild(panel); /* fullscreen: escape header's containing block */
     const set = (open) => {
+      if (open && header) { header.classList.remove('is-hidden'); panel.style.setProperty('--mtop', (Math.max(0, header.getBoundingClientRect().top) + header.offsetHeight) + 'px'); }
       document.body.classList.toggle('menu-open', open);
       burger.setAttribute('aria-expanded', open);
       panel.toggleAttribute('inert', !open);
@@ -111,20 +113,38 @@
     addEventListener('keydown', (e) => { if (box.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
   }
 
-  /* Drag-to-scroll rails */
+  /* Rails: arrow buttons only */
   $$('[data-rail]').forEach((rail) => {
-    let down = false, x0 = 0, s0 = 0, moved = false;
-    rail.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') return; down = true; moved = false; x0 = e.clientX; s0 = rail.scrollLeft; rail.classList.add('is-drag'); });
-    addEventListener('pointerup', () => { down = false; rail.classList.remove('is-drag'); });
-    rail.addEventListener('pointermove', (e) => { if (!down) return; const dx = e.clientX - x0; if (Math.abs(dx) > 4) moved = true; rail.scrollLeft = s0 - dx; });
-    rail.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
-    const nav = rail.parentElement.querySelector('[data-rail-nav]');
-    if (nav) {
-      const step = () => rail.clientWidth * 0.8;
-      $('[data-prev]', nav).onclick = () => rail.scrollBy({ left: -step(), behavior: 'smooth' });
-      $('[data-next]', nav).onclick = () => rail.scrollBy({ left: step(), behavior: 'smooth' });
-    }
+    let box = rail.parentElement, nav = null;
+    while (box && box !== document.body && !(nav = box.querySelector('[data-rail-nav]'))) box = box.parentElement;
+    if (!nav) return;
+    const prev = $('[data-prev]', nav), next = $('[data-next]', nav);
+    const step = () => Math.max(rail.clientWidth * 0.7, 260);
+    prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }));
+    next.addEventListener('click', () => rail.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }));
+    const sync = () => {
+      const max = rail.scrollWidth - rail.clientWidth - 2;
+      prev.disabled = rail.scrollLeft <= 2; next.disabled = rail.scrollLeft >= max;
+    };
+    rail.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); sync();
   });
+
+  /* Table of contents: highlight the section in view */
+  const tocLinks = $$('.toc a[href^="#"]').filter((a) => a.getAttribute('href').length > 1);
+  if (tocLinks.length) {
+    const pairs = tocLinks.map((a) => [a, document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))]).filter((p) => p[1]);
+    let ticking = false;
+    const spy = () => {
+      ticking = false;
+      const line = Math.min(innerHeight * 0.35, 220);
+      let cur = pairs[0];
+      for (const p of pairs) if (p[1].getBoundingClientRect().top <= line) cur = p;
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = pairs[pairs.length - 1];
+      pairs.forEach((p) => { const on = p === cur; p[0].classList.toggle('is-active', on); on ? p[0].setAttribute('aria-current', 'location') : p[0].removeAttribute('aria-current'); });
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, { passive: true });
+    addEventListener('resize', spy); spy();
+  }
 
   /* Contact form (prototype: no sending) */
   $$('form[data-proto]').forEach((f) => f.addEventListener('submit', (e) => {

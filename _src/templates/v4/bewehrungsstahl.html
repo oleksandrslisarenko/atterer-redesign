@@ -3,8 +3,7 @@
 {% set current = 'Produkte' %}
 {% block title %}Bewehrungsstahl – Gewi-Stahl SAS 500 / 550{% endblock %}
 {% block main %}
-{{ ui.fh([('Produkte','produkte.html'),('Bewehrungsstahl',None)], 'Bewehrungsstahl', BEWEHRUNG.lead ~ ' Stahllängen werden bei uns individuell zugeschnitten und gebogen.', [('Bestellformulare','bestellen.html#formulare'),('Stahlkatalog 2026', CATALOG_PDF)], sk='Gewi-Stahl SAS 500 / 550 Bewehrungssystem') }}
-{{ ui.phero(BEWEHRUNG.images[1], 'Bewehrungsstahl in Bündeln') }}
+{{ ui.fh([('Produkte','produkte.html'),('Bewehrungsstahl',None)], 'Bewehrungsstahl', BEWEHRUNG.lead ~ ' Stahllängen werden bei uns individuell zugeschnitten und gebogen.', [('Bestellformulare','bestellen.html#formulare'),('Stahlkatalog 2026', CATALOG_PDF)], sk='Gewi-Stahl SAS 500 / 550 Bewehrungssystem', img=BEWEHRUNG.images[1], alt='Bewehrungsstahl in Bündeln') }}
 <div class="w fm">
 <div class="fcol">
 <section class="jsec"><h2>SAS 500 / 550 Gewindestahl</h2><p>Muffe und Stab in höchster Qualität aufeinander abgestimmt. Endlos schraubbares, robustes und baustellengerechtes Grobgewinde – zugelassen in diversen europäischen Ländern und für außergewöhnliche Lastfälle.</p>

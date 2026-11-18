@@ -4,8 +4,7 @@
 {% set current = 'Produkte' %}
 {% block title %}{{pp.title}} – {{pp.sub}}{% endblock %}
 {% block main %}
-{{ ui.fh([('Produkte','produkte.html'),(pp.title,None)], pp.title, pp.lead, [('Bestellformulare','bestellen.html#formulare'),('Stahlkatalog 2026', CATALOG_PDF)], sk=pp.sub) }}
-{{ ui.phero(pp.hero, pp.title ~ ' bei Atterer') }}
+{{ ui.fh([('Produkte','produkte.html'),(pp.title,None)], pp.title, pp.lead, [('Bestellformulare','bestellen.html#formulare'),('Stahlkatalog 2026', CATALOG_PDF)], sk=pp.sub, img=pp.hero, alt=pp.title ~ ' bei Atterer') }}
 <div class="w fm">
 <div class="fcol">
 {% for s in pp.sections %}

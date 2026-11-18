@@ -35,3 +35,8 @@ body.menu-open{overflow:hidden}
 [data-rail]>*{scroll-snap-align:start}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* mobile menu: always fullscreen below the header bar */
+.mnav{position:fixed!important;inset:0!important;z-index:49!important;padding-top:calc(var(--mtop,72px) + 8px)!important;height:auto!important;max-height:none!important;overscroll-behavior:contain}
+[data-rail]{cursor:auto!important}
+[data-rail-nav] button:disabled{opacity:.3;pointer-events:none}

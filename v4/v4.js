@@ -28,7 +28,8 @@
     cat.querySelectorAll('.it').forEach((it) => { it.addEventListener('mouseenter', () => show(items().indexOf(it))); it.addEventListener('focus', () => show(items().indexOf(it))); });
     cat.addEventListener('mouseenter', () => (hover = true)); cat.addEventListener('mouseleave', () => (hover = false));
     show(0);
-    if (!reduce) setInterval(() => { if (!hover) show(idx + 1); }, 3000);
+    const mob = matchMedia('(max-width:900px)');
+    if (!reduce) setInterval(() => { if (!hover && !mob.matches) show(idx + 1); }, 3000);
   }
 
   /* photo pair */
@@ -36,8 +37,8 @@
   if (pair) {
     let p = 0, hover = false; const n = 3;
     const set = (i) => { p = (i + n) % n; pair.querySelectorAll('[data-p]').forEach((el) => el.classList.toggle('on', +el.dataset.p === p)); };
-    pair.querySelector('[data-prev]').onclick = () => set(p - 1);
-    pair.querySelector('[data-next]').onclick = () => set(p + 1);
+    pair.querySelectorAll('[data-prev]').forEach((b) => (b.onclick = () => set(p - 1)));
+    pair.querySelectorAll('[data-next]').forEach((b) => (b.onclick = () => set(p + 1)));
     pair.addEventListener('mouseenter', () => (hover = true)); pair.addEventListener('mouseleave', () => (hover = false));
     if (!reduce) setInterval(() => { if (!hover) set(p + 1); }, 2600);
   }
