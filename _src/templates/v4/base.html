@@ -35,8 +35,8 @@
 </div></div>
 
 <header class="at-header" data-header><div class="at-wrap">
-<a class="logo" href="index.html" aria-label="Atterer Stahlcenter – zur Startseite"><img src="{{ LOGO }}" alt="Atterer Stahlcenter" width="134" height="46"></a>
-<span class="b140" aria-label="140 Jahre Atterer"><b>140</b>Jahre</span>
+<a class="logo" href="index.html" aria-label="Atterer Stahlcenter – zur Startseite"><img src="img/logo.png" alt="Atterer Stahlcenter" width="134" height="46"></a>
+<img class="b140h" src="img/140-jahre.png" alt="140 Jahre Atterer Stahlcenter" width="62" height="56">
 <nav class="at-nav" aria-label="Hauptmenü">
 <a href="index.html"{% if current == 'Start' %} aria-current="page"{% endif %}>Startseite</a>
 {% for item in NAV4 %}
@@ -64,7 +64,7 @@
 
 <footer class="at-footer"><div class="at-wrap">
 <div class="at-footer__grid">
-<div style="display:flex;flex-direction:column;gap:14px"><span class="flogo"><img src="{{ LOGO }}" alt="Atterer Stahlcenter"></span><span>Leistung, die verbindet!</span><span>{{C.street}}<br>{{C.city}}</span></div>
+<div style="display:flex;flex-direction:column;gap:14px"><span class="flogo"><img src="img/logo.png" alt="Atterer Stahlcenter"></span><span>Leistung, die verbindet!</span><span>{{C.street}}<br>{{C.city}}</span></div>
 <div><h4>Produkte</h4><ul><li><a href="produkte.html">Alle Produkte</a></li><li><a href="bewehrungsstahl.html">Bewehrung</a></li><li><a href="formstahl.html">Formstahl und Bearbeitung</a></li><li><a href="downloads.html">Dokumente</a></li></ul></div>
 <div><h4>So bestellen Sie</h4><ul><li><a href="bestellen.html#katalog">Stahlkatalog 2026</a></li><li><a href="bestellen.html#formulare">Bestellformulare</a></li><li><a href="bestellen.html#lieferung">Lieferung und Abholung</a></li><li><a href="karriere.html">Karriere</a></li></ul></div>
 <div><h4>Kontakt</h4><ul><li><a href="{{C.phone_href}}">+49 8342 9641-600</a></li><li><a href="mailto:{{C.email}}">{{C.email}}</a></li><li>{{C.hours}}</li><li><a href="kontakt.html">Anfahrt</a></li></ul></div>

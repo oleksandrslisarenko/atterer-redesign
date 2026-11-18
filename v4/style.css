@@ -569,3 +569,8 @@ html{scrollbar-color:#7d888d #f2f3f3;accent-color:#3170b9}
 @media (max-width:900px){.fh::before{opacity:.35;-webkit-mask-image:linear-gradient(90deg,transparent 55%,#000 100%);mask-image:linear-gradient(90deg,transparent 55%,#000 100%)}.map{aspect-ratio:4/5}.map .mo{padding:20px}}
 /* ===== fixes (main) ===== */
 .at-utility a.ut-cta{color:var(--blue-strong)!important}
+
+/* ===== real assets: logo, 140 badge, hero video ===== */
+.b140h{width:62px;height:auto;margin-left:-14px;display:block;filter:drop-shadow(0 3px 6px rgba(0,0,0,.18))}
+.hero>video.hv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;display:block}
+@media (max-width:900px){.b140h{width:48px;margin-left:-8px}}

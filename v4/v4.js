@@ -48,3 +48,10 @@
     tabs.forEach((t, i) => t.addEventListener('click', () => { tabs.forEach((x, j) => x.setAttribute('aria-selected', j === i)); bodies.forEach((b, j) => (b.hidden = j !== i)); }));
   });
 })();
+/* hero video: respect reduced motion, pause when off-screen */
+(() => {
+  const v = document.querySelector('.hero video.hv'); if (!v) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); return; }
+  v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {});
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) { const q = v.play(); if (q && q.catch) q.catch(() => {}); } else v.pause(); }).observe(v);
+})();
